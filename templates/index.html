@@ -1,0 +1,61 @@
+{# nourrir_flask/templates/index.html #}
+{% extends "base.html" %}
+
+{% block title %}NourrIR – Accueil{% endblock %}
+
+{% block content %}
+    <h1>Bienvenue chez NourrIR</h1>
+    <p>
+        NourrIR démocratise le bien-être mental & physique via <b>nutrition, psychologie et créativité</b>.
+    </p>
+    <h2 style="margin-top:2em;">Nos valeurs</h2>
+    <div style="display:flex;gap:1.2em;justify-content:center;margin:1.7em 0 1em 0;">
+        <img src="{{ url_for('serve_assets', filename='Brain, Nutrition, Innovation Icon.png') }}" alt="Accessibilité" width="64" height="64" style="border:2.5px solid #7C4DFF;border-radius:50%;background:#fff;">
+        <img src="{{ url_for('serve_assets', filename="Valeurs et Symbole D'Inclusion.png") }}" alt="Inclusion" width="64" height="64" style="border:2.5px solid #7C4DFF;border-radius:50%;background:#fff;">
+        <img src="{{ url_for('serve_assets', filename='NourrIR_ Inclusivity and Creativity in Focus.png') }}" alt="Créativité" width="64" height="64" style="border:2.5px solid #7C4DFF;border-radius:50%;background:#fff;">
+        <img src="{{ url_for('serve_assets', filename='Logo de NourrIR avec carotte stylisée.png') }}" alt="Autonomie" width="64" height="64" style="border:2.5px solid #7C4DFF;border-radius:50%;background:#fff;">
+        <img src="{{ url_for('serve_assets', filename='Smiling Heart on Beige Background.png') }}" alt="Joie" width="64" height="64" style="border:2.5px solid #7C4DFF;border-radius:50%;background:#fff;">
+    </div>
+    <div style="display:flex;gap:2.4em;justify-content:center;margin-bottom:2em;font-size:1.08em;color:#34495E;">
+        <span>Accessibilité</span>
+        <span>Inclusion</span>
+        <span>Créativité</span>
+        <span>Autonomie</span>
+        <span>Joie</span>
+    </div>
+    <h2 style="margin-top:2.5em;">Notre mission</h2>
+    <p>
+        NourrIR vise à <b>démocratiser le bien-être mental et physique</b> grâce à une plateforme numérique liant <b>nutrition, psychologie et créativité</b>, propulsée par des technologies intelligentes et accessibles.
+    </p>
+    <h2 style="margin-top:2.5em;">Notre concept</h2>
+    <p>
+        <b>NourrIR</b> est une application mobile et une plateforme web personnalisée qui combine analyse psychologique, recommandations nutritionnelles adaptées et activités créatives pour améliorer le bien-être global. L’intelligence artificielle offre une expérience personnalisée, ludique et non culpabilisante.
+    </p>
+    <h2 style="margin-top:2.5em;">Public cible</h2>
+    <ul>
+        <li>Jeunes adultes (16–35 ans) en quête d'équilibre et d'outils accessibles</li>
+        <li>Établissements scolaires et postsecondaires</li>
+        <li>Entreprises soucieuses du bien-être de leurs employés</li>
+        <li>Parents et aidants</li>
+    </ul>
+    <h2 style="margin-top:2.5em;">Fonctionnalités clés</h2>
+    <ul>
+        <li>Profil utilisateur adapté (psychologique, nutritionnel, créatif)</li>
+        <li>Plans de repas basés sur l'état émotionnel et les besoins du moment</li>
+        <li>Activités créatives guidées (dessin, écriture, cuisine intuitive, collage numérique)</li>
+        <li>Capsules de vulgarisation scientifique sur la nutrition et la santé mentale</li>
+        <li>Journal de bord interactif et coach virtuel empathique</li>
+        <li>Modèle freemium (accès de base gratuit + modules premium)</li>
+    </ul>
+    <h2 style="margin-top:2.5em;">Fondements scientifiques</h2>
+    <ul>
+        <li>Nutrition personnalisée et santé mentale (Jacka et al., 2023)</li>
+        <li>Intelligence artificielle en diététique (CareyYaYa, 2024)</li>
+        <li>Créativité et régulation émotionnelle (WellPower, 2023)</li>
+        <li>Impact des probiotiques sur l'humeur (Health.com, 2024)</li>
+    </ul>
+    <h2 style="margin-top:2.5em;">Potentiel</h2>
+    <p>
+        NourrIR répond à un besoin croissant d’outils numériques hybrides unissant <b>bien-être, connaissance de soi, plaisir et autonomie</b>. Notre approche multidisciplinaire et engageante nous positionne comme référence en santé globale pour les jeunes et les milieux éducatifs.
+    </p>
+{% endblock %}

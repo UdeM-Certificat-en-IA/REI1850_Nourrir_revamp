@@ -1,0 +1,160 @@
+<!-- nourrir_flask/templates/base.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}NourrIR{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts for style -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('serve_assets', filename='Logo Design for NourrIR.png') }}">
+    <style>
+        :root {
+            --dopamine-purple: #7C4DFF;
+            --growth-green: #2ECC71;
+            --joy-yellow: #F4D03F;
+            --midnight-navy: #34495E;
+            --cloud-gray: #F5F5F5;
+        }
+        body { background: var(--cloud-gray); font-family: 'Inter', Arial, sans-serif; color: var(--midnight-navy); margin:0; padding:0; }
+        header { background:white; box-shadow:0 2px 12px #0001; padding:1rem; text-align:center; }
+        .logo { width:120px; }
+        .slogan { color:var(--joy-yellow); font-family:'Nunito'; font-weight:800; margin-top: 0.5em; }
+        nav { background:var(--dopamine-purple); padding:0.5rem; text-align:center; margin-bottom: 2rem; }
+        nav a { color:white; margin:0 1rem; text-decoration:none; font-weight:600; font-size:1.1em; }
+        nav a:hover { text-decoration:underline; }
+        main { max-width:900px; margin:2.5rem auto 2.5rem auto; background:white; padding:2rem; border-radius:1.2rem; box-shadow:0 4px 20px #0002; }
+        footer { text-align:center; color:#bbb; margin-bottom: 2em; }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('serve_assets', filename='Logo Design for NourrIR.png') }}" alt="Logo NourrIR" class="logo">
+        <div class="slogan">On croque la dopamine.</div>
+    </header>
+    <nav>
+        <a href="{{ url_for('home') }}">Accueil</a> |
+        <a href="{{ url_for('politique') }}">Politique d’intégration</a> |
+        <a href="{{ url_for('contact') }}">Contact RH</a>
+    </nav>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        &copy; 2025 NourrIR — projet fictif à but pédagogique.
+    </footer>
+    {% block chatbot %}
+    <!-- NuRiH Ami Chatbot Popup (présent sur chaque page) -->
+    <style>
+    #nurih-chatbot-toggle {
+      position: fixed; bottom: 26px; right: 28px; z-index: 998;
+      background: #7C4DFF; color: #fff; border-radius: 50%; width: 64px; height: 64px;
+      box-shadow: 0 4px 12px #0003; border: none; font-size: 2.4em; cursor: pointer;
+      transition: box-shadow 0.2s;
+    }
+    #nurih-chatbot-toggle:hover { box-shadow: 0 4px 24px #7c4dff44; }
+    #nurih-chatbot-box {
+      font-family: Inter, Arial, sans-serif;
+      display: none; flex-direction: column; position: fixed;
+      bottom: 100px; right: 30px; width: 350px; max-width: 95vw; height: 460px; max-height: 85vh;
+      background: #fff; border-radius: 1.1em; box-shadow: 0 6px 32px #34495e44; z-index: 999;
+    }
+    #nurih-header {
+      background: #7C4DFF; color: #fff; padding: 0.7em 1em; font-weight: bold;
+      border-radius: 1.1em 1.1em 0 0; display: flex; align-items: center; gap: 0.7em;
+    }
+    #nurih-header img { width: 32px; }
+    #nurih-close-btn {
+      margin-left: auto; color: #fff; background: none; border: none; font-size: 1.2em; cursor: pointer;
+    }
+    #nurih-chat-log {
+      flex: 1; padding: 1em; overflow-y: auto; font-size: 1em; background: #F5F5F5;
+      display: flex; flex-direction: column; gap: 0.7em;
+    }
+    .nurih-msg-user { align-self: flex-end; background: #eae6fa; color: #34495E; padding: 0.7em 1em; border-radius: 18px 18px 2px 18px; max-width: 80%; }
+    .nurih-msg-bot { align-self: flex-start; background: #f3f3fd; color: #7C4DFF; padding: 0.7em 1em; border-radius: 18px 18px 18px 2px; max-width: 85%; }
+    #nurih-chat-form { display: flex; gap: 0.5em; padding: 0.8em; border-top: 1px solid #eee; }
+    #nurih-chat-input { flex: 1; padding: 0.6em 1em; border-radius: 1.2em; border: 1px solid #ccc; }
+    #nurih-chat-send { background: #7C4DFF; color: #fff; border: none; border-radius: 1.2em; padding: 0.6em 1.2em; cursor: pointer; }
+    </style>
+    <button id="nurih-chatbot-toggle" title="Parle à NuRiH Ami 🤖">💬</button>
+    <div id="nurih-chatbot-box">
+      <div id="nurih-header">
+        <img src="{{ url_for('serve_assets', filename='Smiling Heart on Beige Background.png') }}" alt="Ami">
+        NuRiH Ami
+        <button id="nurih-close-btn" title="Fermer">✕</button>
+      </div>
+      <div id="nurih-chat-log">
+        <div class="nurih-msg-bot">Salut 👋 ! Je suis <b>NuRiH Ami</b>, ton assistant. Pose-moi ta question !</div>
+      </div>
+      <form id="nurih-chat-form" autocomplete="off">
+        <input id="nurih-chat-input" type="text" placeholder="Écris ici..." required autocomplete="off" />
+        <button id="nurih-chat-send" type="submit">Envoyer</button>
+      </form>
+    </div>
+    <script>
+    const chatToggle = document.getElementById('nurih-chatbot-toggle');
+    const chatBox = document.getElementById('nurih-chatbot-box');
+    const closeBtn = document.getElementById('nurih-close-btn');
+    const chatLog = document.getElementById('nurih-chat-log');
+    const chatForm = document.getElementById('nurih-chat-form');
+    const chatInput = document.getElementById('nurih-chat-input');
+
+    function getSessionId() {
+      let id = localStorage.getItem('nurih-session-id');
+      if (!id) {
+        id = 'user-' + Math.random().toString(36).substr(2, 10) + '-' + Date.now();
+        localStorage.setItem('nurih-session-id', id);
+      }
+      return id;
+    }
+
+    chatToggle.onclick = () => { chatBox.style.display = "flex"; chatToggle.style.display = "none"; }
+    closeBtn.onclick = () => { chatBox.style.display = "none"; chatToggle.style.display = "inline-block"; }
+    chatForm.onsubmit = async (e) => {
+      e.preventDefault();
+      const text = chatInput.value.trim();
+      if (!text) return;
+      addMsg('user', text);
+      chatInput.value = "";
+      await getBotMsg(text);
+    };
+
+    function addMsg(type, text) {
+      const msg = document.createElement('div');
+      msg.className = type === 'user' ? 'nurih-msg-user' : 'nurih-msg-bot';
+      msg.innerHTML = text.replace(/(?:\r\n|\r|\n)/g, '<br>');
+      chatLog.appendChild(msg);
+      chatLog.scrollTop = chatLog.scrollHeight;
+    }
+
+    async function getBotMsg(userMsg) {
+      addMsg('bot', "<i>NuRiH Ami réfléchit…</i>");
+      chatLog.scrollTop = chatLog.scrollHeight;
+      try {
+        const sessionId = getSessionId();
+        const res = await fetch('/nurih-ami', {
+          method: "POST",
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({
+            message: userMsg,
+            session: sessionId
+          })
+        });
+        const data = await res.json();
+        // remove spinner
+        const last = chatLog.querySelector('.nurih-msg-bot:last-child');
+        if (last && last.innerHTML.includes('réfléchit')) chatLog.removeChild(last);
+        addMsg('bot', data.response || "Je n'ai pas compris, peux-tu reformuler ?");
+      } catch (err) {
+        const last = chatLog.querySelector('.nurih-msg-bot:last-child');
+        if (last && last.innerHTML.includes('réfléchit')) chatLog.removeChild(last);
+        addMsg('bot', "Oups, je n'arrive pas à me connecter à mon cerveau d'IA. Réessaie plus tard !");
+      }
+    }
+    </script>
+    <!-- Fin NuRiH Ami -->
+    {% endblock %}
+</body>
+</html>
