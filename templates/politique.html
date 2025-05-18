@@ -4,6 +4,26 @@
 {% block title %}Politique d’intégration – NourrIR{% endblock %}
 
 {% block content %}
+
+<!-- YouTube video embed -->
+<div class="video-container" style="margin-bottom: 1.5em; text-align: center;">
+  <iframe
+    width="560" height="315"
+    src="https://www.youtube.com/embed/lxrQuZOrWgk"
+    title="Présentation vidéo onboarding"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<!-- Downloadable PDF link -->
+<p style="margin-bottom:2em; text-align: center;">
+  <a href="{{ url_for('static', filename='assets/pdf/politique.pdf') }}" download style="font-size:1.1em;">
+    📄 Télécharger la politique d’intégration (PDF)
+  </a>
+</p>
+
 <h1>Politique d’intégration des nouveaux employés</h1>
 
 <h2>0. Objectif et portée</h2>
@@ -12,7 +32,7 @@ Cette politique définit le processus structuré d’accueil (<em>onboarding</em
 <ul>
     <li>garantir une intégration rapide, inclusive et motivante ;</li>
     <li>transmettre les valeurs d’<strong>accessibilité, inclusion, pluridisciplinarité, autonomie, joie et créativité</strong> ;</li>
-    <li>assurer la conformité légale et la sécurité des données (RGPD, Loi 25, HIPAA‑équivalent lorsque pertinent) ;</li>
+    <li>assurer la conformité légale et la sécurité des données (RGPD, Loi 25, <a href="https://www.hhs.gov/hipaa/" target="_blank">HIPAA‑équivalent</a> lorsque pertinent) ;</li>
     <li>optimiser la rétention des talents et la montée en compétences dans les 12 premiers mois.</li>
 </ul>
 La politique s’applique à <strong>tous les nouveaux employés, stagiaires et consultants</strong> de NourrIR, qu’ils travaillent sur site, en télétravail ou en mode hybride.
@@ -66,15 +86,21 @@ La politique s’applique à <strong>tous les nouveaux employés, stagiaires et 
     <li><strong>Feedback qualitatif</strong> (rapport d’étonnement & entretiens 3 mois)</li>
 </ul>
 <p>
-Les données sont analysées <strong>trimestriellement</strong> par RH ; des ajustements sont apportés suivant la méthode PDCA (Plan‑Do‑Check‑Act).
+Les données sont analysées <strong>trimestriellement</strong> par RH ; des ajustements sont apportés suivant la méthode PDCA (<a href="https://fr.wikipedia.org/wiki/Roue_de_Deming" target="_blank">Plan‑Do‑Check‑Act</a>).
 </p>
 
 <h2>6. Annexes</h2>
 <ol>
-    <li>Checklists détaillées (voir SharePoint > Onboarding > Checklists).</li>
+    <li>Checklists détaillées (voir SharePoint &gt; Onboarding &gt; Checklists).</li>
     <li>Livret d’accueil « On croque la dopamine » (PDF interactif).</li>
     <li>Listes d’outils IA utilisés et bonnes pratiques d’éthique.</li>
-    <li>Références externes : SHRM Onboarding Toolkit (2024), CIPD Induction Factsheet (2023), HBR « Onboarding New Employees » (2024), Jacka F. et al., <em>Nutritional Psychiatry Review</em> (2023), ISO 9001 §7.2 habilitations.</li>
+    <li>Références externes : 
+      <a href="https://www.shrm.org/resourcesandtools/hr-topics/talent-acquisition/pages/onboarding-employee.aspx" target="_blank">SHRM Onboarding Toolkit (2024)</a>, 
+      <a href="https://www.cipd.org/en/knowledge/factsheets/induction-factsheet/" target="_blank">CIPD Induction Factsheet (2023)</a>, 
+      <a href="https://hbr.org/2024/01/onboarding-new-employees" target="_blank">HBR « Onboarding New Employees » (2024)</a>,
+      <a href="https://www.cambridge.org/core/journals/nutritional-neuroscience/article/nutritional-psychiatry-review/2572E4E84E4BC21777C3B1E7DEEEB28B" target="_blank">Jacka F. et al., <em>Nutritional Psychiatry Review</em> (2023)</a>, 
+      <a href="https://www.iso.org/fr/standard/62085.html" target="_blank">ISO 9001 §7.2 habilitations</a>.
+    </li>
 </ol>
 
 <h2>7. Historique des versions</h2>
@@ -96,10 +122,10 @@ Les données sont analysées <strong>trimestriellement</strong> par RH ; des a
 <div style="margin-top:2em;font-size:0.98em;color:#555;">
 <b>IA utilisées pour la rédaction de ce document :</b>
 <ul>
-<li><em>ChatGPT</em> (OpenAI) : structuration et rédaction initiale.</li>
-<li><em>Microsoft Copilot</em> : génération de checklists et tableaux.</li>
-<li><em>Gemini</em> (Google) : suggestion d’activités créatives jour 1.</li>
-<li><em>Midjourney</em> : visuels d’illustration welcome kit.</li>
+<li><em><a href="https://chat.openai.com/" target="_blank">ChatGPT</a></em> (OpenAI) : structuration et rédaction initiale.</li>
+<li><em><a href="https://copilot.microsoft.com/" target="_blank">Microsoft Copilot</a></em> : génération de checklists et tableaux.</li>
+<li><em><a href="https://gemini.google.com/" target="_blank">Gemini</a></em> (Google) : suggestion d’activités créatives jour 1.</li>
+<li><em><a href="https://www.midjourney.com/" target="_blank">Midjourney</a></em> : visuels d’illustration welcome kit.</li>
 </ul>
 Les contenus générés ont été relus et validés par l’équipe RH afin de garantir la conformité légale et l’adéquation culturelle.
 </div>

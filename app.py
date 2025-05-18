@@ -21,42 +21,52 @@ def politique():
 def contact():
     return render_template("contact.html")
 
-# Proxy pour NuRiH Ami chatbot
+# Proxy pour NuRiH Ami chatbot (Ollama chat API)
 @app.route("/nurih-ami", methods=["POST"])
 def nurih_ami():
     """
     Proxy: receive chat message from frontend, forward to Ollama (phi:latest), return result.
     """
-    # Change if Ollama API moves
+    # Ollama chat endpoint (change if you move your Ollama server)
     OLLAMA_URL = "http://192.168.2.10:11434/api/chat"
+
     try:
         data = request.json
         user_msg = data.get("message", "")
-        session_id = data.get("session", "public")
         if not user_msg:
             return jsonify({"error": "Aucun message reçu"}), 400
 
+        # Prepare the chat payload for Ollama API
         payload = {
-            "model": "phi:latest",
+            "model": "phi:latest",  # Change model name as needed (e.g. "llama3:8b")
             "messages": [
                 {
                     "role": "system",
-                    "content": "Tu es NuRiH Ami, assistant éducatif pour le bien-être, nutrition et créativité. Sois amical, inclusif, bref et adapté à tous publics."
+                    "content": (
+                        "Tu es NuRiH Ami, assistant éducatif pour le bien-être, nutrition et créativité. "
+                        "Sois amical, inclusif, bref et adapté à tous publics."
+                    )
                 },
                 {
                     "role": "user",
                     "content": user_msg
                 }
             ],
-            "stream": False,
-            "session": session_id
+            "stream": False
         }
 
-        resp = requests.post(OLLAMA_URL, json=payload, timeout=30)
+        resp = requests.post(OLLAMA_URL, json=payload, timeout=60)
         resp.raise_for_status()
         result = resp.json()
-        # "message": {"role": "assistant", "content": "…"}
-        return jsonify({"response": result.get("message", {}).get("content", "Je n'ai pas compris, peux-tu reformuler ?")})
+
+        # result should contain "message": {"role": "assistant", "content": "..."}
+        answer = result.get("message", {}).get("content", "Je n'ai pas compris, peux-tu reformuler ?")
+        return jsonify({"response": answer})
+
+    except requests.exceptions.ConnectionError:
+        return jsonify({"error": "Connexion à Ollama impossible"}), 502
+    except requests.exceptions.Timeout:
+        return jsonify({"error": "Ollama n'a pas répondu à temps"}), 504
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
