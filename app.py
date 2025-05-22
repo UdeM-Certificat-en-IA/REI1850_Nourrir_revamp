@@ -1,8 +1,51 @@
 # nourrir_flask/app.py
 
 from flask import Flask, render_template, request, jsonify, send_from_directory
-import requests
 import os
+import requests
+
+# Configuration for Ollama chat API endpoints
+# For OpenAI-compatible API (v1): set OLLAMA_CHAT_URL to e.g. "https://ollama.artemis-ai.ca/v1/chat/completions"
+# and OLLAMA_MODELS_URL to "https://ollama.artemis-ai.ca/v1/models".
+# Fallback to legacy Ollama API (/api/chat and /api/models).
+OLLAMA_CHAT_URL = os.getenv(
+    "OLLAMA_CHAT_URL",
+    os.getenv("OLLAMA_URL", "http://192.168.2.10:11434/api/chat")
+)
+OLLAMA_MODELS_URL = os.getenv(
+    "OLLAMA_MODELS_URL",
+    os.getenv("MODELS_URL", "http://192.168.2.10:11434/api/models")
+)
+# Model identifier, must match an available model from /models
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "phi4:latest")
+
+# Default system prompt for NuRiH Ami
+SYSTEM_PROMPT = (
+    "Tu es NuRiH Ami, assistant éducatif pour le bien-être, nutrition et créativité. "
+    "Sois amical, inclusif, bref et adapté à tous publics."
+)
+
+def query_ollama(messages, model=OLLAMA_MODEL, chat_url=OLLAMA_CHAT_URL, timeout=60):
+    """
+    Send messages to Ollama chat API (OpenAI-compatible or legacy) and return assistant content.
+    """
+    payload = {"model": model, "messages": messages, "stream": False}
+    resp = requests.post(chat_url, json=payload, timeout=timeout)
+    resp.raise_for_status()
+    data = resp.json()
+    # OpenAI-compatible response parsing
+    if isinstance(data, dict) and "choices" in data:
+        choices = data.get("choices", [])
+        if choices and isinstance(choices[0], dict):
+            msg = choices[0].get("message", {})
+            content = msg.get("content")
+            if content is not None:
+                return content
+    # Fallback to legacy Ollama API format
+    if isinstance(data, dict) and "message" in data:
+        return data.get("message", {}).get("content", "")
+    # Unexpected format
+    return str(data)
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
@@ -25,48 +68,49 @@ def contact():
 @app.route("/nurih-ami", methods=["POST"])
 def nurih_ami():
     """
-    Proxy: receive chat message from frontend, forward to Ollama (phi:latest), return result.
+    Proxy: receive chat message from frontend, forward to Ollama chat API, return result.
+    Uses OLLAMA_URL and OLLAMA_MODEL from environment or defaults.
     """
-    # Ollama chat endpoint (change if you move your Ollama server)
-    OLLAMA_URL = "http://192.168.2.10:11434/api/chat"
+    data = request.get_json(silent=True) or {}
+    user_msg = data.get("message", "")
+    if not user_msg:
+        return jsonify({"error": "Aucun message reçu"}), 400
+
+    messages = [
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "user", "content": user_msg}
+    ]
 
     try:
-        data = request.json
-        user_msg = data.get("message", "")
-        if not user_msg:
-            return jsonify({"error": "Aucun message reçu"}), 400
-
-        # Prepare the chat payload for Ollama API
-        payload = {
-            "model": "phi:latest",  # Change model name as needed (e.g. "llama3:8b")
-            "messages": [
-                {
-                    "role": "system",
-                    "content": (
-                        "Tu es NuRiH Ami, assistant éducatif pour le bien-être, nutrition et créativité. "
-                        "Sois amical, inclusif, bref et adapté à tous publics."
-                    )
-                },
-                {
-                    "role": "user",
-                    "content": user_msg
-                }
-            ],
-            "stream": False
-        }
-
-        resp = requests.post(OLLAMA_URL, json=payload, timeout=60)
-        resp.raise_for_status()
-        result = resp.json()
-
-        # result should contain "message": {"role": "assistant", "content": "..."}
-        answer = result.get("message", {}).get("content", "Je n'ai pas compris, peux-tu reformuler ?")
+        answer = query_ollama(messages)
+        if not answer:
+            answer = "Je n'ai pas compris, peux-tu reformuler ?"
         return jsonify({"response": answer})
-
     except requests.exceptions.ConnectionError:
         return jsonify({"error": "Connexion à Ollama impossible"}), 502
     except requests.exceptions.Timeout:
         return jsonify({"error": "Ollama n'a pas répondu à temps"}), 504
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route("/models", methods=["GET"])
+def list_models():
+    """
+    Proxy endpoint to fetch available models from Ollama API.
+    """
+    try:
+        resp = requests.get(OLLAMA_MODELS_URL, timeout=10)
+        resp.raise_for_status()
+        data = resp.json()
+        models = []
+        if isinstance(data, dict):
+            for entry in data.get("data", []):
+                model_id = entry.get("id")
+                if model_id:
+                    models.append(model_id)
+        return jsonify(models=models)
+    except requests.exceptions.RequestException as e:
+        return jsonify({"error": str(e)}), 502
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

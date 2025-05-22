@@ -58,16 +58,32 @@ NourrIR is a minimal Flask-based web application showcasing static pages and an 
 
 ## Configuration
 
-Set the `OLLAMA_URL` environment variable to point to your Ollama chat API endpoint. If not set, it defaults to:
+Configure the Ollama API endpoints via environment variables:
 
-```
-http://192.168.2.10:11434/api/chat
-```
+- `OLLAMA_CHAT_URL`: URL for the chat completion endpoint. For OpenAI-compatible API, this is typically:
+  ```
+  https://ollama.artemis-ai.ca/v1/chat/completions
+  ```
+  Fallback default (legacy Ollama API):
+  ```
+  http://192.168.2.10:11434/api/chat
+  ```
+- `OLLAMA_MODELS_URL`: URL for the models listing endpoint. For OpenAI-compatible API:
+  ```
+  https://ollama.artemis-ai.ca/v1/models
+  ```
+  Fallback default (legacy):
+  ```
+  http://192.168.2.10:11434/api/models
+  ```
+- `OLLAMA_MODEL`: The model identifier to use (e.g. `phi4:latest`). Default: `phi4:latest`.
 
 Example:
 
 ```bash
-export OLLAMA_URL=http://<ollama-host>:11434/api/chat
+export OLLAMA_CHAT_URL=https://ollama.artemis-ai.ca/v1/chat/completions
+export OLLAMA_MODELS_URL=https://ollama.artemis-ai.ca/v1/models
+export OLLAMA_MODEL=phi4:latest
 ```
 
 ## Running the App
@@ -77,7 +93,9 @@ export OLLAMA_URL=http://<ollama-host>:11434/api/chat
 ```bash
 export FLASK_APP=app.py
 export FLASK_ENV=development
-export OLLAMA_URL=http://<ollama-host>:11434/api/chat
+export OLLAMA_CHAT_URL=https://ollama.artemis-ai.ca/v1/chat/completions
+export OLLAMA_MODELS_URL=https://ollama.artemis-ai.ca/v1/models
+export OLLAMA_MODEL=phi4:latest
 flask run --host=0.0.0.0 --port=8080
 ```
 
@@ -85,10 +103,14 @@ Open your browser at [http://localhost:8080](http://localhost:8080).
 
 ### With Docker
 
+docker build -t nourrir-flask .
+docker run -d -p 8282:8080 \
 ```bash
 docker build -t nourrir-flask .
 docker run -d -p 8282:8080 \
-  -e OLLAMA_URL=http://<ollama-host>:11434/api/chat \
+  -e OLLAMA_CHAT_URL=https://ollama.artemis-ai.ca/v1/chat/completions \
+  -e OLLAMA_MODELS_URL=https://ollama.artemis-ai.ca/v1/models \
+  -e OLLAMA_MODEL=phi4:latest \
   --name nourrir-flask nourrir-flask
 ```
 
@@ -127,7 +149,7 @@ By default, the web service is exposed on port `8282`.
 
 ## Troubleshooting
 
-- **Cannot connect to Ollama**: Verify `OLLAMA_URL` and that the Ollama server is reachable from your network.
+- **Cannot connect to Ollama**: Verify `OLLAMA_CHAT_URL` (or legacy `OLLAMA_URL`) and that the Ollama server is reachable from your network.
 - **Port conflicts**: Ensure ports `8080` (Flask) or `8282` (Docker) are available.
 - **Asset loading issues**: Check the `/assets/<filename>` route and that files exist under `static/assets/`.
 
