@@ -31,20 +31,19 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Configuration for Ollama chat API endpoints
-# For OpenAI-compatible API (v1): set OLLAMA_CHAT_URL to e.g. "https://ollama.artemis-ai.ca/v1/chat/completions"
-# and OLLAMA_MODELS_URL to "https://ollama.artemis-ai.ca/v1/models".
-# Fallback to legacy Ollama API (/api/chat and /api/models).
+## Configuration for Ollama chat API endpoints
+# For OpenAI-compatible API (v1): default to Artemis AI hosted Ollama instance.
+# Can override via environment variables.
 OLLAMA_CHAT_URL = os.getenv(
     "OLLAMA_CHAT_URL",
-    os.getenv("OLLAMA_URL", "http://192.168.2.10:11434/api/chat")
+    os.getenv("OLLAMA_URL", "https://ollama.artemis-ai.ca/v1/chat/completions")
 )
 OLLAMA_MODELS_URL = os.getenv(
     "OLLAMA_MODELS_URL",
-    os.getenv("MODELS_URL", "http://192.168.2.10:11434/api/models")
+    os.getenv("MODELS_URL", "https://ollama.artemis-ai.ca/v1/models")
 )
-# Model identifier, must match an available model from /models
-OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "phi3:mini") # Changed default model
+# Primary model to use; fallback to smaller or next available models on failure.
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "mistral:latest")
 
 # Log the final determined Ollama configuration
 logger.info(f"Using Ollama Chat URL: {OLLAMA_CHAT_URL}")
@@ -117,6 +116,60 @@ def query_ollama(messages: list, model: str = OLLAMA_MODEL, chat_url: str = OLLA
         logger.error(f"An unexpected error occurred in query_ollama: {e}", exc_info=True)
         raise # Re-raise
 
+def get_response_with_fallback(messages: list,
+                               chat_url: str = OLLAMA_CHAT_URL,
+                               models_url: str = OLLAMA_MODELS_URL,
+                               initial_model: str = OLLAMA_MODEL,
+                               timeout: int = 60) -> str | None:
+    """
+    Attempt to get a response using the initial model, then fallback through available models if needed.
+    """
+    try:
+        resp = query_ollama(messages, model=initial_model, chat_url=chat_url, timeout=timeout)
+        if resp:
+            return resp
+        logger.warning(f"Primary model '{initial_model}' returned no content, falling back.")
+    except Exception as e:
+        logger.warning(f"Primary model '{initial_model}' failed: {e}")
+
+    # Fetch available models for fallback
+    try:
+        r = requests.get(models_url, timeout=10)
+        r.raise_for_status()
+        data = r.json()
+        models = []
+        # OpenAI-compatible /v1/models format
+        if isinstance(data, dict) and "data" in data and isinstance(data["data"], list):
+            for entry in data["data"]:
+                if isinstance(entry, dict):
+                    mid = entry.get("id") or entry.get("name")
+                    if mid:
+                        models.append(mid)
+        # Legacy Ollama /api/models format
+        elif isinstance(data, dict) and "models" in data and isinstance(data["models"], list):
+            for entry in data["models"]:
+                if isinstance(entry, dict):
+                    mid = entry.get("name")
+                    if mid:
+                        models.append(mid)
+        else:
+            logger.warning(f"Unexpected models structure from {models_url}: {data}")
+        # Try fallback models in order, skipping initial
+        for model in models:
+            if model == initial_model:
+                continue
+            try:
+                resp2 = query_ollama(messages, model=model, chat_url=chat_url, timeout=timeout)
+                if resp2:
+                    logger.info(f"Falling back to model '{model}'")
+                    return resp2
+            except Exception as fe:
+                logger.warning(f"Model '{model}' failed during fallback: {fe}")
+        logger.error("All fallback models failed to provide a response.")
+    except Exception as e:
+        logger.error(f"Failed to retrieve models list for fallback from {models_url}: {e}", exc_info=True)
+    return None
+
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 
@@ -183,13 +236,18 @@ def nuria_chat(): # Renamed function
             {"role": "user", "content": user_msg}
         ]
 
-        answer = query_ollama(messages, model=model_to_use) # Pass model if specified
-        
-        if not answer: # query_ollama might return None if content extraction fails
-            logger.warning(f"/nuria-chat: No answer from Ollama or failed to extract content for user message: {user_msg[:100]}...") # Updated log message
-            return jsonify({"error": "Désolé, je n'ai pas pu générer de réponse.", "details": "Failed to get a valid response from the AI model."}), 500
-
-        logger.info(f"/nuria-chat: Sending response (first 100 chars): '{str(answer)[:100]}...'") # Updated log message
+        # Try primary model and fall back as needed
+        answer = get_response_with_fallback(
+            messages,
+            chat_url=OLLAMA_CHAT_URL,
+            models_url=OLLAMA_MODELS_URL,
+            initial_model=model_to_use
+        )
+        if not answer:
+            logger.warning(f"/nuria-chat: All models failed for message: {user_msg[:100]}...")
+            return jsonify({"error": "Désolé, je n'ai pas pu générer de réponse.",
+                            "details": "Aucun modèle IA n'a renvoyé de réponse valide."}), 500
+        logger.info(f"/nuria-chat: Sending response (first 100 chars): '{str(answer)[:100]}...'")
         return jsonify({"response": answer})
 
     except requests.exceptions.ConnectionError as e:

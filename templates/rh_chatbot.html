@@ -65,9 +65,32 @@
         padding: 0.6em 1.2em;
         cursor: pointer;
     }
-</style>
+  </style>
+  <!-- RH Service Status Styles -->
+  <style>
+    #rh-status {
+        padding: 0.5em 1em;
+        border-bottom: 1px solid #ccc;
+        font-size: 0.9em;
+        background: #fff;
+    }
+    #rh-status-light {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-left: 0.5em;
+        vertical-align: middle;
+        background: red;
+    }
+    .status-online { background: green; }
+    .status-offline { background: red; }
+  </style>
 
 <div id="rh-chat-container">
+    <div id="rh-status">
+        Statut du service RH: <span id="rh-status-light" class="status-offline"></span>
+    </div>
     <div id="rh-chat-log">
         {# Bot's initial greeting will be added by JavaScript #}
     </div>
@@ -78,6 +101,23 @@
 </div>
 
 <script>
+    const N8N_WEBHOOK_URL = 'https://n8n.artemis-ai.ca:8443/webhook/5f1c0c82-0ff9-40c7-9e2e-b1a96ffe24cd/chat';
+    const HR_SYSTEM_PROMPT = "Tu es l'assistant RH de NourrIR. Réponds de façon aimable, informative et concise aux questions des employés concernant les politiques RH, carrières et vie d'entreprise.";
+    const RH_FALLBACK_ENDPOINT = '/nuria-chat';
+    let rhServiceOnline = false;
+
+    async function checkRhService() {
+        try {
+            await fetch(N8N_WEBHOOK_URL, { method: 'GET' });
+            rhServiceOnline = true;
+        } catch (err) {
+            rhServiceOnline = false;
+        }
+        const light = document.getElementById('rh-status-light');
+        if (light) {
+            light.className = rhServiceOnline ? 'status-online' : 'status-offline';
+        }
+    }
     // DOM elements for the RH Chatbot
     const rhChatLog = document.getElementById('rh-chat-log');
     const rhChatForm = document.getElementById('rh-chat-form');

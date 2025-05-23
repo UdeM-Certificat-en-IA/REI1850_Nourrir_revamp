@@ -76,14 +76,14 @@ Configure the Ollama API endpoints via environment variables:
   ```
   http://192.168.2.10:11434/api/models
   ```
-- `OLLAMA_MODEL`: The model identifier to use (e.g. `phi4:latest`). Default: `phi4:latest`.
+- `OLLAMA_MODEL`: The primary model identifier to use (e.g. `mistral:latest`). Default: `mistral:latest`.
 
 Example:
 
 ```bash
 export OLLAMA_CHAT_URL=https://ollama.artemis-ai.ca/v1/chat/completions
 export OLLAMA_MODELS_URL=https://ollama.artemis-ai.ca/v1/models
-export OLLAMA_MODEL=phi4:latest
+export OLLAMA_MODEL=mistral:latest
 ```
 
 ## Running the App
@@ -95,7 +95,7 @@ export FLASK_APP=app.py
 export FLASK_ENV=development
 export OLLAMA_CHAT_URL=https://ollama.artemis-ai.ca/v1/chat/completions
 export OLLAMA_MODELS_URL=https://ollama.artemis-ai.ca/v1/models
-export OLLAMA_MODEL=phi4:latest
+export OLLAMA_MODEL=mistral:latest
 flask run --host=0.0.0.0 --port=8080
 ```
 
@@ -105,12 +105,11 @@ Open your browser at [http://localhost:8080](http://localhost:8080).
 
 docker build -t nourrir-flask .
 docker run -d -p 8282:8080 \
-```bash
 docker build -t nourrir-flask .
 docker run -d -p 8282:8080 \
   -e OLLAMA_CHAT_URL=https://ollama.artemis-ai.ca/v1/chat/completions \
   -e OLLAMA_MODELS_URL=https://ollama.artemis-ai.ca/v1/models \
-  -e OLLAMA_MODEL=phi4:latest \
+  -e OLLAMA_MODEL=mistral:latest \
   --name nourrir-flask nourrir-flask
 ```
 
