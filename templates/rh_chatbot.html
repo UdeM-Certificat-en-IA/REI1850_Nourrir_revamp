@@ -135,17 +135,18 @@
         rhChatLog.scrollTop = rhChatLog.scrollHeight;
 
         try {
-            const sessionId = getRhSessionId();
-            // System prompt specific to the HR context.
-            const hrSystemPrompt = "Tu es un assistant RH pour NourrIR. Réponds aux questions concernant les politiques internes de l'entreprise, les congés, les bénéfices, et autres sujets RH. Sois professionnel, clair et concis.";
+            // const sessionId = getRhSessionId(); // sessionId no longer sent for this webhook
+            // const hrSystemPrompt = "..." // hrSystemPrompt no longer sent
+
+            const n8nWebhookUrl = 'https://n8n.artemis-ai.ca:8443/webhook/5f1c0c82-0ff9-40c7-9e2e-b1a96ffe24cd/chat';
             
-            const response = await fetch('/nuria-chat', { // Updated fetch URL
+            const response = await fetch(n8nWebhookUrl, { 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    message: userMessage,
-                    session: sessionId,
-                    system_prompt: hrSystemPrompt 
+                    message: userMessage
+                    // session: sessionId, // Not sending session ID
+                    // system_prompt: hrSystemPrompt // Not sending system prompt
                 })
             });
 
@@ -155,17 +156,18 @@
             }
 
             if (!response.ok) {
-                let errorMsg = `Erreur HTTP ${response.status} du serveur.`;
+                let errorMsg = `Erreur HTTP ${response.status} du service RH.`;
                 let errorDetails = `Status: ${response.status}`;
                 try {
                     const errorData = await response.json();
-                    // console.error("Server error response data (RH Chatbot):", errorData); // Keep for debugging if needed
-                    errorMsg = errorData.error || errorMsg;
-                    errorDetails = errorData.details || errorDetails;
+                    // console.error("n8n error response data (RH Chatbot):", errorData); 
+                    errorMsg = errorData.error || errorData.message || errorMsg; // n8n might use 'message'
+                    errorDetails = JSON.stringify(errorData); // Log the full error structure
                 } catch (e) {
-                    console.warn("Could not parse error response as JSON (RH Chatbot).");
+                    console.warn("Could not parse n8n error response as JSON (RH Chatbot).");
                     const textResponse = await response.text().catch(() => "");
                     errorDetails = textResponse || errorDetails;
+                    if(textResponse) errorMsg = textResponse.substring(0,100); // Use part of text response as error message
                 }
                 const fetchError = new Error(errorMsg);
                 fetchError.status = response.status;
@@ -174,19 +176,34 @@
             }
 
             const data = await response.json();
-            addRhMsg('bot', data.response || "Je n'ai pas de réponse pour le moment.");
+            let botResponse = "";
+            if (data.response) {
+                botResponse = data.response;
+            } else if (data.answer) {
+                botResponse = data.answer;
+            } else if (data.text) {
+                botResponse = data.text;
+            } else if (typeof data === 'string') {
+                botResponse = data;
+            } else {
+                console.warn("Unexpected response structure from n8n (RH Chatbot):", data);
+                botResponse = "Je n'ai pas pu traiter la réponse du service RH correctement.";
+            }
+            addRhMsg('bot', botResponse);
 
         } catch (error) {
-            console.error('Erreur dans le chatbot RH:', error);
+            console.error('Erreur en contactant le service RH (n8n):', error);
             const thinkingElement = document.getElementById(thinkingMsgId);
-            if (thinkingElement) { // Ensure removal if error occurs before normal removal
+            if (thinkingElement) { 
                 thinkingElement.remove();
             }
-            let displayMessage = error.message || "Désolé, une erreur technique est survenue avec l'assistant RH. Veuillez réessayer plus tard.";
-            if (error.status === 502 || error.message.toLowerCase().includes("failed to fetch")) {
-                 displayMessage = "La connexion avec l'assistant RH a échoué. Veuillez vérifier votre connexion ou réessayer plus tard.";
+            let displayMessage = error.message || "Désolé, une erreur technique est survenue avec le service RH. Veuillez réessayer plus tard.";
+            if (error.message.toLowerCase().includes("failed to fetch")) {
+                 displayMessage = "La connexion avec le service RH a échoué. Veuillez vérifier votre connexion ou réessayer plus tard.";
             } else if (error.status === 504) {
-                 displayMessage = "L'assistant RH a mis trop de temps à répondre. Veuillez réessayer.";
+                 displayMessage = "Le service RH a mis trop de temps à répondre. Veuillez réessayer.";
+            } else if (error.status === 401 || error.status === 403) {
+                 displayMessage = "Accès non autorisé au service RH.";
             }
             addRhMsg('bot', displayMessage);
         }
