@@ -3,6 +3,31 @@
 
 {% block title %}NourrIR – Accueil{% endblock %}
 
+{% block extra_head %}
+<style>
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000; /* Optional: background for when video is loading */
+    margin-top: 1.5em;
+    margin-bottom: 2.5em; /* Increased bottom margin */
+    border-radius: 8px; /* Optional: rounded corners for the container */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Optional: subtle shadow */
+}
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px; /* Match container's border-radius if any */
+}
+</style>
+{% endblock %}
+
 {% block content %}
     <h1>Bienvenue chez NourrIR</h1>
     <p>
@@ -31,6 +56,19 @@
     <p>
         <b>NourrIR</b> est une application mobile et une plateforme web personnalisée qui combine analyse psychologique, recommandations nutritionnelles adaptées et activités créatives pour améliorer le bien-être global. L’intelligence artificielle offre une expérience personnalisée, ludique et non culpabilisante.
     </p>
+
+    <h2 style="margin-top:2.5em;">Découvrez NourrIR en Vidéo</h2>
+    <div class="video-container">
+        <iframe
+            src="https://www.youtube.com/embed/h3YaETsL5Oo"
+            title="Découvrez NourrIR en vidéo"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+        </iframe>
+    </div>
+
     <h2 style="margin-top:2.5em;">Public cible</h2>
     <ul>
         <li>Jeunes adultes (16–35 ans) en quête d'équilibre et d'outils accessibles</li>

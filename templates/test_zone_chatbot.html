@@ -1,0 +1,208 @@
+{% extends "base.html" %}
+
+{% block title %}Zone de Test – NourrIR{% endblock %}
+
+{% block chatbot %}{% endblock %} {# Remove default bubble chatbot #}
+
+{% block content %}
+<h1>Zone de Test Chatbot</h1>
+<p>Ceci est la zone de test pour le chatbot avec intégration n8n.</p>
+
+<style>
+    /* Styles are copied from rh_chatbot.html, ensure IDs are updated if necessary */
+    #test-zone-chat-container { /* Renamed ID */
+        display: flex;
+        flex-direction: column;
+        height: 60vh; /* Adjust height as needed */
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: #f9f9f9;
+    }
+    #test-zone-chat-log { /* Renamed ID */
+        flex-grow: 1;
+        padding: 1em;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7em;
+    }
+    .test-zone-msg-user { /* Renamed class */
+        align-self: flex-end;
+        background: #d1e7dd; /* Light green for user */
+        color: #0f5132;
+        padding: 0.7em 1em;
+        border-radius: 18px 18px 2px 18px;
+        max-width: 80%;
+        margin-left: auto;
+    }
+    .test-zone-msg-bot { /* Renamed class */
+        align-self: flex-start;
+        background: #cce5ff; /* Light blue for bot */
+        color: #004085;
+        padding: 0.7em 1em;
+        border-radius: 18px 18px 18px 2px;
+        max-width: 85%;
+        margin-right: auto;
+    }
+    #test-zone-chat-form { /* Renamed ID */
+        display: flex;
+        gap: 0.5em;
+        padding: 0.8em;
+        border-top: 1px solid #ccc;
+        background-color: #fff;
+    }
+    #test-zone-chat-input { /* Renamed ID */
+        flex: 1;
+        padding: 0.6em 1em;
+        border-radius: 1.2em;
+        border: 1px solid #ccc;
+    }
+    #test-zone-chat-send { /* Renamed ID */
+        background: var(--growth-green); /* Changed color for distinction */
+        color: #fff;
+        border: none;
+        border-radius: 1.2em;
+        padding: 0.6em 1.2em;
+        cursor: pointer;
+    }
+</style>
+
+<div id="test-zone-chat-container">
+    <div id="test-zone-chat-log">
+        {# Bot's initial greeting will be added by JavaScript #}
+    </div>
+    <form id="test-zone-chat-form" autocomplete="off">
+        <input id="test-zone-chat-input" type="text" placeholder="Envoyer un message au webhook n8n..." required autocomplete="off" />
+        <button id="test-zone-chat-send" type="submit">Envoyer à n8n</button>
+    </form>
+</div>
+
+<script>
+    const testZoneChatLog = document.getElementById('test-zone-chat-log');
+    const testZoneChatLog = document.getElementById('test-zone-chat-log');
+    const testZoneChatForm = document.getElementById('test-zone-chat-form');
+    const testZoneChatInput = document.getElementById('test-zone-chat-input');
+    
+    // URL for the n8n webhook integration.
+    const N8N_WEBHOOK_URL = 'https://n8n.artemis-ai.ca:8443/webhook/033951a5-b084-481a-9ef8-66e4922fb125';
+
+    /**
+     * Retrieves or generates a unique session ID for the Test Zone chatbot.
+     * Stores the session ID in localStorage.
+     * @returns {string} The session ID for the Test Zone chatbot.
+     */
+    function getTestZoneSessionId() {
+        let sessionId = localStorage.getItem('test-zone-session-id');
+        if (!sessionId) {
+            sessionId = 'tz-user-' + Math.random().toString(36).substring(2, 12) + '-' + Date.now();
+            localStorage.setItem('test-zone-session-id', sessionId);
+        }
+        return sessionId;
+    }
+
+    /**
+     * Adds a message to the Test Zone chat log.
+     * @param {string} type - The type of message ('user' or 'bot').
+     * @param {string} text - The message content (can be HTML for indicators).
+     * @param {string|null} msgId - An optional ID for the message element.
+     * @param {string|null} extraClass - An optional extra CSS class for the message element.
+     * @returns {HTMLElement} The created message div element.
+     */
+    function addTestZoneMsg(type, text, msgId = null, extraClass = null) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = type === 'user' ? 'test-zone-msg-user' : 'test-zone-msg-bot';
+        if (extraClass) {
+            msgDiv.classList.add(extraClass);
+        }
+        if (msgId) {
+            msgDiv.id = msgId;
+        }
+        msgDiv.innerHTML = text.replace(/(?:\r\n|\r|\n)(?![^<]*>|[^<>]*<\/)/g, '<br>');
+        testZoneChatLog.appendChild(msgDiv);
+        testZoneChatLog.scrollTop = testZoneChatLog.scrollHeight; // Auto-scroll
+        return msgDiv;
+    }
+
+    // Event listener for Test Zone chat form submission.
+    testZoneChatForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const userMessage = testZoneChatInput.value.trim();
+        if (userMessage === "") return; // Prevent empty submissions
+
+        addTestZoneMsg('user', userMessage);
+        testZoneChatInput.value = ''; // Clear input field
+
+        const thinkingMsgId = 'tz-thinking-' + Date.now();
+        const thinkingHTML = 'Connexion au webhook n8n<span class="thinking-indicator-dot"><span>.</span><span>.</span><span>.</span></span>';
+        addTestZoneMsg('bot', thinkingHTML, thinkingMsgId, 'msg-bot-thinking');
+        testZoneChatLog.scrollTop = testZoneChatLog.scrollHeight;
+
+        try {
+            const sessionId = getTestZoneSessionId();
+            const response = await fetch(N8N_WEBHOOK_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message: userMessage,
+                    sessionId: sessionId
+                })
+            });
+
+            const thinkingMsgElement = document.getElementById(thinkingMsgId);
+            if (thinkingMsgElement) {
+                thinkingMsgElement.remove();
+            }
+            
+            if (!response.ok) {
+                let errorMsg = `Erreur ${response.status} avec le webhook n8n.`;
+                let errorDetails = `Status: ${response.status}`;
+                let rawResponseForLog = ""; // To store raw text if JSON parsing fails
+                try {
+                    const errText = await response.text(); 
+                    rawResponseForLog = errText;
+                    // console.error("Raw error response from n8n:", errText); // Keep for debugging if needed
+                    const errData = JSON.parse(errText); 
+                    errorMsg = errData.message || errData.error || (typeof errData === 'string' ? errData : errorMsg);
+                    errorDetails = JSON.stringify(errData); 
+                } catch (e) {
+                    console.warn("Could not parse n8n error response as JSON, or it was not JSON.");
+                    errorDetails = rawResponseForLog || errorDetails; 
+                }
+                const fetchError = new Error(errorMsg);
+                fetchError.status = response.status;
+                fetchError.details = errorDetails; 
+                throw fetchError;
+            }
+
+            const data = await response.json();
+            let botResponse = (typeof data.response === 'string') ? data.response :
+                              (typeof data.message === 'string') ? data.message :
+                              (typeof data === 'string') ? data :
+                              JSON.stringify(data);
+            if (!botResponse || botResponse === '{}' || botResponse === '[]') { // Check for empty or meaningless JSON
+                 botResponse = "Réponse reçue de n8n, mais le format n'est pas celui attendu ou est vide.";
+                 console.warn("Unexpected or empty response structure from n8n:", data);
+            }
+            addTestZoneMsg('bot', botResponse);
+
+        } catch (error) { 
+            console.error('Erreur dans le Test Zone Chatbot (n8n):', error);
+            const thinkingElement = document.getElementById(thinkingMsgId);
+            if (thinkingElement) { // Ensure removal if error occurs before normal removal
+                thinkingElement.remove();
+            }
+            let displayMessage = error.message || "Désolé, une erreur est survenue avec le webhook n8n.";
+            if (error.details) {
+                // console.error("Details de l'erreur (n8n):", error.details); // Useful for debugging, but might be too verbose for default console
+            }
+            addTestZoneMsg('bot', displayMessage);
+        }
+    });
+
+    // Initial greeting from the bot when the page loads.
+    document.addEventListener('DOMContentLoaded', () => {
+        addTestZoneMsg('bot', "Bienvenue dans la Zone de Test n8n. Envoyez un message pour tester le webhook.");
+    });
+</script>
+{% endblock %}

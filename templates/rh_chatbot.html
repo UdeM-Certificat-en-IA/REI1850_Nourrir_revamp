@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block title %}Demandez aux RH – NourrIR{% endblock %}
+
+{% block chatbot %}{% endblock %} {# Remove default bubble chatbot #}
+
+{% block content %}
+<h1>Demandez aux RH</h1>
+<p>Vous avez une question pour notre département des Ressources Humaines ? Utilisez notre assistant virtuel pour obtenir des réponses rapides.</p>
+
+<style>
+    #rh-chat-container {
+        display: flex;
+        flex-direction: column;
+        height: 60vh; /* Adjust height as needed */
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: #f9f9f9;
+    }
+    #rh-chat-log {
+        flex-grow: 1;
+        padding: 1em;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7em;
+    }
+    .rh-msg-user {
+        align-self: flex-end;
+        background: #d1e7dd; /* Light green for user */
+        color: #0f5132;
+        padding: 0.7em 1em;
+        border-radius: 18px 18px 2px 18px;
+        max-width: 80%;
+        margin-left: auto;
+    }
+    .rh-msg-bot {
+        align-self: flex-start;
+        background: #cce5ff; /* Light blue for bot */
+        color: #004085;
+        padding: 0.7em 1em;
+        border-radius: 18px 18px 18px 2px;
+        max-width: 85%;
+        margin-right: auto;
+    }
+    #rh-chat-form {
+        display: flex;
+        gap: 0.5em;
+        padding: 0.8em;
+        border-top: 1px solid #ccc;
+        background-color: #fff;
+    }
+    #rh-chat-input {
+        flex: 1;
+        padding: 0.6em 1em;
+        border-radius: 1.2em;
+        border: 1px solid #ccc;
+    }
+    #rh-chat-send {
+        background: var(--dopamine-purple); /* Use existing variable */
+        color: #fff;
+        border: none;
+        border-radius: 1.2em;
+        padding: 0.6em 1.2em;
+        cursor: pointer;
+    }
+</style>
+
+<div id="rh-chat-container">
+    <div id="rh-chat-log">
+        {# Bot's initial greeting will be added by JavaScript #}
+    </div>
+    <form id="rh-chat-form" autocomplete="off">
+        <input id="rh-chat-input" type="text" placeholder="Posez votre question ici..." required autocomplete="off" />
+        <button id="rh-chat-send" type="submit">Envoyer</button>
+    </form>
+</div>
+
+<script>
+    const rhChatLog = document.getElementById('rh-chat-log');
+    const rhChatLog = document.getElementById('rh-chat-log');
+    const rhChatForm = document.getElementById('rh-chat-form');
+    const rhChatInput = document.getElementById('rh-chat-input');
+
+    /**
+     * Retrieves or generates a unique session ID for the RH chatbot.
+     * Stores the session ID in localStorage.
+     * @returns {string} The session ID for the RH chatbot.
+     */
+    function getRhSessionId() {
+        let sessionId = localStorage.getItem('rh-session-id');
+        if (!sessionId) {
+            sessionId = 'rh-user-' + Math.random().toString(36).substring(2, 12) + '-' + Date.now();
+            localStorage.setItem('rh-session-id', sessionId);
+        }
+        return sessionId;
+    }
+
+    /**
+     * Adds a message to the RH chat log.
+     * @param {string} type - The type of message ('user' or 'bot').
+     * @param {string} text - The message content (can be HTML for indicators).
+     * @param {string|null} msgId - An optional ID for the message element.
+     * @param {string|null} extraClass - An optional extra CSS class for the message element.
+     * @returns {HTMLElement} The created message div element.
+     */
+    function addRhMsg(type, text, msgId = null, extraClass = null) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = type === 'user' ? 'rh-msg-user' : 'rh-msg-bot';
+        if (extraClass) {
+            msgDiv.classList.add(extraClass);
+        }
+        if (msgId) {
+            msgDiv.id = msgId;
+        }
+        msgDiv.innerHTML = text.replace(/(?:\r\n|\r|\n)(?![^<]*>|[^<>]*<\/)/g, '<br>');
+        rhChatLog.appendChild(msgDiv);
+        rhChatLog.scrollTop = rhChatLog.scrollHeight; // Auto-scroll
+        return msgDiv;
+    }
+
+    // Event listener for RH chat form submission.
+    rhChatForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const userMessage = rhChatInput.value.trim();
+        if (userMessage === "") return; // Prevent empty submissions
+
+        addRhMsg('user', userMessage);
+        rhChatInput.value = ''; // Clear input field
+
+        const thinkingMsgId = 'rh-thinking-' + Date.now();
+        const thinkingHTML = 'L\'assistant RH réfléchit<span class="thinking-indicator-dot"><span>.</span><span>.</span><span>.</span></span>';
+        addRhMsg('bot', thinkingHTML, thinkingMsgId, 'msg-bot-thinking');
+        rhChatLog.scrollTop = rhChatLog.scrollHeight;
+
+        try {
+            const sessionId = getRhSessionId();
+            // System prompt specific to the HR context.
+            const hrSystemPrompt = "Tu es un assistant RH pour NourrIR. Réponds aux questions concernant les politiques internes de l'entreprise, les congés, les bénéfices, et autres sujets RH. Sois professionnel, clair et concis.";
+            
+            const response = await fetch('/nurih-ami', { 
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message: userMessage,
+                    session: sessionId,
+                    system_prompt: hrSystemPrompt 
+                })
+            });
+
+            const thinkingMsgElement = document.getElementById(thinkingMsgId);
+            if (thinkingMsgElement) {
+                thinkingMsgElement.remove();
+            }
+
+            if (!response.ok) {
+                let errorMsg = `Erreur HTTP ${response.status} du serveur.`;
+                let errorDetails = `Status: ${response.status}`;
+                try {
+                    const errorData = await response.json();
+                    // console.error("Server error response data (RH Chatbot):", errorData); // Keep for debugging if needed
+                    errorMsg = errorData.error || errorMsg;
+                    errorDetails = errorData.details || errorDetails;
+                } catch (e) {
+                    console.warn("Could not parse error response as JSON (RH Chatbot).");
+                    const textResponse = await response.text().catch(() => "");
+                    errorDetails = textResponse || errorDetails;
+                }
+                const fetchError = new Error(errorMsg);
+                fetchError.status = response.status;
+                fetchError.details = errorDetails;
+                throw fetchError;
+            }
+
+            const data = await response.json();
+            addRhMsg('bot', data.response || "Je n'ai pas de réponse pour le moment.");
+
+        } catch (error) {
+            console.error('Erreur dans le chatbot RH:', error);
+            const thinkingElement = document.getElementById(thinkingMsgId);
+            if (thinkingElement) { // Ensure removal if error occurs before normal removal
+                thinkingElement.remove();
+            }
+            let displayMessage = error.message || "Désolé, une erreur technique est survenue avec l'assistant RH. Veuillez réessayer plus tard.";
+            if (error.status === 502 || error.message.toLowerCase().includes("failed to fetch")) {
+                 displayMessage = "La connexion avec l'assistant RH a échoué. Veuillez vérifier votre connexion ou réessayer plus tard.";
+            } else if (error.status === 504) {
+                 displayMessage = "L'assistant RH a mis trop de temps à répondre. Veuillez réessayer.";
+            }
+            addRhMsg('bot', displayMessage);
+        }
+    });
+
+    // Initial greeting from the bot when the page loads.
+    document.addEventListener('DOMContentLoaded', () => {
+        addRhMsg('bot', "Bonjour ! Je suis l'assistant RH. Comment puis-je vous aider aujourd'hui ?");
+    });
+</script>
+{% endblock %}

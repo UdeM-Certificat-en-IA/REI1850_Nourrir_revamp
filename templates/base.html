@@ -15,18 +15,205 @@
             --joy-yellow: #F4D03F;
             --midnight-navy: #34495E;
             --cloud-gray: #F5F5F5;
+            --light-text: #f8f9fa; /* For text on dark backgrounds */
+            /* --unused-variable: #FF0000; Example of an unused variable to be removed */
         }
-        body { background: var(--cloud-gray); font-family: 'Inter', Arial, sans-serif; color: var(--midnight-navy); margin:0; padding:0; }
-        header { background:white; box-shadow:0 2px 12px #0001; padding:1rem; text-align:center; }
-        .logo { width:120px; }
-        .slogan { color:var(--joy-yellow); font-family:'Nunito'; font-weight:800; margin-top: 0.5em; }
-        nav { background:var(--dopamine-purple); padding:0.5rem; text-align:center; margin-bottom: 2rem; }
-        nav a { color:white; margin:0 1rem; text-decoration:none; font-weight:600; font-size:1.1em; }
-        nav a:hover { text-decoration:underline; }
-        main { max-width:900px; margin:2.5rem auto 2.5rem auto; background:white; padding:2rem; border-radius:1.2rem; box-shadow:0 4px 20px #0002; }
-        footer { text-align:center; color:#bbb; margin-bottom: 2em; }
+
+        /* Basic Reset & Body Styles */
+        body { 
+            background: var(--cloud-gray); 
+            font-family: 'Inter', Arial, sans-serif; 
+            color: var(--midnight-navy); 
+            margin:0; 
+            padding:0; 
+            line-height: 1.6; /* Improved readability */
+        }
+
+        /* Header & Logo Styles */
+        header { 
+            background: white; 
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05); 
+            padding: 1rem; 
+            text-align: center; 
+        }
+        .logo { 
+            width: 100px; 
+            max-width: 100%; /* Ensure logo is responsive */
+            height: auto; /* Maintain aspect ratio */
+            vertical-align: middle; /* Better alignment if text is next to it */
+        }
+        .slogan { 
+            color: var(--joy-yellow); 
+            font-family: 'Nunito', sans-serif; 
+            font-weight: 800; 
+            margin-top: 0.5em; 
+            font-size: 1.1em;
+        }
+
+        /* Navigation Styles */
+        nav { 
+            background: var(--dopamine-purple); 
+            padding: 0.75rem 0.5rem; 
+            text-align: center; 
+            margin-bottom: 1.5rem; 
+        }
+        nav a { 
+            color: var(--light-text); 
+            margin: 0.3rem 0.75rem; /* Allows wrapping on smaller screens before media query */
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 1.05em; 
+            padding: 0.4em 0.6em; /* Slightly increased padding for better touch targets */
+            border-radius: 4px;
+            transition: background-color 0.2s, color 0.2s; /* Faster transition */
+        }
+        nav a:hover, nav a:focus { /* Combined for brevity */
+            text-decoration: underline; 
+            color: var(--joy-yellow);
+            background-color: rgba(255,255,255,0.15); /* Slightly more visible hover */
+        }
+
+        /* Main Content Area Styles */
+        main { 
+            max-width: 960px; 
+            margin: 1.5rem auto; 
+            background: white; 
+            padding: 1.5rem; 
+            border-radius: 1rem; 
+            box-shadow: 0 4px 25px rgba(0,0,0,0.07); 
+        }
+
+        /* Footer Styles */
+        footer { 
+            text-align: center; 
+            color: #aaa; 
+            padding: 1.5rem 1rem; 
+            font-size: 0.9em;
+            margin-top: 2rem; /* Added margin-top for separation */
+        }
+        footer a { /* Style for links in footer, like the hidden test_zone link */
+            color: inherit; /* Inherit color from footer */
+        }
+
+        /* General Interactive Element Styles (Buttons) */
+        button, input[type="submit"], input[type="button"] { /* Base button styling */
+            cursor: pointer; /* Indicate interactivity */
+            transition: opacity 0.15s, box-shadow 0.15s; /* Faster transition */
+        }
+        button:hover, input[type="submit"]:hover, input[type="button"]:hover,
+        button:focus, input[type="submit"]:focus, input[type="button"]:focus {
+            opacity: 0.88; /* Adjusted opacity */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        
+        /* Video Container (Consolidated for potential reuse) */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000; /* Optional: background for when video is loading */
+            margin: 1.5em auto 2em auto; /* Centered with auto margins */
+            border-radius: 8px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0; /* Ensure no default iframe border */
+            border-radius: 8px; /* Match container's border-radius */
+        }
+
+        /* Chatbot Thinking Indicator Styles */
+        .thinking-indicator-dot span { /* Individual dot style */
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: currentColor; 
+            border-radius: 50%;
+            animation: blink 1.4s infinite both;
+            margin: 0 1px; /* Spacing between dots */
+        }
+        .thinking-indicator-dot span:nth-child(1) { animation-delay: 0s; }
+        .thinking-indicator-dot span:nth-child(2) { animation-delay: 0.2s; }
+        .thinking-indicator-dot span:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes blink { /* Animation for the dots */
+            0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+            40% { opacity: 1; transform: scale(1); }
+        }
+        .msg-bot-thinking { /* Style for the bot's thinking message container */
+            font-style: italic;
+            color: #555; /* Slightly adjusted color for better readability */
+            opacity: 0.95;
+        }
+        
+        /* Responsive Design Adjustments */
+        @media (max-width: 768px) { /* Tablet and smaller */
+            body { font-size: 15px; /* Base font size for medium screens */ }
+            .logo { width: 90px; } /* Adjusted logo size */
+            .slogan { font-size: 1em; }
+            nav { 
+                padding: 0.5rem; 
+                margin-bottom: 1rem; 
+            }
+            nav a { 
+                display: block; /* Stack nav links for better mobile UX */
+                margin: 0.6rem 0; 
+                padding: 0.5em 0.7em; /* Adjusted padding for stacked links */
+                font-size: 1.1em; 
+            }
+            main { 
+                margin: 1rem; 
+                padding: 1rem; 
+                border-radius: 0.75rem; /* Slightly adjusted radius */
+            }
+            footer { 
+                padding: 1rem 0.5rem; 
+                font-size: 0.85em; 
+            }
+            .video-container { /* Ensure video container adapts */
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+
+        @media (max-width: 480px) { /* Mobile phones */
+            body { font-size: 14px; /* Base font size for small screens */ }
+            header { padding: 0.75rem; }
+            .logo { width: 75px; } /* Further adjusted logo size */
+            nav a { 
+                font-size: 1.05em; /* Readjusted for very small screens */
+                margin: 0.5rem 0;
+            }
+            main { 
+                margin: 0.5rem; 
+                padding: 0.75rem; 
+                border-radius: 0.5rem;
+            }
+             /* Specific adjustments for the bubble chatbot on small screens */
+            #nurih-chatbot-box { /* Chatbot window */
+                width: 95vw; /* Take more width */
+                max-width: none; /* Override desktop max-width */
+                height: 80vh; /* Take more height */
+                max-height: none; /* Override desktop max-height */
+                right: 2.5vw; /* Center it a bit */
+                bottom: 10px; 
+                border-radius: 0.8em; /* Slightly smaller radius */
+            }
+            #nurih-header { padding: 0.6em 0.8em; } /* Compact header */
+            #nurih-header img { width: 28px; }
+            #nurih-chat-log { font-size: 0.95em; } /* Slightly smaller text in chat */
+            .nurih-msg-user, .nurih-msg-bot { padding: 0.6em 0.9em; } /* Compact messages */
+            #nurih-chat-input { padding: 0.5em 0.8em; font-size: 0.95em; }
+            #nurih-chat-send { padding: 0.5em 1em; font-size: 0.95em; }
+        }
     </style>
-    {% block extra_head %}{% endblock %}
+    {% block extra_head %}{% endblock %} <!-- This block allows individual pages to add their own specific styles -->
 </head>
 <body>
     <header>
@@ -36,13 +223,15 @@
     <nav>
         <a href="{{ url_for('home') }}">Accueil</a> |
         <a href="{{ url_for('politique') }}">Politique d’intégration</a> |
-        <a href="{{ url_for('contact') }}">Contact RH</a>
+        <a href="{{ url_for('contact') }}">Contact RH</a> |
+        <a href="{{ url_for('coulisses') }}">Les Coulisses</a> |
+        <a href="{{ url_for('rh_chatbot') }}">Demandez aux RH</a>
     </nav>
     <main>
         {% block content %}{% endblock %}
     </main>
     <footer>
-        &copy; 2025 NourrIR — projet fictif à but pédagogique.
+        &copy; 2025 NourrIR — projet fictif à but pédagogique. <a href="{{ url_for('test_zone') }}" style="color: #bbb; text-decoration: none; font-size: 2px;">.</a>
     </footer>
     {% block chatbot %}
     <!-- NuRiH Ami Chatbot Popup (présent sur chaque page) -->
@@ -86,7 +275,7 @@
         <button id="nurih-close-btn" title="Fermer">✕</button>
       </div>
       <div id="nurih-chat-log">
-        <div class="nurih-msg-bot">Salut 👋 ! Je suis <b>NuRiH Ami</b>, ton assistant. Pose-moi ta question !</div>
+        <div class="nurih-msg-bot">Bonjour ! Je suis <b>NuRiH Ami</b>, votre guide bienveillant. Comment puis-je vous aider aujourd'hui ?</div>
       </div>
       <form id="nurih-chat-form" autocomplete="off">
         <input id="nurih-chat-input" type="text" placeholder="Écris ici..." required autocomplete="off" />
@@ -94,6 +283,7 @@
       </form>
     </div>
     <script>
+    // Common DOM elements for the bubble chatbot
     const chatToggle = document.getElementById('nurih-chatbot-toggle');
     const chatBox = document.getElementById('nurih-chatbot-box');
     const closeBtn = document.getElementById('nurih-close-btn');
@@ -101,56 +291,163 @@
     const chatForm = document.getElementById('nurih-chat-form');
     const chatInput = document.getElementById('nurih-chat-input');
 
-    function getSessionId() {
-      let id = localStorage.getItem('nurih-session-id');
-      if (!id) {
-        id = 'user-' + Math.random().toString(36).substr(2, 10) + '-' + Date.now();
-        localStorage.setItem('nurih-session-id', id);
+    let autoOpenTimeoutId; // Variable to hold the timeout ID for auto-opening the chat.
+    const AUTO_OPEN_DELAY = 30000; // 30 seconds
+
+    /**
+     * Opens the chatbot window automatically after a delay,
+     * if it hasn't been manually opened or closed.
+     */
+    function openChatAutomatically() {
+      // Check if chatBox is not already displayed and the toggle button is visible (i.e., chat is closed)
+      if ((!chatBox.style.display || chatBox.style.display === 'none') && 
+          (!chatToggle.style.display || chatToggle.style.display !== 'none')) {
+        console.log("Auto-opening chat."); // Informative log for debugging this behavior
+        chatBox.style.display = "flex";
+        chatToggle.style.display = "none";
+        // chatInput.focus(); // Uncomment if you want to focus input on auto-open
       }
-      return id;
     }
 
-    chatToggle.onclick = () => { chatBox.style.display = "flex"; chatToggle.style.display = "none"; }
-    closeBtn.onclick = () => { chatBox.style.display = "none"; chatToggle.style.display = "inline-block"; }
-    chatForm.onsubmit = async (e) => {
-      e.preventDefault();
-      const text = chatInput.value.trim();
-      if (!text) return;
-      addMsg('user', text);
-      chatInput.value = "";
-      await getBotMsg(text);
+    // Set the timeout for auto-opening the chat.
+    autoOpenTimeoutId = setTimeout(openChatAutomatically, AUTO_OPEN_DELAY);
+
+    /**
+     * Retrieves or generates a unique session ID for the current user.
+     * Stores the session ID in localStorage.
+     * @returns {string} The session ID.
+     */
+    function getSessionId() {
+      let sessionId = localStorage.getItem('nurih-session-id');
+      if (!sessionId) {
+        sessionId = 'user-' + Math.random().toString(36).substring(2, 12) + '-' + Date.now();
+        localStorage.setItem('nurih-session-id', sessionId);
+      }
+      return sessionId;
+    }
+
+    // Event handler for clicking the chat toggle button.
+    chatToggle.onclick = () => { 
+      clearTimeout(autoOpenTimeoutId); // Prevent auto-open if user interacts manually.
+      chatBox.style.display = "flex"; 
+      chatToggle.style.display = "none"; 
     };
 
-    function addMsg(type, text) {
-      const msg = document.createElement('div');
-      msg.className = type === 'user' ? 'nurih-msg-user' : 'nurih-msg-bot';
-      msg.innerHTML = text.replace(/(?:\r\n|\r|\n)/g, '<br>');
-      chatLog.appendChild(msg);
-      chatLog.scrollTop = chatLog.scrollHeight;
+    // Event handler for clicking the close button in the chat window.
+    closeBtn.onclick = () => { 
+      chatBox.style.display = "none"; 
+      chatToggle.style.display = "inline-block"; 
+      // Behavior: If user closes manually, the auto-open for THIS session/page load is cancelled.
+      // It will attempt to auto-open again on the next page load if not otherwise interacted with.
+      clearTimeout(autoOpenTimeoutId); 
+    };
+    
+    // Event handler for submitting the chat form.
+    chatForm.onsubmit = async (event) => {
+      event.preventDefault();
+      const userMessage = chatInput.value.trim();
+      if (userMessage === "") return; // Do not send empty messages
+
+      addMsg('user', userMessage);
+      chatInput.value = ""; // Clear input field
+      await getBotMsg(userMessage);
+    };
+
+    /**
+     * Adds a message to the chat log.
+     * @param {string} type - The type of message ('user' or 'bot').
+     * @param {string} text - The message content (can be HTML for indicators).
+     * @param {string|null} msgId - An optional ID for the message element.
+     * @param {string|null} extraClass - An optional extra CSS class for the message element.
+     * @returns {HTMLElement} The created message div element.
+     */
+    function addMsg(type, text, msgId = null, extraClass = null) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = type === 'user' ? 'nurih-msg-user' : 'nurih-msg-bot';
+      if (extraClass) {
+        msgDiv.classList.add(extraClass);
+      }
+      if (msgId) {
+        msgDiv.id = msgId;
+      }
+      // Safely handle newlines for plain text, allow HTML for indicators.
+      // Note: If bot responses could contain user-generated HTML, sanitization (e.g., DOMPurify) is crucial here.
+      // For current setup, assuming bot responses are trusted or plain text, and indicators are safe HTML.
+      msgDiv.innerHTML = text.replace(/(?:\r\n|\r|\n)(?![^<]*>|[^<>]*<\/)/g, '<br>');
+      chatLog.appendChild(msgDiv);
+      chatLog.scrollTop = chatLog.scrollHeight; // Auto-scroll to the latest message
+      return msgDiv;
     }
 
+    /**
+     * Sends user message to the backend and displays the bot's response.
+     * Handles "thinking" indicator and error display.
+     * @param {string} userMsg - The user's message.
+     */
     async function getBotMsg(userMsg) {
-      addMsg('bot', "<i>NuRiH Ami réfléchit…</i>");
+      const thinkingMsgId = 'thinking-' + Date.now(); // Unique ID for the thinking message
+      const thinkingHTML = 'NuRiH Ami réfléchit<span class="thinking-indicator-dot"><span>.</span><span>.</span><span>.</span></span>';
+      addMsg('bot', thinkingHTML, thinkingMsgId, 'msg-bot-thinking');
       chatLog.scrollTop = chatLog.scrollHeight;
+
       try {
         const sessionId = getSessionId();
-        const res = await fetch('/nurih-ami', {
+        const response = await fetch('/nurih-ami', { // API endpoint
           method: "POST",
           headers: {'Content-Type':'application/json'},
           body: JSON.stringify({
             message: userMsg,
             session: sessionId
+            // model: "specific-model-if-needed" // Example for future model selection
           })
         });
-        const data = await res.json();
-        // remove spinner
-        const last = chatLog.querySelector('.nurih-msg-bot:last-child');
-        if (last && last.innerHTML.includes('réfléchit')) chatLog.removeChild(last);
-        addMsg('bot', data.response || "Je n'ai pas compris, peux-tu reformuler ?");
-      } catch (err) {
-        const last = chatLog.querySelector('.nurih-msg-bot:last-child');
-        if (last && last.innerHTML.includes('réfléchit')) chatLog.removeChild(last);
-        addMsg('bot', "Oups, je n'arrive pas à me connecter à mon cerveau d'IA. Réessaie plus tard !");
+
+        // Remove thinking message once response (or error) is ready to be processed
+        const thinkingMsgElement = document.getElementById(thinkingMsgId);
+        if (thinkingMsgElement) {
+          thinkingMsgElement.remove();
+        }
+
+        if (!response.ok) { // Check if response status is not 2xx
+          let errorMsg = `Erreur HTTP ${response.status} du serveur.`;
+          let errorDetails = `Status: ${response.status}`;
+          try {
+            const errorData = await response.json();
+            // console.error("Server error response data (NuRiH Ami):", errorData); // Kept for easier debugging if needed
+            errorMsg = errorData.error || errorMsg; 
+            errorDetails = errorData.details || errorDetails;
+          } catch (e) {
+            // If response is not JSON, or error field is not present
+            console.warn("Could not parse error response as JSON or 'error' field missing (NuRiH Ami).");
+            const textResponse = await response.text().catch(() => ""); 
+            errorDetails = textResponse || errorDetails;
+          }
+          const fetchError = new Error(errorMsg); // Create a new error object
+          fetchError.status = response.status;
+          fetchError.details = errorDetails; 
+          throw fetchError; // Throw to be caught by the catch block
+        }
+
+        const data = await response.json();
+        addMsg('bot', data.response || "Je n'ai pas de réponse satisfaisante pour le moment.");
+
+      } catch (error) {
+        // This catch block handles network errors and errors thrown from !response.ok
+        console.error('Erreur dans getBotMsg (NuRiH Ami):', error);
+        // Ensure thinking message is removed if it still exists (e.g., network error before removal)
+        const thinkingElement = document.getElementById(thinkingMsgId);
+        if (thinkingElement) {
+            thinkingElement.remove();
+        }
+        
+        let displayMessage = error.message || "Oups, une erreur de communication est survenue. Veuillez réessayer.";
+        // Customize display message based on error status or type
+        if (error.status === 502 || error.message.toLowerCase().includes("failed to fetch")) { // "failed to fetch" for network errors
+            displayMessage = "La connexion avec l'assistant IA a échoué. Veuillez vérifier votre connexion ou réessayer plus tard.";
+        } else if (error.status === 504) {
+            displayMessage = "L'assistant IA a mis trop de temps à répondre. Veuillez réessayer.";
+        }
+        addMsg('bot', displayMessage);
       }
     }
     </script>
