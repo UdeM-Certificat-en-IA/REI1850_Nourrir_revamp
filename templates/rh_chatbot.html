@@ -78,7 +78,7 @@
 </div>
 
 <script>
-    const rhChatLog = document.getElementById('rh-chat-log');
+    // DOM elements for the RH Chatbot
     const rhChatLog = document.getElementById('rh-chat-log');
     const rhChatForm = document.getElementById('rh-chat-form');
     const rhChatInput = document.getElementById('rh-chat-input');
@@ -139,7 +139,7 @@
             // System prompt specific to the HR context.
             const hrSystemPrompt = "Tu es un assistant RH pour NourrIR. Réponds aux questions concernant les politiques internes de l'entreprise, les congés, les bénéfices, et autres sujets RH. Sois professionnel, clair et concis.";
             
-            const response = await fetch('/nurih-ami', { 
+            const response = await fetch('/nuria-chat', { // Updated fetch URL
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -194,7 +194,7 @@
 
     // Initial greeting from the bot when the page loads.
     document.addEventListener('DOMContentLoaded', () => {
-        addRhMsg('bot', "Bonjour ! Je suis l'assistant RH. Comment puis-je vous aider aujourd'hui ?");
+        addRhMsg('bot', "Bonjour ! Je suis l'assistant RH de NourrIR. Comment puis-je vous aider aujourd'hui concernant nos politiques, carrières ou la vie d'entreprise ?");
     });
 </script>
 {% endblock %}

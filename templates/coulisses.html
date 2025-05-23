@@ -3,6 +3,63 @@
 {% block title %}Les Coulisses – NourrIR{% endblock %}
 
 {% block content %}
-<h1>Les Coulisses</h1>
-<p>Bienvenue dans les coulisses de NourrIR ! Découvrez notre équipe, notre histoire et notre mission plus en détail.</p>
+    <h1>Les Coulisses de NourrIR</h1>
+
+    <p>Bienvenue dans les coulisses de la création de NourrIR ! Ce projet a été développé avec passion et innovation dans le cadre du cours <strong>REI 1850 – Technologies émergentes et intelligence artificielle</strong> à l'Université de Montréal (Hiver 2024).</p>
+
+    <h2>Notre Mission dans ce Projet</h2>
+    <p>L'objectif était de concevoir et de prototyper une application web innovante explorant le potentiel de l'intelligence artificielle pour le bien-être. NourrIR est le fruit de cette exploration, visant à offrir une expérience utilisateur engageante et personnalisée.</p>
+
+    <h2>Les Outils de Notre Créativité</h2>
+    <p>Pour donner vie à NourrIR, nous avons mobilisé une panoplie d'outils et technologies de pointe :</p>
+    <ul>
+        <li><strong>Recherche et Idéation :</strong>
+            <ul>
+                <li><strong>ChatGPT (OpenAI) :</strong> Pour le brainstorming, la structuration des idées et la génération de contenu initial.</li>
+                <li><strong>Deep Research :</strong> Méthodologies de recherche approfondie pour valider les concepts et les sources scientifiques.</li>
+            </ul>
+        </li>
+        <li><strong>Conception Visuelle et Identité de Marque :</strong>
+            <ul>
+                <li><strong>Midjourney / DALL-E (Modèles de génération d'images par IA, ex: via GPT-4o) :</strong> Pour la création de logos, d'icônes et d'éléments visuels uniques pour NourrIR.</li>
+            </ul>
+        </li>
+        <li><strong>Production de Contenu Multimédia :</strong>
+            <ul>
+                <li><strong>Manni AI :</strong> Pour la transcription rapide et précise de nos discussions et idées vocales.</li>
+                <li><strong>Synthesia.io / JogAI :</strong> Pour la création de présentations vidéo et de contenu animé explicatif.</li>
+            </ul>
+        </li>
+        <li><strong>Développement Web et Intelligence Artificielle :</strong>
+            <ul>
+                <li><strong>IA Agentique pour le Codage :</strong>
+                    <ul>
+                        <li><strong>OpenAI Codex :</strong> Assistance à la génération de code et résolution de problèmes de programmation.</li>
+                        <li><strong>Jules (Google) :</strong> Utilisation d'un agent IA spécialisé pour l'ingénierie logicielle, notamment pour l'implémentation et la structuration du code de l'application Flask.</li>
+                    </ul>
+                </li>
+                <li><strong>Infrastructure Chatbot :</strong>
+                    <ul>
+                        <li><strong>Ollama (local) :</strong> Pour faire tourner des modèles de langage open-source localement, offrant flexibilité et contrôle.</li>
+                        <li><strong>n8n :</strong> Pour la création d'un système RAG (Retrieval Augmented Generation) afin d'enrichir les réponses du chatbot avec des informations spécifiques (en cours d'implémentation pour la version de test).</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><strong>Déploiement et Hébergement :</strong>
+            <ul>
+                <li><strong>Render :</strong> Plateforme utilisée pour le déploiement public de l'application web.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Un Projet d'Apprentissage Continu</h2>
+    <p>Ce projet représente une étape clé dans notre parcours d'apprentissage des technologies émergentes. Chaque outil et chaque phase de développement nous ont permis d'acquérir de nouvelles compétences et de mieux comprendre les enjeux et les possibilités de l'IA.</p>
+
+    <div style="text-align: center; margin-top: 2.5em; margin-bottom: 2.5em;">
+        <img src="{{ url_for('serve_assets', filename='ChatGPT Image May 18, 2025, 10_15_31 AM.png') }}" alt="Illustration de l'innovation technologique" style="max-width: 350px; width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    </div>
+
+    <p style="margin-top: 2em; text-align: center; font-style: italic;">L'équipe du projet NourrIR – UdeM REI 1850.</p>
+
 {% endblock %}

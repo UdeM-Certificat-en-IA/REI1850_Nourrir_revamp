@@ -130,4 +130,126 @@ Les données sont analysées <strong>trimestriellement</strong> par RH ; des a
 Les contenus générés ont été relus et validés par l’équipe RH afin de garantir la conformité légale et l’adéquation culturelle.
 </div>
 
+<!-- HTML for the "Ask NurrIA" popup -->
+<div id="ask-nuria-popup" style="display: none; position: absolute; background-color: var(--dopamine-purple); color: white; padding: 8px 12px; border-radius: 20px; cursor: pointer; z-index: 1050; box-shadow: 0 2px 10px rgba(0,0,0,0.2); font-size: 0.9em; transition: opacity 0.2s, transform 0.2s;">
+    Demander à NurrIA 💡
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const askNuriaPopup = document.getElementById('ask-nuria-popup');
+    const policyContentArea = document.querySelector('main'); // Target the main content area
+    let currentSelectedText = '';
+    let popupIsVisible = false;
+
+    if (!askNuriaPopup || !policyContentArea) {
+        console.warn('Ask NurrIA feature: Required elements (popup or content area) not found.');
+        return;
+    }
+
+    function showAskPopup(x, y) {
+        // Adjust x to ensure popup doesn't go off-screen right, with a small buffer
+        const maxX = window.innerWidth - askNuriaPopup.offsetWidth - 15;
+        const finalX = Math.min(x, maxX);
+        
+        askNuriaPopup.style.left = finalX + 'px';
+        askNuriaPopup.style.top = y + 'px';
+        askNuriaPopup.style.display = 'block';
+        askNuriaPopup.style.opacity = '1'; // For fade-in effect
+        askNuriaPopup.style.transform = 'translateY(0)';
+        popupIsVisible = true;
+    }
+
+    function hideAskPopup() {
+        askNuriaPopup.style.opacity = '0';
+        askNuriaPopup.style.transform = 'translateY(-5px)'; // Slight move up on hide
+        setTimeout(() => {
+            if (askNuriaPopup.style.opacity === '0') {
+                askNuriaPopup.style.display = 'none';
+            }
+        }, 200); // Corresponds to transition duration
+        popupIsVisible = false;
+    }
+
+    policyContentArea.addEventListener('mouseup', (event) => {
+        // Do not proceed if the event target is the popup itself or inside it
+        if (askNuriaPopup.contains(event.target)) {
+            return;
+        }
+
+        const selection = window.getSelection();
+        const selectedText = selection.toString().trim();
+
+        if (selectedText.length > 0) {
+            currentSelectedText = selectedText;
+            const range = selection.getRangeAt(0);
+            const rect = range.getBoundingClientRect();
+            
+            let popupX = event.pageX + 5; 
+            let popupY = event.pageY - askNuriaPopup.offsetHeight - 10; // Position above cursor
+
+            // Boundary check: if popup would be above viewport, position below selection's bottom
+            if ((window.scrollY + rect.top - askNuriaPopup.offsetHeight - 10) < window.scrollY) {
+                 popupY = window.scrollY + rect.bottom + 10;
+            }
+            // Boundary check: if popup would be too far left (e.g., selection ends near left edge)
+            if (event.clientX < (askNuriaPopup.offsetWidth / 2) + 10) { // 10px buffer
+                popupX = event.pageX + 5; // Keep it to the right of cursor
+            } 
+            // Boundary check: if popup would be too far right
+            else if (window.innerWidth - event.clientX < (askNuriaPopup.offsetWidth / 2) + 10) {
+                popupX = event.pageX - askNuriaPopup.offsetWidth - 5; // To the left of cursor
+            }
+
+
+            showAskPopup(popupX, popupY);
+        } else {
+            // If no text is selected (e.g., just a click on policy content) and popup is visible, hide it.
+            if (popupIsVisible && !askNuriaPopup.contains(event.target)) {
+                 hideAskPopup();
+            }
+        }
+    });
+
+    askNuriaPopup.addEventListener('click', (event) => {
+        event.stopPropagation(); // Prevent mousedown on document from hiding popup immediately
+
+        if (currentSelectedText) {
+            const chatBox = document.getElementById('nuria-chatbot-box'); 
+            const chatToggle = document.getElementById('nuria-chatbot-toggle'); 
+            const chatInput = document.getElementById('nuria-chat-input'); 
+
+            if (chatBox && chatInput) { // chatToggle might be null if already hidden
+                chatBox.style.display = 'flex';
+                if (chatToggle) chatToggle.style.display = 'none'; // Hide toggle if visible
+                
+                chatInput.value = \`Peux-tu m'en dire plus sur : "${currentSelectedText}" ?\`;
+                chatInput.focus(); 
+            } else {
+                console.warn('NurrIA chatbot elements not found in base.html for popup interaction.');
+            }
+        }
+        hideAskPopup();
+        currentSelectedText = ''; // Clear text after use
+        // Clear browser selection
+        if (window.getSelection) {
+            if (window.getSelection().empty) { window.getSelection().empty(); } 
+            else if (window.getSelection().removeAllRanges) { window.getSelection().removeAllRanges(); }
+        } else if (document.selection) { document.selection.empty(); }
+    });
+
+    // General click listener to hide popup if clicking outside
+    document.addEventListener('mousedown', (event) => {
+        if (popupIsVisible && !askNuriaPopup.contains(event.target)) {
+            // If a new selection is being made, mouseup on policyContent will handle it.
+            // This primarily handles clicks completely outside the policy content or popup.
+            const selection = window.getSelection();
+            if (!selection || selection.toString().trim() === '') { // Only hide if no new selection is being made
+                 hideAskPopup();
+            }
+        }
+    });
+});
+</script>
+
 {% endblock %}

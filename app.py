@@ -44,12 +44,17 @@ OLLAMA_MODELS_URL = os.getenv(
     os.getenv("MODELS_URL", "http://192.168.2.10:11434/api/models")
 )
 # Model identifier, must match an available model from /models
-OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "phi4:latest")
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "phi3:mini") # Changed default model
+
+# Log the final determined Ollama configuration
+logger.info(f"Using Ollama Chat URL: {OLLAMA_CHAT_URL}")
+logger.info(f"Using Ollama Models URL: {OLLAMA_MODELS_URL}")
+logger.info(f"Using Default Ollama Model: {OLLAMA_MODEL}")
 
 # Default system prompt for NuRiH Ami
 SYSTEM_PROMPT = (
-    "Tu es NuRiH Ami, assistant éducatif pour le bien-être, nutrition et créativité. "
-    "Sois amical, inclusif, bref et adapté à tous publics."
+    "Tu es NurrIA, une intelligence artificielle bienveillante et experte en bien-être, nutrition et créativité chez NourrIR. "
+    "Sois amicale, inclusive, brève et adaptée à tous publics."
 )
 
 def query_ollama(messages: list, model: str = OLLAMA_MODEL, chat_url: str = OLLAMA_CHAT_URL, timeout: int = 60) -> str | None:
@@ -151,8 +156,8 @@ def test_zone():
 
 # --- API Endpoints ---
 
-@app.route("/nurih-ami", methods=["POST"])
-def nurih_ami():
+@app.route("/nuria-chat", methods=["POST"]) # Renamed route
+def nuria_chat(): # Renamed function
     """
     Handles chat messages from the frontend, proxies them to the Ollama API,
     and returns the AI's response.
@@ -162,15 +167,14 @@ def nurih_ami():
     try:
         data = request.get_json(silent=True) # silent=True prevents raising an exception on bad JSON
         if not data or "message" not in data or not data["message"]: # Check if data is None or message is empty
-            logger.warning("/nurih-ami: Received empty or malformed request.")
+            logger.warning("/nuria-chat: Received empty or malformed request.") # Updated log message
             return jsonify({"error": "Aucun message reçu ou format incorrect.", "details": "Request payload was missing or 'message' field was empty."}), 400
 
         user_msg = data["message"]
         # Consider redacting or summarizing user_msg if it can be very long or sensitive
-        logger.info(f"/nurih-ami: Received message (first 100 chars): '{user_msg[:100]}...'")
+        logger.info(f"/nuria-chat: Received message (first 100 chars): '{user_msg[:100]}...'") # Updated log message
         
         # Allow overriding system prompt or model from request for more flexibility (e.g. for RH chatbot)
-        # For now, system_prompt is fixed, but model can be passed in request for query_ollama
         system_prompt = data.get("system_prompt", SYSTEM_PROMPT)
         model_to_use = data.get("model", OLLAMA_MODEL)
 
@@ -182,24 +186,23 @@ def nurih_ami():
         answer = query_ollama(messages, model=model_to_use) # Pass model if specified
         
         if not answer: # query_ollama might return None if content extraction fails
-            logger.warning(f"/nurih-ami: No answer from Ollama or failed to extract content for user message: {user_msg[:100]}...")
-            # Provide a generic response, or more specific if query_ollama indicated a specific failure type
+            logger.warning(f"/nuria-chat: No answer from Ollama or failed to extract content for user message: {user_msg[:100]}...") # Updated log message
             return jsonify({"error": "Désolé, je n'ai pas pu générer de réponse.", "details": "Failed to get a valid response from the AI model."}), 500
 
-        logger.info(f"/nurih-ami: Sending response (first 100 chars): '{str(answer)[:100]}...'")
+        logger.info(f"/nuria-chat: Sending response (first 100 chars): '{str(answer)[:100]}...'") # Updated log message
         return jsonify({"response": answer})
 
     except requests.exceptions.ConnectionError as e:
-        logger.error(f"/nurih-ami: Ollama connection error: {e}", exc_info=True)
+        logger.error(f"/nuria-chat: Ollama connection error: {e}", exc_info=True) # Updated log message
         return jsonify({"error": "Connexion à l'assistant IA impossible. Veuillez réessayer plus tard.", "details": "Connection to AI service failed."}), 502
     except requests.exceptions.Timeout as e:
-        logger.error(f"/nurih-ami: Ollama timeout: {e}", exc_info=True)
+        logger.error(f"/nuria-chat: Ollama timeout: {e}", exc_info=True) # Updated log message
         return jsonify({"error": "L'assistant IA n'a pas répondu à temps. Veuillez réessayer.", "details": "Request to AI service timed out."}), 504
     except requests.exceptions.HTTPError as e: # Raised by resp.raise_for_status() in query_ollama
-        logger.error(f"/nurih-ami: Ollama HTTP error: {e}", exc_info=True)
+        logger.error(f"/nuria-chat: Ollama HTTP error: {e}", exc_info=True) # Updated log message
         return jsonify({"error": "Erreur de communication avec l'assistant IA.", "details": f"AI service returned HTTP {e.response.status_code}."}), e.response.status_code if e.response else 500
     except Exception as e:
-        logger.error(f"/nurih-ami: An unexpected error occurred: {e}", exc_info=True)
+        logger.error(f"/nuria-chat: An unexpected error occurred: {e}", exc_info=True) # Updated log message
         return jsonify({"error": "Une erreur inattendue est survenue sur le serveur.", "details": str(e)}), 500
 
 @app.route("/models", methods=["GET"])

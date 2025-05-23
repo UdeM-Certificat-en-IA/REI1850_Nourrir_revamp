@@ -25,7 +25,8 @@
             font-family: 'Inter', Arial, sans-serif; 
             color: var(--midnight-navy); 
             margin:0; 
-            padding:0; 
+            /* NOTE: padding-top is for sticky header + nav. Values are estimates. */
+            padding-top: 200px; /* Desktop: header ~158px + nav ~42px */
             line-height: 1.6; /* Improved readability */
         }
 
@@ -35,6 +36,13 @@
             box-shadow: 0 2px 12px rgba(0,0,0,0.05); 
             padding: 1rem; 
             text-align: center; 
+            position: sticky;
+            top: 0;
+            z-index: 1000; /* High z-index to stay on top */
+            /* Height calculation for nav top: 
+               1rem padding (16px) + 100px logo + 0.5em slogan margin-top (0.5*1.1*16=8.8px) + 1.1em slogan line-height (1.1*16=17.6px) + 1rem padding (16px) 
+               = 16 + 100 + 8.8 + 17.6 + 16 = 158.4px. Let's use this for nav's top.
+            */
         }
         .logo { 
             width: 100px; 
@@ -55,7 +63,11 @@
             background: var(--dopamine-purple); 
             padding: 0.75rem 0.5rem; 
             text-align: center; 
-            margin-bottom: 1.5rem; 
+            position: sticky;
+            /* NOTE: top value is estimated header height. Fragile if header content changes height. */
+            top: 158px; 
+            z-index: 999; 
+            margin-bottom: 1.5rem; /* Ensures space below nav before main content starts */
         }
         nav a { 
             color: var(--light-text); 
@@ -76,7 +88,7 @@
         /* Main Content Area Styles */
         main { 
             max-width: 960px; 
-            margin: 1.5rem auto; 
+            margin: 1.5rem auto; /* Original margin, body padding-top handles sticky offset */
             background: white; 
             padding: 1.5rem; 
             border-radius: 1rem; 
@@ -154,12 +166,19 @@
         
         /* Responsive Design Adjustments */
         @media (max-width: 768px) { /* Tablet and smaller */
-            body { font-size: 15px; /* Base font size for medium screens */ }
-            .logo { width: 90px; } /* Adjusted logo size */
+            body { 
+                font-size: 15px; /* Base font size for medium screens */ 
+                /* Tablet: header ~135px + nav ~32px = ~167px */
+                padding-top: 167px; 
+            }
+            /* Header height does not need to be specified here as it's sticky top:0 */
+            .logo { width: 80px; } 
             .slogan { font-size: 1em; }
             nav { 
                 padding: 0.5rem; 
-                margin-bottom: 1rem; 
+                /* Tablet: Header height approx 135px (16+80+7.5+15+16=134.5) */
+                top: 135px; /* Adjusted sticky top for nav */
+                margin-bottom: 1rem; /* Space below nav */
             }
             nav a { 
                 display: block; /* Stack nav links for better mobile UX */
@@ -196,7 +215,7 @@
                 border-radius: 0.5rem;
             }
              /* Specific adjustments for the bubble chatbot on small screens */
-            #nurih-chatbot-box { /* Chatbot window */
+            #nuria-chatbot-box { /* Chatbot window - nuria prefix was from previous step */
                 width: 95vw; /* Take more width */
                 max-width: none; /* Override desktop max-width */
                 height: 80vh; /* Take more height */
@@ -205,13 +224,14 @@
                 bottom: 10px; 
                 border-radius: 0.8em; /* Slightly smaller radius */
             }
-            #nurih-header { padding: 0.6em 0.8em; } /* Compact header */
-            #nurih-header img { width: 28px; }
-            #nurih-chat-log { font-size: 0.95em; } /* Slightly smaller text in chat */
-            .nurih-msg-user, .nurih-msg-bot { padding: 0.6em 0.9em; } /* Compact messages */
-            #nurih-chat-input { padding: 0.5em 0.8em; font-size: 0.95em; }
-            #nurih-chat-send { padding: 0.5em 1em; font-size: 0.95em; }
+            #nuria-header { padding: 0.6em 0.8em; } 
+            #nuria-header img { width: 28px; }
+            #nuria-chat-log { font-size: 0.95em; } 
+            .nuria-msg-user, .nuria-msg-bot { padding: 0.6em 0.9em; } 
+            #nuria-chat-input { padding: 0.5em 0.8em; font-size: 0.95em; }
+            #nuria-chat-send { padding: 0.5em 1em; font-size: 0.95em; }
         }
+        /* Removed duplicate @media (max-width: 480px) block, adjustments are merged into the one above */
     </style>
     {% block extra_head %}{% endblock %} <!-- This block allows individual pages to add their own specific styles -->
 </head>
@@ -231,65 +251,91 @@
         {% block content %}{% endblock %}
     </main>
     <footer>
-        &copy; 2025 NourrIR — projet fictif à but pédagogique. <a href="{{ url_for('test_zone') }}" style="color: #bbb; text-decoration: none; font-size: 2px;">.</a>
+        <p>&copy; 2025 NourrIR — projet fictif à but pédagogique. <a href="{{ url_for('test_zone') }}" style="color: #bbb; text-decoration: none; font-size: 2px;">.</a></p>
+        <p style="margin-top: 0.5em;">UdeM REI 1850 - Equipe 4</p>
     </footer>
     {% block chatbot %}
-    <!-- NuRiH Ami Chatbot Popup (présent sur chaque page) -->
+    <!-- NurrIA Chatbot Popup (présent sur chaque page) -->
     <style>
-    #nurih-chatbot-toggle {
+    #nuria-chatbot-toggle { /* Renamed */
       position: fixed; bottom: 26px; right: 28px; z-index: 998;
       background: #7C4DFF; color: #fff; border-radius: 50%; width: 64px; height: 64px;
-      box-shadow: 0 4px 12px #0003; border: none; font-size: 2.4em; cursor: pointer;
-      transition: box-shadow 0.2s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: none; font-size: 2.4em; cursor: pointer;
+      transition: box-shadow 0.2s, background-color 0.2s;
     }
-    #nurih-chatbot-toggle:hover { box-shadow: 0 4px 24px #7c4dff44; }
-    #nurih-chatbot-box {
+    #nuria-chatbot-toggle:hover { /* Renamed */
+        box-shadow: 0 6px 24px rgba(124, 77, 255, 0.4); 
+        background-color: #6A3EEA; /* Slightly darker on hover */
+    }
+    #nuria-chatbot-box { /* Renamed */
       font-family: Inter, Arial, sans-serif;
       display: none; flex-direction: column; position: fixed;
       bottom: 100px; right: 30px; width: 350px; max-width: 95vw; height: 460px; max-height: 85vh;
-      background: #fff; border-radius: 1.1em; box-shadow: 0 6px 32px #34495e44; z-index: 999;
+      background: #fff; border-radius: 1.1em; box-shadow: 0 6px 32px rgba(52, 73, 94, 0.25); z-index: 999;
     }
-    #nurih-header {
+    #nuria-header { /* Renamed */
       background: #7C4DFF; color: #fff; padding: 0.7em 1em; font-weight: bold;
       border-radius: 1.1em 1.1em 0 0; display: flex; align-items: center; gap: 0.7em;
     }
-    #nurih-header img { width: 32px; }
-    #nurih-close-btn {
+    #nuria-header img { width: 32px; } /* Renamed */
+    #nuria-close-btn { /* Renamed */
       margin-left: auto; color: #fff; background: none; border: none; font-size: 1.2em; cursor: pointer;
+      padding: 0.2em 0.5em; /* Added padding for easier clicking */
+      border-radius: 4px;
     }
-    #nurih-chat-log {
+    #nuria-close-btn:hover { background-color: rgba(255,255,255,0.15); } /* Renamed */
+    #nuria-chat-log { /* Renamed */
       flex: 1; padding: 1em; overflow-y: auto; font-size: 1em; background: #F5F5F5;
       display: flex; flex-direction: column; gap: 0.7em;
     }
-    .nurih-msg-user { align-self: flex-end; background: #eae6fa; color: #34495E; padding: 0.7em 1em; border-radius: 18px 18px 2px 18px; max-width: 80%; }
-    .nurih-msg-bot { align-self: flex-start; background: #f3f3fd; color: #7C4DFF; padding: 0.7em 1em; border-radius: 18px 18px 18px 2px; max-width: 85%; }
-    #nurih-chat-form { display: flex; gap: 0.5em; padding: 0.8em; border-top: 1px solid #eee; }
-    #nurih-chat-input { flex: 1; padding: 0.6em 1em; border-radius: 1.2em; border: 1px solid #ccc; }
-    #nurih-chat-send { background: #7C4DFF; color: #fff; border: none; border-radius: 1.2em; padding: 0.6em 1.2em; cursor: pointer; }
+    .nuria-msg-user { /* Renamed */
+        align-self: flex-end; background: #eae6fa; color: #34495E; 
+        padding: 0.7em 1em; border-radius: 18px 18px 2px 18px; max-width: 80%; 
+        word-wrap: break-word; /* Ensure long words break */
+    }
+    .nuria-msg-bot { /* Renamed */
+        align-self: flex-start; background: #f3f3fd; color: #7C4DFF; 
+        padding: 0.7em 1em; border-radius: 18px 18px 18px 2px; max-width: 85%;
+        word-wrap: break-word; /* Ensure long words break */
+    }
+    #nuria-chat-form { /* Renamed */
+        display: flex; gap: 0.5em; padding: 0.8em; 
+        border-top: 1px solid #eee; background-color: #fff;
+    }
+    #nuria-chat-input { /* Renamed */
+        flex: 1; padding: 0.6em 1em; border-radius: 1.2em; 
+        border: 1px solid #ccc; font-size: 1em;
+    }
+    #nuria-chat-send { /* Renamed */
+        background: #7C4DFF; color: #fff; border: none; 
+        border-radius: 1.2em; padding: 0.6em 1.2em; cursor: pointer;
+        font-weight: 600;
+    }
+    #nuria-chat-send:hover { background-color: #6A3EEA; } /* Renamed */
     </style>
-    <button id="nurih-chatbot-toggle" title="Parle à NuRiH Ami 🤖">💬</button>
-    <div id="nurih-chatbot-box">
-      <div id="nurih-header">
-        <img src="{{ url_for('serve_assets', filename='Smiling Heart on Beige Background.png') }}" alt="Ami">
-        NuRiH Ami
-        <button id="nurih-close-btn" title="Fermer">✕</button>
+    <button id="nuria-chatbot-toggle" title="Parle à NurrIA 🤖">💬</button> <!-- Updated ID and title -->
+    <div id="nuria-chatbot-box"> <!-- Updated ID -->
+      <div id="nuria-header"> <!-- Updated ID -->
+        <img src="{{ url_for('serve_assets', filename='Smiling Heart on Beige Background.png') }}" alt="NurrIA"> <!-- Alt text updated -->
+        NurrIA <!-- Updated Name -->
+        <button id="nuria-close-btn" title="Fermer">✕</button> <!-- Updated ID -->
       </div>
-      <div id="nurih-chat-log">
-        <div class="nurih-msg-bot">Bonjour ! Je suis <b>NuRiH Ami</b>, votre guide bienveillant. Comment puis-je vous aider aujourd'hui ?</div>
+      <div id="nuria-chat-log"> <!-- Updated ID -->
+        <div class="nuria-msg-bot">Bonjour ! Je suis <b>NurrIA</b>, votre guide bienveillante. Comment puis-je vous aider aujourd'hui ?</div> <!-- Updated Name and class -->
       </div>
-      <form id="nurih-chat-form" autocomplete="off">
-        <input id="nurih-chat-input" type="text" placeholder="Écris ici..." required autocomplete="off" />
-        <button id="nurih-chat-send" type="submit">Envoyer</button>
+      <form id="nuria-chat-form" autocomplete="off"> <!-- Updated ID -->
+        <input id="nuria-chat-input" type="text" placeholder="Écrivez votre message..." required autocomplete="off" /> <!-- Updated ID and placeholder -->
+        <button id="nuria-chat-send" type="submit">Envoyer</button> <!-- Updated ID -->
       </form>
     </div>
     <script>
     // Common DOM elements for the bubble chatbot
-    const chatToggle = document.getElementById('nurih-chatbot-toggle');
-    const chatBox = document.getElementById('nurih-chatbot-box');
-    const closeBtn = document.getElementById('nurih-close-btn');
-    const chatLog = document.getElementById('nurih-chat-log');
-    const chatForm = document.getElementById('nurih-chat-form');
-    const chatInput = document.getElementById('nurih-chat-input');
+    const chatToggle = document.getElementById('nuria-chatbot-toggle'); // Updated ID
+    const chatBox = document.getElementById('nuria-chatbot-box'); // Updated ID
+    const closeBtn = document.getElementById('nuria-close-btn'); // Updated ID
+    const chatLog = document.getElementById('nuria-chat-log'); // Updated ID
+    const chatForm = document.getElementById('nuria-chat-form'); // Updated ID
+    const chatInput = document.getElementById('nuria-chat-input'); // Updated ID
 
     let autoOpenTimeoutId; // Variable to hold the timeout ID for auto-opening the chat.
     const AUTO_OPEN_DELAY = 30000; // 30 seconds
@@ -318,10 +364,19 @@
      * @returns {string} The session ID.
      */
     function getSessionId() {
-      let sessionId = localStorage.getItem('nurih-session-id');
+      // Using 'nuria-session-id' for new sessions, but also checking for old 'nurih-session-id' for continuity.
+      // This simple check means users with an old session ID will effectively start a new one.
+      // A more complex migration could be done if preserving old session data was critical.
+      let sessionId = localStorage.getItem('nuria-session-id');
       if (!sessionId) {
-        sessionId = 'user-' + Math.random().toString(36).substring(2, 12) + '-' + Date.now();
-        localStorage.setItem('nurih-session-id', sessionId);
+          sessionId = localStorage.getItem('nurih-session-id'); // Check for old session ID
+          if (sessionId) {
+              localStorage.setItem('nuria-session-id', sessionId); // Migrate to new key
+              localStorage.removeItem('nurih-session-id'); // Remove old key
+          } else {
+              sessionId = 'user-' + Math.random().toString(36).substring(2, 12) + '-' + Date.now();
+              localStorage.setItem('nuria-session-id', sessionId);
+          }
       }
       return sessionId;
     }
@@ -363,7 +418,7 @@
      */
     function addMsg(type, text, msgId = null, extraClass = null) {
       const msgDiv = document.createElement('div');
-      msgDiv.className = type === 'user' ? 'nurih-msg-user' : 'nurih-msg-bot';
+      msgDiv.className = type === 'user' ? 'nuria-msg-user' : 'nuria-msg-bot'; // Updated class names
       if (extraClass) {
         msgDiv.classList.add(extraClass);
       }
@@ -386,13 +441,13 @@
      */
     async function getBotMsg(userMsg) {
       const thinkingMsgId = 'thinking-' + Date.now(); // Unique ID for the thinking message
-      const thinkingHTML = 'NuRiH Ami réfléchit<span class="thinking-indicator-dot"><span>.</span><span>.</span><span>.</span></span>';
+      const thinkingHTML = 'NurrIA réfléchit<span class="thinking-indicator-dot"><span>.</span><span>.</span><span>.</span></span>'; // Updated name
       addMsg('bot', thinkingHTML, thinkingMsgId, 'msg-bot-thinking');
       chatLog.scrollTop = chatLog.scrollHeight;
 
       try {
         const sessionId = getSessionId();
-        const response = await fetch('/nurih-ami', { // API endpoint
+        const response = await fetch('/nuria-chat', { // API endpoint updated
           method: "POST",
           headers: {'Content-Type':'application/json'},
           body: JSON.stringify({
@@ -413,12 +468,12 @@
           let errorDetails = `Status: ${response.status}`;
           try {
             const errorData = await response.json();
-            // console.error("Server error response data (NuRiH Ami):", errorData); // Kept for easier debugging if needed
+            // console.error("Server error response data (NurrIA):", errorData); // Updated context
             errorMsg = errorData.error || errorMsg; 
             errorDetails = errorData.details || errorDetails;
           } catch (e) {
             // If response is not JSON, or error field is not present
-            console.warn("Could not parse error response as JSON or 'error' field missing (NuRiH Ami).");
+            console.warn("Could not parse error response as JSON or 'error' field missing (NurrIA)."); // Updated context
             const textResponse = await response.text().catch(() => ""); 
             errorDetails = textResponse || errorDetails;
           }
@@ -433,7 +488,7 @@
 
       } catch (error) {
         // This catch block handles network errors and errors thrown from !response.ok
-        console.error('Erreur dans getBotMsg (NuRiH Ami):', error);
+        console.error('Erreur dans getBotMsg (NurrIA):', error); // Updated context
         // Ensure thinking message is removed if it still exists (e.g., network error before removal)
         const thinkingElement = document.getElementById(thinkingMsgId);
         if (thinkingElement) {
@@ -443,15 +498,15 @@
         let displayMessage = error.message || "Oups, une erreur de communication est survenue. Veuillez réessayer.";
         // Customize display message based on error status or type
         if (error.status === 502 || error.message.toLowerCase().includes("failed to fetch")) { // "failed to fetch" for network errors
-            displayMessage = "La connexion avec l'assistant IA a échoué. Veuillez vérifier votre connexion ou réessayer plus tard.";
+            displayMessage = "La connexion avec l'assistante IA a échoué. Veuillez vérifier votre connexion ou réessayer plus tard."; // Updated gender
         } else if (error.status === 504) {
-            displayMessage = "L'assistant IA a mis trop de temps à répondre. Veuillez réessayer.";
+            displayMessage = "L'assistante IA a mis trop de temps à répondre. Veuillez réessayer."; // Updated gender
         }
         addMsg('bot', displayMessage);
       }
     }
     </script>
-    <!-- Fin NuRiH Ami -->
+    <!-- Fin NurrIA -->
     {% endblock %}
 </body>
 </html>
