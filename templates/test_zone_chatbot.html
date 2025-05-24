@@ -86,7 +86,9 @@
     
     // URLs for the n8n webhook integration (production and fallback).
     const N8N_WEBHOOK_URLS = [
-        'https://n8n.artemis-ai.ca:8443/webhook/3856912a-4b68-441b-ba1a-beb4e64356e0',
+        // Primary endpoint (Chat Trigger) – requires the '/chat' suffix.
+        'https://n8n.artemis-ai.ca:8443/webhook/3856912a-4b68-441b-ba1a-beb4e64356e0/chat',
+        // Secondary / fallback endpoint
         'https://n8n.artemis-ai.ca:8443/webhook/865ac76c-55df-47c0-8277-7fafe74400ab/chat'
     ];
 

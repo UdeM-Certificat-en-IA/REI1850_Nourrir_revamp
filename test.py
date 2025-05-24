@@ -10,7 +10,7 @@ def test_rh_n8n():
     # RH chatbot n8n webhook URL
     url = (
         'https://n8n.artemis-ai.ca:8443/webhook/'
-        '3856912a-4b68-441b-ba1a-beb4e64356e0'
+        '3856912a-4b68-441b-ba1a-beb4e64356e0/chat'
     )
     payload = {
         "message": "Quelle est la politique de télétravail chez NourrIR?",

@@ -179,7 +179,9 @@
         try {
             const sessionId = getRhSessionId();
 
-            const n8nWebhookUrl = 'https://n8n.artemis-ai.ca:8443/webhook/3856912a-4b68-441b-ba1a-beb4e64356e0';
+            // Correct endpoint for the Chat Trigger node ("/chat" suffix). The previous URL without
+            // this suffix returned 404, which made the chatbot fall back to the Ollama proxy.
+            const n8nWebhookUrl = 'https://n8n.artemis-ai.ca:8443/webhook/3856912a-4b68-441b-ba1a-beb4e64356e0/chat';
             
             const response = await fetch(n8nWebhookUrl, { 
                 method: 'POST',
