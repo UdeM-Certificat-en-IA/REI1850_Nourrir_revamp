@@ -17,48 +17,28 @@
   </iframe>
 </div>
 
-<!-- PDF Embed -->
-<div class="pdf-container" style="width:100%; height:800px; margin-bottom:2em; text-align:center;">
-  <iframe src="{{ url_for('static', filename='assets/politique.pdf') }}" width="100%" height="100%" style="border:1px solid #ccc;">
-    Ce navigateur ne supporte pas l'affichage de PDFs intégrés. Vous pouvez le télécharger ici :
-    <a href="{{ url_for('static', filename='assets/politique.pdf') }}">Télécharger la politique d’intégration (PDF)</a>.
-  </iframe>
-</div>
-
-<!-- Protected Download Link via name verification -->
-<div id="name-verification" style="text-align:center; margin-bottom:2em;">
-  <label for="name-input" style="font-size:1.1em;">Entrez votre prénom (en français) pour télécharger la politique :</label>
-  <input id="name-input" type="text" style="margin:0 0.5em; padding:0.2em 0.4em; font-size:1em;" />
-  <button id="name-submit" style="padding:0.3em 0.6em; font-size:1em;">Valider</button>
-  <div id="name-error" style="color:red; font-size:0.9em; display:none; margin-top:0.5em;">Nom incorrect. Veuillez réessayer.</div>
+<div id="password-verification" style="text-align:center; margin-bottom:2em;">
+  <label for="password-input" style="font-size:1.1em;">Entrez le mot de passe pour télécharger :</label>
+  <input id="password-input" type="password" style="margin:0 0.5em; padding:0.2em 0.4em; font-size:1em;" />
+  <button id="password-submit" style="padding:0.3em 0.6em; font-size:1em;">Valider</button>
+  <div id="password-error" style="color:red; font-size:0.9em; display:none; margin-top:0.5em;">Mot de passe incorrect.</div>
 </div>
 <div id="download-section" style="text-align:center; margin-bottom:2em; display:none;">
   <a id="download-link" href="{{ url_for('static', filename='assets/politique.pdf') }}" download style="font-size:1.1em;">
     📄 Télécharger la politique d’intégration (PDF)
   </a>
 </div>
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const submitBtn = document.getElementById('name-submit');
-  const nameInput = document.getElementById('name-input');
-  const errorDiv = document.getElementById('name-error');
+  const submitBtn = document.getElementById('password-submit');
+  const passwordInput = document.getElementById('password-input');
+  const errorDiv = document.getElementById('password-error');
   const downloadSection = document.getElementById('download-section');
-  let allowedNames = [];
-
-  fetch('{{ url_for("static", filename="assets/names.json") }}')
-    .then(response => response.json())
-    .then(data => {
-      allowedNames = data.names.map(n => n.toLowerCase());
-    })
-    .catch(err => console.error('Erreur lors du chargement de la liste des noms', err));
-
   submitBtn.addEventListener('click', function() {
-    const entered = nameInput.value.trim().toLowerCase();
-    if (allowedNames.includes(entered)) {
+    if (passwordInput.value === 'REI1850') {
       errorDiv.style.display = 'none';
       downloadSection.style.display = 'block';
-      nameInput.disabled = true;
+      passwordInput.disabled = true;
       submitBtn.disabled = true;
     } else {
       errorDiv.style.display = 'block';
