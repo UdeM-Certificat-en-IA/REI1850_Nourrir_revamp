@@ -101,7 +101,7 @@
 </div>
 
 <script>
-    const N8N_WEBHOOK_URL = 'https://n8n.artemis-ai.ca:8443/webhook/5f1c0c82-0ff9-40c7-9e2e-b1a96ffe24cd/chat';
+    const N8N_WEBHOOK_URL = 'https://n8n.artemis-ai.ca:8443/webhook/865ac76c-55df-47c0-8277-7fafe74400ab/chat';
     const HR_SYSTEM_PROMPT = "Tu es l'assistant RH de NourrIR. Réponds de façon aimable, informative et concise aux questions des employés concernant les politiques RH, carrières et vie d'entreprise.";
     const RH_FALLBACK_ENDPOINT = '/nuria-chat';
     let rhServiceOnline = false;
@@ -170,23 +170,25 @@
         rhChatInput.value = ''; // Clear input field
 
         const thinkingMsgId = 'rh-thinking-' + Date.now();
-        const thinkingHTML = 'L\'assistant RH réfléchit<span class="thinking-indicator-dot"><span>.</span><span>.</span><span>.</span></span>';
+        const thinkingHTML = 'Notre assistant RH traite votre demande<span class="thinking-indicator-dot"><span>.</span><span>.</span><span>.</span></span>';
         addRhMsg('bot', thinkingHTML, thinkingMsgId, 'msg-bot-thinking');
         rhChatLog.scrollTop = rhChatLog.scrollHeight;
 
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 120000); // 2 minutes timeout
         try {
-            // const sessionId = getRhSessionId(); // sessionId no longer sent for this webhook
-            // const hrSystemPrompt = "..." // hrSystemPrompt no longer sent
+            const sessionId = getRhSessionId();
 
-            const n8nWebhookUrl = 'https://n8n.artemis-ai.ca:8443/webhook/5f1c0c82-0ff9-40c7-9e2e-b1a96ffe24cd/chat';
+            const n8nWebhookUrl = 'https://n8n.artemis-ai.ca:8443/webhook/865ac76c-55df-47c0-8277-7fafe74400ab/chat';
             
             const response = await fetch(n8nWebhookUrl, { 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                signal: controller.signal,
                 body: JSON.stringify({
-                    message: userMessage
-                    // session: sessionId, // Not sending session ID
-                    // system_prompt: hrSystemPrompt // Not sending system prompt
+                    message: userMessage,
+                    sessionId: sessionId,
+                    system_prompt: HR_SYSTEM_PROMPT
                 })
             });
 
@@ -194,6 +196,7 @@
             if (thinkingMsgElement) {
                 thinkingMsgElement.remove();
             }
+            clearTimeout(timeoutId);
 
             if (!response.ok) {
                 let errorMsg = `Erreur HTTP ${response.status} du service RH.`;
@@ -216,11 +219,13 @@
             }
 
             const data = await response.json();
-            let botResponse = "";
+            let botResponse;
             if (data.response) {
                 botResponse = data.response;
             } else if (data.answer) {
                 botResponse = data.answer;
+            } else if (data.output) {
+                botResponse = data.output;
             } else if (data.text) {
                 botResponse = data.text;
             } else if (typeof data === 'string') {
@@ -232,20 +237,35 @@
             addRhMsg('bot', botResponse);
 
         } catch (error) {
+            clearTimeout(timeoutId);
             console.error('Erreur en contactant le service RH (n8n):', error);
             const thinkingElement = document.getElementById(thinkingMsgId);
-            if (thinkingElement) { 
+            if (thinkingElement) {
                 thinkingElement.remove();
             }
-            let displayMessage = error.message || "Désolé, une erreur technique est survenue avec le service RH. Veuillez réessayer plus tard.";
-            if (error.message.toLowerCase().includes("failed to fetch")) {
-                 displayMessage = "La connexion avec le service RH a échoué. Veuillez vérifier votre connexion ou réessayer plus tard.";
-            } else if (error.status === 504) {
-                 displayMessage = "Le service RH a mis trop de temps à répondre. Veuillez réessayer.";
-            } else if (error.status === 401 || error.status === 403) {
-                 displayMessage = "Accès non autorisé au service RH.";
+            const isTimeout = error.name === 'AbortError' || error.status === 504;
+            const fallbackText = isTimeout
+                ? "Le service RH met trop de temps à répondre. Notre représentant RH est actuellement hors du bureau... mais voici NurrIA, notre amie pour vous aider."
+                : "Notre représentant RH est actuellement hors du bureau... mais voici NurrIA, notre amie pour vous aider.";
+            addRhMsg('bot', fallbackText);
+
+            // Fallback to NurrIA chat
+            try {
+                const fallbackResponse = await fetch(RH_FALLBACK_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: userMessage, system_prompt: HR_SYSTEM_PROMPT })
+                });
+                if (!fallbackResponse.ok) {
+                    throw new Error(`Fallback HTTP ${fallbackResponse.status}`);
+                }
+                const fallbackData = await fallbackResponse.json();
+                const fallbackBotResponse = fallbackData.response || fallbackData.answer || fallbackData.text || "Désolé, notre assistante NurrIA n'a pas pu générer de réponse.";
+                addRhMsg('bot', fallbackBotResponse);
+            } catch (fallbackError) {
+                console.error('Erreur fallback NurrIA:', fallbackError);
+                addRhMsg('bot', 'Désolé, je n’arrive pas à contacter notre assistante NurrIA pour le moment. Veuillez réessayer plus tard.');
             }
-            addRhMsg('bot', displayMessage);
         }
     });
 

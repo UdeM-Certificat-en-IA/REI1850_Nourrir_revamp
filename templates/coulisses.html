@@ -4,54 +4,57 @@
 
 {% block content %}
     <h1>Les Coulisses de NourrIR</h1>
+    <div class="presentation-container" style="text-align:center; margin:2em 0;">
+        <h2>Présentation de l'Équipe NourrIR</h2>
+        <iframe src="https://docs.google.com/gview?embedded=true&url={{ url_for('serve_assets', filename='Présentation équipe NourrIR.pptx', _external=True) }}" style="width:960px; height:569px;" frameborder="0">Votre navigateur ne supporte pas les iframes.</iframe>
+    </div>
 
-    <p>Bienvenue dans les coulisses de la création de NourrIR ! Ce projet a été développé avec passion et innovation dans le cadre du cours <strong>REI 1850 – Technologies émergentes et intelligence artificielle</strong> à l'Université de Montréal (Hiver 2024).</p>
+    <p>Bienvenue dans les coulisses de la création de NourrIR ! Ce projet a été développé avec passion et innovation dans le cadre du cours <strong>REI 1850 – Gestion des ressources humaines et intelligence artificielle</strong> à l'Université de Montréal (Session été 2025).</p>
 
     <h2>Notre Mission dans ce Projet</h2>
     <p>L'objectif était de concevoir et de prototyper une application web innovante explorant le potentiel de l'intelligence artificielle pour le bien-être. NourrIR est le fruit de cette exploration, visant à offrir une expérience utilisateur engageante et personnalisée.</p>
 
     <h2>Les Outils de Notre Créativité</h2>
-    <p>Pour donner vie à NourrIR, nous avons mobilisé une panoplie d'outils et technologies de pointe :</p>
+    <p>Pour donner vie à NourrIR, nous avons utilisé une gamme diversifiée d'outils d'intelligence artificielle :</p>
     <ul>
-        <li><strong>Recherche et Idéation :</strong>
+        <li><strong>Recherche et Sources :</strong>
             <ul>
-                <li><strong>ChatGPT (OpenAI) :</strong> Pour le brainstorming, la structuration des idées et la génération de contenu initial.</li>
-                <li><strong>Deep Research :</strong> Méthodologies de recherche approfondie pour valider les concepts et les sources scientifiques.</li>
+                <li><strong>ChatGPT Deep Research :</strong> Recherche de sources et validation des informations.</li>
             </ul>
         </li>
-        <li><strong>Conception Visuelle et Identité de Marque :</strong>
+        <li><strong>Idéation et Conception :</strong>
             <ul>
-                <li><strong>Midjourney / DALL-E (Modèles de génération d'images par IA, ex: via GPT-4o) :</strong> Pour la création de logos, d'icônes et d'éléments visuels uniques pour NourrIR.</li>
+                <li><strong>GPT-4.1 & GPT-4.5 :</strong> Développement conceptuel et structuration des idées.</li>
+                <li><strong>GPT-40 :</strong> Génération de logos et d'illustrations.</li>
+                <li><strong>O3 :</strong> Élaboration des bases de la politique d'intégration.</li>
             </ul>
         </li>
-        <li><strong>Production de Contenu Multimédia :</strong>
+        <li><strong>Contenu Multimédia :</strong>
             <ul>
-                <li><strong>Manni AI :</strong> Pour la transcription rapide et précise de nos discussions et idées vocales.</li>
-                <li><strong>Synthesia.io / JogAI :</strong> Pour la création de présentations vidéo et de contenu animé explicatif.</li>
+                <li><strong>Suni v.45 :</strong> Composition musicale pour l'identité sonore de l'entreprise.</li>
+                <li><strong>Synthesia.io & JogAI :</strong> Création de vidéos explicatives animées.</li>
             </ul>
         </li>
-        <li><strong>Développement Web et Intelligence Artificielle :</strong>
+        <li><strong>Développement et Débogage :</strong>
             <ul>
-                <li><strong>IA Agentique pour le Codage :</strong>
-                    <ul>
-                        <li><strong>OpenAI Codex :</strong> Assistance à la génération de code et résolution de problèmes de programmation.</li>
-                        <li><strong>Jules (Google) :</strong> Utilisation d'un agent IA spécialisé pour l'ingénierie logicielle, notamment pour l'implémentation et la structuration du code de l'application Flask.</li>
-                    </ul>
-                </li>
-                <li><strong>Infrastructure Chatbot :</strong>
-                    <ul>
-                        <li><strong>Ollama (local) :</strong> Pour faire tourner des modèles de langage open-source localement, offrant flexibilité et contrôle.</li>
-                        <li><strong>n8n :</strong> Pour la création d'un système RAG (Retrieval Augmented Generation) afin d'enrichir les réponses du chatbot avec des informations spécifiques (en cours d'implémentation pour la version de test).</li>
-                    </ul>
-                </li>
+                <li><strong>OpenAI Codex :</strong> Assistance à la génération de code.</li>
+                <li><strong>Jules (Google) :</strong> Agent IA pour le débogage et l'optimisation du code.</li>
             </ul>
         </li>
-        <li><strong>Déploiement et Hébergement :</strong>
+        <li><strong>Chatbot RH :</strong>
             <ul>
-                <li><strong>Render :</strong> Plateforme utilisée pour le déploiement public de l'application web.</li>
+                <li><strong>n8n :</strong> Orchestration du chatbot, intégrant un système RAG (Retrieval Augmented Generation) utilisant une base de données vectorielle Pinecone pour extraire les informations internes.</li>
+            </ul>
+        </li>
+        <li><strong>Présentations :</strong>
+            <ul>
+                <li><strong>Canvas :</strong> Conception des supports pédagogiques et présentations.</li>
             </ul>
         </li>
     </ul>
+    <p>Pour toute question, <a href="{{ url_for('contact') }}">contactez-nous</a>.</p>
+    <p>Consultez le code source sur GitHub : <a href="https://github.com/ArtemisAI/nourrir_flask" target="_blank">https://github.com/ArtemisAI/nourrir_flask</a>.</p>
+    <p style="margin-top:1em; font-style:italic;">Cette application web fonctionne dans un conteneur Docker et est déployée sur Render.com. Elle est fournie à des fins pédagogiques uniquement.</p>
 
     <h2>Un Projet d'Apprentissage Continu</h2>
     <p>Ce projet représente une étape clé dans notre parcours d'apprentissage des technologies émergentes. Chaque outil et chaque phase de développement nous ont permis d'acquérir de nouvelles compétences et de mieux comprendre les enjeux et les possibilités de l'IA.</p>
@@ -60,6 +63,6 @@
         <img src="{{ url_for('serve_assets', filename='ChatGPT Image May 18, 2025, 10_15_31 AM.png') }}" alt="Illustration de l'innovation technologique" style="max-width: 350px; width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
     </div>
 
-    <p style="margin-top: 2em; text-align: center; font-style: italic;">L'équipe du projet NourrIR – UdeM REI 1850.</p>
+    <p style="margin-top: 2em; text-align: center; font-style: italic;">L'équipe du projet NourrIR – UdeM REI 1850 (Session été 2025)</p>
 
 {% endblock %}

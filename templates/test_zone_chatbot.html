@@ -176,13 +176,23 @@
             }
 
             const data = await response.json();
-            let botResponse = (typeof data.response === 'string') ? data.response :
-                              (typeof data.message === 'string') ? data.message :
-                              (typeof data === 'string') ? data :
-                              JSON.stringify(data);
-            if (!botResponse || botResponse === '{}' || botResponse === '[]') { // Check for empty or meaningless JSON
-                 botResponse = "Réponse reçue de n8n, mais le format n'est pas celui attendu ou est vide.";
-                 console.warn("Unexpected or empty response structure from n8n:", data);
+            let botResponse;
+            if (typeof data.response === 'string') {
+                botResponse = data.response;
+            } else if (typeof data.message === 'string') {
+                botResponse = data.message;
+            } else if (typeof data.output === 'string') {
+                botResponse = data.output;
+            } else if (typeof data.text === 'string') {
+                botResponse = data.text;
+            } else if (typeof data === 'string') {
+                botResponse = data;
+            } else {
+                botResponse = JSON.stringify(data);
+            }
+            if (!botResponse || botResponse === '{}' || botResponse === '[]') {
+                botResponse = "Réponse reçue de n8n, mais le format n'est pas celui attendu ou est vide.";
+                console.warn("Unexpected or empty response structure from n8n:", data);
             }
             addTestZoneMsg('bot', botResponse);
 
