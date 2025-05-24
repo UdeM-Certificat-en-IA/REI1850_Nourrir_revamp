@@ -31,7 +31,17 @@
         </li>
         <li><strong>Contenu Multimédia :</strong>
             <ul>
-                <li><strong>Suno v.4.5 :</strong> Composition musicale pour l'identité sonore de l'entreprise.</li>
+                <li><strong>Suno v.4.5 :</strong> Composition musicale pour l'identité sonore de l'entreprise.
+                    &nbsp;|&nbsp;
+                    <a href="#" onclick="document.getElementById('song-player').play(); return false;">Écouter la chanson</a>
+                    &nbsp;|&nbsp;
+                    <a href="https://suno.ai" target="_blank" rel="noopener">Page Suno</a>
+                    <br>
+                    <audio id="song-player" controls style="display:block; margin-top:0.5em; width:100%; max-width:400px;">
+                        <source src="{{ url_for('serve_assets', filename='song.mp3') }}" type="audio/mpeg">
+                        Votre navigateur ne supporte pas l'élément audio.
+                    </audio>
+                </li>
                 <li><strong>Synthesia.io & JogAI :</strong> Création de vidéos explicatives animées.</li>
             </ul>
         </li>
