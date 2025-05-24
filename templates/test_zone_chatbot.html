@@ -84,8 +84,11 @@
     const testZoneChatForm = document.getElementById('test-zone-chat-form');
     const testZoneChatInput = document.getElementById('test-zone-chat-input');
     
-    // URL for the n8n webhook integration.
-    const N8N_WEBHOOK_URL = 'https://n8n.artemis-ai.ca:8443/webhook/033951a5-b084-481a-9ef8-66e4922fb125';
+    // URLs for the n8n webhook integration (production and fallback).
+    const N8N_WEBHOOK_URLS = [
+        'https://n8n.artemis-ai.ca:8443/webhook/3856912a-4b68-441b-ba1a-beb4e64356e0',
+        'https://n8n.artemis-ai.ca:8443/webhook/865ac76c-55df-47c0-8277-7fafe74400ab/chat'
+    ];
 
     /**
      * Retrieves or generates a unique session ID for the Test Zone chatbot.
@@ -140,14 +143,34 @@
 
         try {
             const sessionId = getTestZoneSessionId();
-            const response = await fetch(N8N_WEBHOOK_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    message: userMessage,
-                    sessionId: sessionId
-                })
-            });
+            let response;
+            for (const url of N8N_WEBHOOK_URLS) {
+                try {
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 120000);
+                    const res = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ message: userMessage, sessionId: sessionId }),
+                        signal: controller.signal
+                    });
+                    clearTimeout(timeoutId);
+                    if (res.ok) {
+                        response = res;
+                        console.info(`Test Zone - Webhook utilisé: ${url}`);
+                        break;
+                    } else {
+                        console.warn(`Test Zone - Réponse non OK de ${url}: ${res.status}`);
+                    }
+                } catch (err) {
+                    console.warn(`Test Zone - Échec requête ${url}:`, err);
+                }
+            }
+            if (!response) {
+                const fetchError = new Error('Aucune réponse réussie du webhook n8n');
+                fetchError.details = 'Tous les endpoints ont échoué ou ont expiré';
+                throw fetchError;
+            }
 
             const thinkingMsgElement = document.getElementById(thinkingMsgId);
             if (thinkingMsgElement) {

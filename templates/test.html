@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Test d'API – NourrIR{% endblock %}
+{% block content %}
+<h1>Test d'API Caché</h1>
+<p>Cette page permet de tester manuellement les endpoints de l'application.</p>
+<form id="endpoint-test-form">
+  <div style="margin-bottom: 1em;">
+    <label for="endpoint-path">Chemin Endpoint :</label>
+    <input id="endpoint-path" type="text" placeholder="/path" required style="width: 100%;" />
+  </div>
+  <div style="margin-bottom: 1em;">
+    <label for="method">Méthode :</label>
+    <select id="method">
+      <option>GET</option>
+      <option>POST</option>
+    </select>
+  </div>
+  <div id="body-container" style="display: none; margin-bottom: 1em;">
+    <label for="endpoint-body">Corps de la requête (JSON) :</label>
+    <textarea id="endpoint-body" rows="6" style="width: 100%;" placeholder='{"key":"value"}'></textarea>
+  </div>
+  <button type="submit">Exécuter</button>
+</form>
+<hr />
+<div id="test-results" style="white-space: pre-wrap; word-wrap: break-word;"></div>
+<script>
+  const methodSelect = document.getElementById('method');
+  const bodyContainer = document.getElementById('body-container');
+  methodSelect.addEventListener('change', (e) => {
+    bodyContainer.style.display = e.target.value === 'POST' ? 'block' : 'none';
+  });
+  document.getElementById('endpoint-test-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const path = document.getElementById('endpoint-path').value.trim();
+    const method = methodSelect.value;
+    let options = { method, headers: {} };
+    if (method === 'POST') {
+      options.headers['Content-Type'] = 'application/json';
+      try {
+        options.body = JSON.stringify(JSON.parse(document.getElementById('endpoint-body').value));
+      } catch (err) {
+        return displayError('JSON invalide dans le corps de la requête');
+      }
+    }
+    try {
+      const response = await fetch(path, options);
+      const results = document.getElementById('test-results');
+      results.innerHTML = '';
+      const statusEl = document.createElement('div');
+      statusEl.textContent = 'Statut : ' + response.status + ' ' + response.statusText;
+      results.appendChild(statusEl);
+      const headersEl = document.createElement('div');
+      headersEl.textContent = 'En-têtes : ' + JSON.stringify(Object.fromEntries(response.headers.entries()), null, 2);
+      results.appendChild(headersEl);
+      let text;
+      try {
+        text = await response.text();
+      } catch {
+        text = '';
+      }
+      const pre = document.createElement('pre');
+      pre.textContent = text;
+      results.appendChild(pre);
+    } catch (error) {
+      displayError(error.toString());
+    }
+  });
+  function displayError(msg) {
+    const results = document.getElementById('test-results');
+    results.innerHTML = '';
+    const err = document.createElement('div');
+    err.style.color = 'red';
+    err.textContent = 'Erreur : ' + msg;
+    results.appendChild(err);
+  }
+</script>
+{% endblock %}

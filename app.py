@@ -206,6 +206,10 @@ def rh_chatbot():
 def test_zone():
     """Serves the n8n webhook test zone page (test_zone_chatbot.html)."""
     return render_template("test_zone_chatbot.html")
+@app.route("/test")
+def endpoint_test():
+    """Hidden endpoint for manual testing of API endpoints via web interface."""
+    return render_template("test.html")
 
 # --- API Endpoints ---
 
