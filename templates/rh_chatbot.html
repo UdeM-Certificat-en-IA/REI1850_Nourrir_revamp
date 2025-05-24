@@ -175,7 +175,7 @@
         rhChatLog.scrollTop = rhChatLog.scrollHeight;
 
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 120000); // 2 minutes timeout
+        const timeoutId = setTimeout(() => controller.abort(), 60000); // 1 minute timeout
         try {
             const sessionId = getRhSessionId();
 
@@ -269,9 +269,11 @@
         }
     });
 
-    // Initial greeting from the bot when the page loads.
+    // Initial greeting and service status check when the page loads.
     document.addEventListener('DOMContentLoaded', () => {
         addRhMsg('bot', "Bonjour ! Je suis l'assistant RH de NourrIR. Comment puis-je vous aider aujourd'hui concernant nos politiques, carrières ou la vie d'entreprise ?");
+        checkRhService();
+        setInterval(checkRhService, 60000);
     });
 </script>
 {% endblock %}
