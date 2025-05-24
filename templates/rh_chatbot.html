@@ -243,11 +243,6 @@
             if (thinkingElement) {
                 thinkingElement.remove();
             }
-            const isTimeout = error.name === 'AbortError' || error.status === 504;
-            const fallbackText = isTimeout
-                ? "Le service RH met trop de temps à répondre. Notre représentant RH est actuellement hors du bureau... mais voici NurrIA, notre amie pour vous aider."
-                : "Notre représentant RH est actuellement hors du bureau... mais voici NurrIA, notre amie pour vous aider.";
-            addRhMsg('bot', fallbackText);
 
             // Fallback to NurrIA chat
             try {
