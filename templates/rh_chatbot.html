@@ -178,21 +178,39 @@
         const timeoutId = setTimeout(() => controller.abort(), 60000); // 1 minute timeout
         try {
             const sessionId = getRhSessionId();
+            // Primary and fallback URLs (with and without the explicit 8443 port).
+            const candidateUrls = [
+                'https://n8n.artemis-ai.ca:8443/webhook/3856912a-4b68-441b-ba1a-beb4e64356e0/chat',
+                'https://n8n.artemis-ai.ca/webhook/3856912a-4b68-441b-ba1a-beb4e64356e0/chat'
+            ];
 
-            // Correct endpoint for the Chat Trigger node ("/chat" suffix). The previous URL without
-            // this suffix returned 404, which made the chatbot fall back to the Ollama proxy.
-            const n8nWebhookUrl = 'https://n8n.artemis-ai.ca:8443/webhook/3856912a-4b68-441b-ba1a-beb4e64356e0/chat';
-            
-            const response = await fetch(n8nWebhookUrl, { 
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                signal: controller.signal,
-                body: JSON.stringify({
-                    message: userMessage,
-                    sessionId: sessionId,
-                    system_prompt: HR_SYSTEM_PROMPT
-                })
-            });
+            let response;
+            for (const url of candidateUrls) {
+                try {
+                    response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        signal: controller.signal,
+                        body: JSON.stringify({
+                            message: userMessage,
+                            sessionId: sessionId,
+                            system_prompt: HR_SYSTEM_PROMPT
+                        })
+                    });
+                    if (response.ok) {
+                        console.info(`RH Chatbot – webhook utilisé: ${url}`);
+                        break;
+                    } else {
+                        console.warn(`RH Chatbot – réponse non OK de ${url}: ${response.status}`);
+                    }
+                } catch (err) {
+                    console.warn(`RH Chatbot – échec requête ${url}:`, err);
+                }
+            }
+
+            if (!response) {
+                throw new Error('Aucun des endpoints n8n n’a répondu.');
+            }
 
             const thinkingMsgElement = document.getElementById(thinkingMsgId);
             if (thinkingMsgElement) {
@@ -222,14 +240,16 @@
 
             const data = await response.json();
             let botResponse;
-            if (data.response) {
+            if (typeof data.response === 'string') {
                 botResponse = data.response;
-            } else if (data.answer) {
+            } else if (typeof data.answer === 'string') {
                 botResponse = data.answer;
-            } else if (data.output) {
+            } else if (typeof data.output === 'string') {
                 botResponse = data.output;
-            } else if (data.text) {
+            } else if (typeof data.text === 'string') {
                 botResponse = data.text;
+            } else if (typeof data.message === 'string') { // n8n default key when no custom HTTP Response used
+                botResponse = data.message;
             } else if (typeof data === 'string') {
                 botResponse = data;
             } else {

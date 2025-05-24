@@ -25,7 +25,17 @@ def test_rh_n8n():
         print(f"Status code: {resp.status_code}")
         try:
             data = resp.json()
-            print("Response JSON:", data)
+            # Attempt to extract a meaningful answer, accounting for typical n8n response formats
+            answer = None
+            if isinstance(data, dict):
+                for key in ("response", "answer", "output", "text", "message"):
+                    if key in data and isinstance(data[key], str):
+                        answer = data[key]
+                        break
+            if answer:
+                print("Parsed answer:", answer)
+            else:
+                print("Response JSON:", data)
         except ValueError:
             print("Response text:", resp.text)
     except Exception as e:

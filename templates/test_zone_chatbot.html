@@ -87,9 +87,14 @@
     // URLs for the n8n webhook integration (production and fallback).
     const N8N_WEBHOOK_URLS = [
         // Primary endpoint (Chat Trigger) – requires the '/chat' suffix.
+        // Primary endpoint (with explicit port)
         'https://n8n.artemis-ai.ca:8443/webhook/3856912a-4b68-441b-ba1a-beb4e64356e0/chat',
-        // Secondary / fallback endpoint
-        'https://n8n.artemis-ai.ca:8443/webhook/865ac76c-55df-47c0-8277-7fafe74400ab/chat'
+        // Fallback endpoint (no port, proxied)
+        'https://n8n.artemis-ai.ca/webhook/3856912a-4b68-441b-ba1a-beb4e64356e0/chat',
+        // Secondary webhook (with port)
+        'https://n8n.artemis-ai.ca:8443/webhook/865ac76c-55df-47c0-8277-7fafe74400ab/chat',
+        // Secondary webhook (no port)
+        'https://n8n.artemis-ai.ca/webhook/865ac76c-55df-47c0-8277-7fafe74400ab/chat'
     ];
 
     /**
@@ -204,6 +209,8 @@
             let botResponse;
             if (typeof data.response === 'string') {
                 botResponse = data.response;
+            } else if (typeof data.answer === 'string') {
+                botResponse = data.answer; // Common key when AI Agent returns 'answer'
             } else if (typeof data.message === 'string') {
                 botResponse = data.message;
             } else if (typeof data.output === 'string') {
