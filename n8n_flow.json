@@ -121,7 +121,7 @@
       "name": "When chat message received",
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "position": [-480, 940],
-      "webhookId": "865ac76c-55df-47c0-8277-7fafe74400ab",
+      "webhookId": "3856912a-4b68-441b-ba1a-beb4e64356e0",
       "typeVersion": 1.1
     },
     {

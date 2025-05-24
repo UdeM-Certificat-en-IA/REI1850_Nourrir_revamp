@@ -101,7 +101,7 @@
 </div>
 
 <script>
-    const N8N_WEBHOOK_URL = 'https://n8n.artemis-ai.ca:8443/webhook/865ac76c-55df-47c0-8277-7fafe74400ab/chat';
+    const N8N_WEBHOOK_URL = 'https://n8n.artemis-ai.ca:8443/webhook/3856912a-4b68-441b-ba1a-beb4e64356e0';
     const HR_SYSTEM_PROMPT = "Tu es l'assistant RH de NourrIR. Réponds de façon aimable, informative et concise aux questions des employés concernant les politiques RH, carrières et vie d'entreprise.";
     const RH_FALLBACK_ENDPOINT = '/nuria-chat';
     let rhServiceOnline = false;
@@ -179,7 +179,7 @@
         try {
             const sessionId = getRhSessionId();
 
-            const n8nWebhookUrl = 'https://n8n.artemis-ai.ca:8443/webhook/865ac76c-55df-47c0-8277-7fafe74400ab/chat';
+            const n8nWebhookUrl = 'https://n8n.artemis-ai.ca:8443/webhook/3856912a-4b68-441b-ba1a-beb4e64356e0';
             
             const response = await fetch(n8nWebhookUrl, { 
                 method: 'POST',
