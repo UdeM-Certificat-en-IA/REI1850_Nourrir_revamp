@@ -5,8 +5,9 @@
 - [x] Clean up shell prompt artifacts in `test.py`.
 - [x] Add Netlify deployment configuration.
 - [x] Verify Netlify deployment with serverless-wsgi wrapper.
-- [ ] Expand automated tests beyond network smoke test.
+- [x] Expand automated tests beyond network smoke test.
 - [x] Integrate performance policy pages into the Flask app.
+- [ ] Convert network smoke test to optional script and exclude from pytest.
 - [ ] Improve responsive styling for performance policy pages.
 - [x] Validate Netlify deploy after removing python version setting.
 - [x] Confirm Netlify functions deploy correctly with new directory setting.

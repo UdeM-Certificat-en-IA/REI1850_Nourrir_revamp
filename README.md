@@ -150,6 +150,14 @@ By default, the web service is exposed on port `8282`.
     ├── politique.html
     └── contact.html
 ```
+## Running Tests
+
+Run the test suite with:
+
+```bash
+pytest
+```
+
 
 ## Deployment on Netlify
 

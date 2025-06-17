@@ -2,3 +2,4 @@ flask>=2.3
 requests
 gunicorn
 serverless-wsgi
+pytest>=7.0
