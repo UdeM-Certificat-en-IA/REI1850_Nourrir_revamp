@@ -156,6 +156,9 @@ By default, the web service is exposed on port `8282`.
 1. Install the Netlify CLI and log in with `netlify login`.
 2. Run `netlify deploy --prod` to build and deploy.
 3. Configure the `OLLAMA_*` variables in the Netlify dashboard.
+4. Ensure `API_GATEWAY_BASE_PATH` is set in the Netlify environment. This
+   variable defines the base path used by the serverless function and defaults to
+   `/.netlify/functions/flask_app`.
 
 ## Troubleshooting
 
