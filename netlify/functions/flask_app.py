@@ -1,8 +1,10 @@
 from app import app
 from serverless_wsgi import handle_request
+import os
 
 # Strip the Netlify functions base path so Flask routes work correctly
-BASE_PATH = "/.netlify/functions/flask_app"
+# Read from API_GATEWAY_BASE_PATH env variable with a default
+BASE_PATH = os.getenv("API_GATEWAY_BASE_PATH", "/.netlify/functions/flask_app")
 
 def handler(event, context):
     # Remove the function's base path prefix so Flask sees the correct route

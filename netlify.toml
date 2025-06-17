@@ -7,6 +7,7 @@
   included_files = ["templates/**/*", "static/**/*", "app.py"]
 
   [functions.environment]
+    # Base path for the Flask function used for stripping in flask_app.py
     API_GATEWAY_BASE_PATH = "/.netlify/functions/flask_app"
 
 [[redirects]]
