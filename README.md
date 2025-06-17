@@ -146,6 +146,12 @@ By default, the web service is exposed on port `8282`.
     └── contact.html
 ```
 
+## Deployment on Netlify
+
+1. Install the Netlify CLI and log in with `netlify login`.
+2. Run `netlify deploy --prod` to build and deploy.
+3. Configure the `OLLAMA_*` variables in the Netlify dashboard.
+
 ## Troubleshooting
 
 - **Cannot connect to Ollama**: Verify `OLLAMA_CHAT_URL` (or legacy `OLLAMA_URL`) and that the Ollama server is reachable from your network.

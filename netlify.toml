@@ -1,0 +1,11 @@
+[build]
+  command = "pip install -r requirements.txt"
+  functions = "netlify/functions"
+
+[functions]
+  python_runtime = "3.11"
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/flask_app"
+  status = 200
