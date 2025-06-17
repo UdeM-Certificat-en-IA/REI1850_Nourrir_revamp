@@ -8,4 +8,6 @@
 - [x] Netlify deploy still failed due to `python_version`; removed the property entirely.
 - [x] Netlify deploy preview served 404s due to functions not detected; added explicit directory setting.
 - [ ] Deployed site still returns 404; added base path stripping and included files for templates. Parameterized the base path via `API_GATEWAY_BASE_PATH` to allow configuration. Pending verification after next deploy.
+- [ ] Netlify Python runtime may be <3.10 causing syntax errors from union type
+      hints. Updated code to use `typing.Optional` for compatibility.
 - [ ] Docker container may not honor `PORT` variable due to exec-form CMD.

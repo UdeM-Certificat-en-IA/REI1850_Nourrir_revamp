@@ -13,3 +13,5 @@
 - Made Flask server port configurable via `PORT` env variable and updated Dockerfile.
 - Read serverless function base path from `API_GATEWAY_BASE_PATH` environment
   variable and documented the setting in Netlify configuration.
+- Replaced Python 3.10 union type hints with `typing.Optional` for
+  compatibility with Netlify's Python runtime.

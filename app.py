@@ -16,6 +16,7 @@ It includes:
 # nourrir_flask/app.py
 
 from flask import Flask, render_template, request, jsonify, send_from_directory
+from typing import Optional
 import os
 import requests
 import logging
@@ -56,7 +57,7 @@ SYSTEM_PROMPT = (
     "Sois amicale, inclusive, brève et adaptée à tous publics."
 )
 
-def query_ollama(messages: list, model: str = OLLAMA_MODEL, chat_url: str = OLLAMA_CHAT_URL, timeout: int = 60) -> str | None:
+def query_ollama(messages: list, model: str = OLLAMA_MODEL, chat_url: str = OLLAMA_CHAT_URL, timeout: int = 60) -> Optional[str]:
     """
     Sends messages to the Ollama chat API and returns the assistant's content.
 
@@ -120,7 +121,7 @@ def get_response_with_fallback(messages: list,
                                chat_url: str = OLLAMA_CHAT_URL,
                                models_url: str = OLLAMA_MODELS_URL,
                                initial_model: str = OLLAMA_MODEL,
-                               timeout: int = 60) -> str | None:
+                               timeout: int = 60) -> Optional[str]:
     """
     Attempt to get a response using the initial model, then fallback through available models if needed.
     """

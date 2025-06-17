@@ -12,6 +12,8 @@
 - [x] Validate Netlify deploy after removing python version setting.
 - [x] Confirm Netlify functions deploy correctly with new directory setting.
 - [ ] Verify 404 issue is resolved with base path stripping.
+- [ ] Test Netlify deploy after replacing union types with Optional for Python
+      3.9 compatibility.
 - [x] Allow Flask port to be set via `PORT` environment variable.
 - [ ] Verify Gunicorn command expands `$PORT` properly in Dockerfile.
 - [x] Parameterize Netlify base path via `API_GATEWAY_BASE_PATH` environment variable.
