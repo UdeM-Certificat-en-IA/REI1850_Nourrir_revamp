@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Politique de performance – NourrIR{% endblock %}
+{% block content %}
+<h1>Politique de Gestion de la Performance – NourrIR</h1>
+<p><em>The English version is split into individual files starting with <a href="performance_policy.md">performance_policy.md</a>.</em></p>
+<p>Cette politique établit le cadre global qui régit la manière dont NourrIR fixe, suit et reconnaît la performance individuelle et collective. Elle s’applique à tous les collaborateurs, quels que soient leur fonction ou leur niveau hiérarchique.</p>
+<p><strong>Objectifs de la politique</strong></p>
+<ul>
+<li>Assurer la cohérence entre la stratégie d’entreprise, les objectifs d’équipe et les contributions de chacun.</li>
+<li>Favoriser une culture de dialogue, d’amélioration continue et de reconnaissance.</li>
+<li>Soutenir le développement professionnel et le bien‑être de chaque employé.</li>
+</ul>
+<p><strong>Principes directeurs</strong></p>
+<ol>
+<li><em>Clarté</em> : les objectifs sont compréhensibles et mesurables.</li>
+<li><em>Participation</em> : chaque collaborateur est acteur de son parcours et de ses résultats.</li>
+<li><em>Transparence</em> : les données et décisions sont accessibles à tous les concernés.</li>
+<li><em>Sens</em> : la performance est reliée à la mission « bien‑être et alimentation consciente » de NourrIR.</li>
+</ol>
+<hr />
+<h2>Sections</h2>
+<ol>
+<li><a href="{{ url_for('performance_section', section='01_purpose_scope') }}">1. Objet et portée</a></li>
+<li><a href="{{ url_for('performance_section', section='02_roles_responsibilities') }}">2. Rôles et responsabilités</a></li>
+<li><a href="{{ url_for('performance_section', section='03_defining_objectives') }}">3. Définition des objectifs</a></li>
+<li><a href="{{ url_for('performance_section', section='04_planning_tracking') }}">4. Planification et suivi des progrès</a></li>
+<li><a href="{{ url_for('performance_section', section='05_cadence_checkins') }}">5. Cadence des points de suivi</a></li>
+<li><a href="{{ url_for('performance_section', section='06_feedback_tools') }}">6. Outils de feedback</a></li>
+<li><a href="{{ url_for('performance_section', section='07_annual_evaluation') }}">7. Évaluation annuelle</a></li>
+<li><a href="{{ url_for('performance_section', section='08_recognition_career') }}">8. Reconnaissance, développement et carrière</a></li>
+<li><a href="{{ url_for('performance_section', section='09_support_remediation') }}">9. Support et remédiation</a></li>
+<li><a href="{{ url_for('performance_section', section='10_policy_review_glossary') }}">10. Gouvernance, révision de la politique et glossaire</a></li>
+</ol>
+<p><a href='{{ url_for('static', filename='assets/Performance/performance_policy/docs/performance_policy_fr/performance_policy_fr.pdf') }}' download>Télécharger la version PDF</a></p>
+<audio controls>
+  <source src='{{ url_for('static', filename='assets/Performance/performance_policy/docs/Presentatation.mp3') }}' type='audio/mpeg'>
+  Votre navigateur ne supporte pas la lecture audio.
+</audio>
+{% endblock %}

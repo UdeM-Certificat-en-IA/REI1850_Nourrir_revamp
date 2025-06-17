@@ -6,3 +6,4 @@
 - [x] Add Netlify deployment configuration.
 - [ ] Verify Netlify deployment with serverless-wsgi wrapper.
 - [ ] Expand automated tests beyond network smoke test.
+- [x] Integrate performance policy pages into the Flask app.
