@@ -155,3 +155,4 @@ By default, the web service is exposed on port `8282`.
 ## License
 
 This project is provided for educational and demonstration purposes.
+Released under the MIT License.
