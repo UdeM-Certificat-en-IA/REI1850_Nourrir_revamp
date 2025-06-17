@@ -10,3 +10,5 @@
 - Fixed functions directory path so Netlify deploy detects Python functions.
 - Added base path stripping and included files to ensure Flask routes work on Netlify.
 - Made Flask server port configurable via `PORT` env variable and updated Dockerfile.
+- Read serverless function base path from `API_GATEWAY_BASE_PATH` environment
+  variable and documented the setting in Netlify configuration.
