@@ -9,3 +9,4 @@
 - Updated Netlify configuration to remove unsupported `python_version` property.
 - Fixed functions directory path so Netlify deploy detects Python functions.
 - Added base path stripping and included files to ensure Flask routes work on Netlify.
+- Made Flask server port configurable via `PORT` env variable and updated Dockerfile.

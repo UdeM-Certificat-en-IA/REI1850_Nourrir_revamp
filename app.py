@@ -337,4 +337,4 @@ def favicon():
 if __name__ == "__main__":
     # Note: Flask's default debug mode is generally not recommended for production.
     # Use a production-ready WSGI server (e.g., Gunicorn, Waitress) in production.
-    app.run(debug=True, host="0.0.0.0", port=8080)
+    app.run(debug=True, host="0.0.0.0", port=int(os.getenv("PORT", 8080)))
