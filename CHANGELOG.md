@@ -5,3 +5,4 @@
 - Added Netlify deployment files and documentation.
 - Fixed trailing prompt artifact in `test.py`.
 - Integrated performance policy pages and routes.
+- Fixed Netlify configuration parse error by using `python_version` in `netlify.toml`.
