@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """
-Quick smoke test for the RH chatbot n8n webhook endpoint.
-Sends a sample POST request and prints status and response.
+Simple smoke test for the RH chatbot n8n webhook endpoint.
+Sends a sample POST request and ensures a 200 response.
 """
-import requests
+import unittest
 import uuid
+import requests
 
-def test_rh_n8n():
-    # RH chatbot n8n webhook URL
+
+def call_rh_n8n():
+    """Send a sample request to the webhook and return the response."""
     url = (
         'https://n8n.artemis-ai.ca:8443/webhook/'
         '3856912a-4b68-441b-ba1a-beb4e64356e0/chat'
@@ -19,27 +21,20 @@ def test_rh_n8n():
             "Tu es l'assistant RH de NourrIR. Réponds de façon concise."
         )
     }
-    print(f"Sending POST to RH N8N webhook: {url}")
-    try:
-        resp = requests.post(url, json=payload, timeout=30)
-        print(f"Status code: {resp.status_code}")
+    return requests.post(url, json=payload, timeout=30)
+
+
+class TestRHWebhook(unittest.TestCase):
+    def test_rh_n8n(self):
+        resp = call_rh_n8n()
+        self.assertEqual(resp.status_code, 200)
+        # Attempt to parse JSON and print information for debugging
         try:
             data = resp.json()
-            # Attempt to extract a meaningful answer, accounting for typical n8n response formats
-            answer = None
-            if isinstance(data, dict):
-                for key in ("response", "answer", "output", "text", "message"):
-                    if key in data and isinstance(data[key], str):
-                        answer = data[key]
-                        break
-            if answer:
-                print("Parsed answer:", answer)
-            else:
-                print("Response JSON:", data)
         except ValueError:
-            print("Response text:", resp.text)
-    except Exception as e:
-        print("Error during request:", e)
+            data = resp.text
+        print("Response:", data)
+
 
 if __name__ == '__main__':
-    test_rh_n8n()
+    unittest.main()

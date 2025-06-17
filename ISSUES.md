@@ -1,3 +1,4 @@
 # Issues Log
 
-- No open issues at this time.
+- CI not configured; webhook tests fail due to network restrictions.
+- Open: none other.
