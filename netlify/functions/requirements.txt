@@ -1,3 +1,4 @@
 flask>=2.3
 requests
 serverless-wsgi
+pytest>=7.0
