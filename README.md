@@ -22,6 +22,7 @@ NourrIR is a minimal Flask-based web application showcasing static pages and an 
 - Static pages:
   - Home (`/`)
   - Integration Policy (`/politique`)
+  - Performance Policy (`/performance`)
   - HR Contact (`/contact`)
 - Floating AI chat widget ("NuRiH Ami") available on all pages
 - Proxy endpoint (`/nurih-ami`) to forward user messages to an Ollama LLM server
@@ -125,7 +126,7 @@ By default, the web service is exposed on port `8282`.
 
 ## Usage
 
-- Navigate to the static pages via the top navigation bar.
+- Navigate to the static pages via the top navigation bar, including the new **Performance Policy** section.
 - Click the chat icon (💬) in the bottom right to open the NuRiH Ami assistant.
 - Type your questions or prompts; the message will be forwarded to the Ollama model and the response displayed in the chat widget.
 

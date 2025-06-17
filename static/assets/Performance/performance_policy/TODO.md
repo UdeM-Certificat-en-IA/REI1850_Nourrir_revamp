@@ -1,15 +1,15 @@
 # TODO for Integrating the Performance Policy into the Main Web App
 
 1. Integrate performance pages into Flask:
-   - Copy the `site/` HTML files from `static/assets/Performance/performance_policy/site/` into a new `templates/performance_policy/` folder.
-   - Convert each static HTML file into a Jinja template: wrap with `{% extends 'base.html' %}` and place the existing `<main>` content inside `{% block content %}`.
-   - Update asset paths in templates:
-     - Replace `src="../docs/Presentatation.mp3"` with `src="{{ url_for('static', filename='assets/Performance/performance_policy/docs/Presentatation.mp3') }}"`.
-     - Replace `href="../docs/performance_policy_fr/performance_policy_fr.pdf"` with `href="{{ url_for('static', filename='assets/Performance/performance_policy/docs/performance_policy_fr/performance_policy_fr.pdf') }}"`.
-   - Add new routes in `app.py` (or create a blueprint) for:
-     - `/performance` → renders the performance index template.
-     - `/performance/<section>` → renders the corresponding section template.
-   - Add a “Politique de Performance” link in the main navigation (`templates/base.html`), pointing to `url_for('performance_index')`.
+    - [x] Copy the `site/` HTML files from `static/assets/Performance/performance_policy/site/` into a new `templates/performance_policy/` folder.
+    - [x] Convert each static HTML file into a Jinja template: wrap with `{% extends 'base.html' %}` and place the existing `<main>` content inside `{% block content %}`.
+    - [x] Update asset paths in templates:
+        - [x] Replace `src="../docs/Presentatation.mp3"` with `src="{{ url_for('static', filename='assets/Performance/performance_policy/docs/Presentatation.mp3') }}"`.
+        - [x] Replace `href="../docs/performance_policy_fr/performance_policy_fr.pdf"` with `href="{{ url_for('static', filename='assets/Performance/performance_policy/docs/performance_policy_fr/performance_policy_fr.pdf') }}"`.
+    - [x] Add new routes in `app.py` for:
+        - [x] `/performance` → renders the performance index template.
+        - [x] `/performance/<section>` → renders the corresponding section template.
+    - [x] Add a “Politique de Performance” link in the main navigation (`templates/base.html`), pointing to `url_for('performance_index')`.
 
 2. Serve static media:
    - Ensure `static/assets/Performance/performance_policy/docs/Presentatation.mp3` and `performance_policy_fr.pdf` remain in place.

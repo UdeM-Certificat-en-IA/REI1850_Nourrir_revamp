@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Politique de performance – NourrIR{% endblock %}
+{% block content %}
+<p><a href='{{ url_for('performance_index') }}'>Retour à l'index</a></p>
+<h1>2. Rôles et responsabilités</h1>
+<p>La gestion de la performance de haute qualité nécessite des responsabilités clairement définies. Cette section décrit <strong>qui fait quoi, quand et avec quelle autorité de décision</strong>. Autant que possible, les responsabilités sont associées aux catégories <strong>RACI</strong> – <em>Responsable</em>, <em>Accountable (redevable)</em>, <em>Consulted (consulté)</em> et <em>Informed (informé)</em>.</p>
+<p>| Partie prenante                             | R  | A  | C  | I  | Livrables clés |
+|---------------------------------------------|----|----|----|----|--------------------------------------------------|
+| <strong>Employé</strong>                                 | ✔  |    |    |    | • Propose ses OKR / carte de score personnelle<br>• Met à jour l’avancement dans le système de performance<br>• Demande et fournit du feedback entre pairs<br>• Complète l’auto-évaluation obligatoire avant chaque revue |
+| <strong>Manager hiérarchique</strong>                    | ✔  | ✔  |    |    | • Valide et aligne les objectifs<br>• Organise les points mensuels<br>• Fournit coaching et feedback sincère<br>• Rédige l’évaluation et les recommandations de rémunération |
+| <strong>People &amp; Culture (P&amp;C)</strong>                  |    |    | ✔  |    | • Conçoit la politique, les processus et les outils<br>• Forme managers et employés<br>• Anime les analyses et sessions de calibration<br>• Veille à l’équité et à la conformité légale |
+| <strong>Équipe de direction exécutive (ELT)</strong>     |    | ✔  |    |    | • Définit les résultats « North-Star » stratégiques<br>• Analyse les données de performance agrégées<br>• Approuve les mises à jour de la politique et les plans d’effectifs |
+| <strong>Pairs / Parties prenantes projet</strong>        |    |    | ✔  |    | • Fournissent un feedback à 360°<br>• Reconnaissent les contributions en temps réel |
+| <strong>Comité d’entreprise / Juridique</strong>         |    |    | ✔  |    | • Assure la conformité aux accords collectifs<br>• Évalue les implications en matière de confidentialité et de conformité |
+| <strong>Finance / Comité de rémunération</strong>        |    |    |    | ✔  | • Reçoit les évaluations calibrées<br>• Applique les directives de rémunération liée à la performance |</p>
+<h3>2.1 Voie d’escalade</h3>
+<ol>
+<li><strong>Question sur le processus</strong> – Employé → Partenaire P&amp;C → Directeur P&amp;C.</li>
+<li><strong>Exception à la politique</strong> – Manager hiérarchique → Directeur P&amp;C → ELT.</li>
+<li><strong>Recours sur note ou rémunération</strong> – Employé → Manager de niveau supérieur → Commission d’appel de l’ELT (présidée par P&amp;C).</li>
+<li><strong>Préoccupation éthique (biais, discrimination)</strong> – Toute partie → Ligne d’assistance Éthique &amp; Conformité (option anonyme). Les enquêtes suivent la Politique d’éthique d’entreprise.</li>
+</ol>
+<h3>2.2 Compétences requises pour les managers</h3>
+<p>Les managers doivent démontrer les compétences suivantes pour remplir leurs responsabilités selon cette politique. P&amp;C fournit formation et certification :</p>
+<p>• <strong>Maîtrise de la définition d’objectifs</strong> – Formulation SMART/OKR conformément à la stratégie.
+• <strong>Compétences de coaching</strong> – Écoute active, questions percutantes, techniques de feed-forward.
+• <strong>Atténuation des biais</strong> – Outils pour réduire les biais de halo, de récence et de similarité.
+• <strong>Conversations difficiles</strong> – Modèles SBI (Situation-Comportement-Impact) et DESC (Décrire-Exprimer-Spécifier-S’engager).</p>
+<p>La certification doit être renouvelée tous les <strong>24 mois</strong> ou plus tôt en cas de changement majeur.</p>
+<h3>2.3 Responsabilités partagées</h3>
+<p>La gestion de la performance est un <strong>effort conjoint</strong> : aucun rôle unique ne peut garantir le succès. Les responsabilités suivantes sont partagées :</p>
+<p>• <strong>Maintien de la sécurité psychologique</strong> – Feedback respectueux et réception sans défensive.
+• <strong>Exactitude des données</strong> – Les entrées du système doivent refléter la réalité ; falsification disciplinaire.
+• <strong>Confidentialité</strong> – Feedback et notes confidentiels entre employé, manager et P&amp;C sauf obligation légale.</p>
+<hr />
+<p><em>En clarifiant « qui fait quoi », NourrIR réduit l’ambiguïté, accélère la prise de décision et renforce la responsabilisation à tous les niveaux.</em></p>
+{% endblock %}

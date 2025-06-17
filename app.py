@@ -195,6 +195,20 @@ def coulisses():
     """Serves the 'Les Coulisses' page (coulisses.html)."""
     return render_template("coulisses.html")
 
+# --- Performance Policy Routes ---
+
+@app.route("/performance")
+def performance_index():
+    """Serves the performance policy index page."""
+    return render_template("performance_policy/index.html")
+
+
+@app.route("/performance/<section>")
+def performance_section(section: str):
+    """Serves an individual performance policy section."""
+    template_name = f"performance_policy/{section}.html"
+    return render_template(template_name)
+
 # --- Chatbot UI Routes ---
 
 @app.route("/rh-chatbot")
