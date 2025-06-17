@@ -8,3 +8,6 @@
 - [ ] Expand automated tests beyond network smoke test.
 - [x] Integrate performance policy pages into the Flask app.
 - [ ] Improve responsive styling for performance policy pages.
+- [x] Validate Netlify deploy after removing python version setting.
+- [x] Confirm Netlify functions deploy correctly with new directory setting.
+- [ ] Verify 404 issue is resolved with base path stripping.

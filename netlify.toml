@@ -3,7 +3,11 @@
   functions = "netlify/functions"
 
 [functions]
-  python_version = "3.11"
+  directory = "netlify/functions"
+  included_files = ["templates/**/*", "static/**/*", "app.py"]
+
+  [functions.environment]
+    API_GATEWAY_BASE_PATH = "/.netlify/functions/flask_app"
 
 [[redirects]]
   from = "/*"
