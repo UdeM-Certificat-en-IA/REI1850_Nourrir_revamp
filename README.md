@@ -78,6 +78,7 @@ Configure the Ollama API endpoints via environment variables:
   http://192.168.2.10:11434/api/models
   ```
 - `OLLAMA_MODEL`: The primary model identifier to use (e.g. `mistral:latest`). Default: `mistral:latest`.
+- `PORT`: Port for the Flask server. Default: `8080`.
 
 Example:
 
@@ -85,6 +86,7 @@ Example:
 export OLLAMA_CHAT_URL=https://ollama.artemis-ai.ca/v1/chat/completions
 export OLLAMA_MODELS_URL=https://ollama.artemis-ai.ca/v1/models
 export OLLAMA_MODEL=mistral:latest
+export PORT=8080
 ```
 
 ## Running the App
@@ -97,7 +99,8 @@ export FLASK_ENV=development
 export OLLAMA_CHAT_URL=https://ollama.artemis-ai.ca/v1/chat/completions
 export OLLAMA_MODELS_URL=https://ollama.artemis-ai.ca/v1/models
 export OLLAMA_MODEL=mistral:latest
-flask run --host=0.0.0.0 --port=8080
+export PORT=8080
+flask run --host=0.0.0.0 --port=$PORT
 ```
 
 Open your browser at [http://localhost:8080](http://localhost:8080).
@@ -111,6 +114,7 @@ docker run -d -p 8282:8080 \
   -e OLLAMA_CHAT_URL=https://ollama.artemis-ai.ca/v1/chat/completions \
   -e OLLAMA_MODELS_URL=https://ollama.artemis-ai.ca/v1/models \
   -e OLLAMA_MODEL=mistral:latest \
+  -e PORT=8080 \
   --name nourrir-flask nourrir-flask
 ```
 
@@ -156,7 +160,7 @@ By default, the web service is exposed on port `8282`.
 ## Troubleshooting
 
 - **Cannot connect to Ollama**: Verify `OLLAMA_CHAT_URL` (or legacy `OLLAMA_URL`) and that the Ollama server is reachable from your network.
-- **Port conflicts**: Ensure ports `8080` (Flask) or `8282` (Docker) are available.
+- **Port conflicts**: Ensure ports `8080` (Flask) or `8282` (Docker) are available. Set `PORT` to change the Flask port.
 - **Asset loading issues**: Check the `/assets/<filename>` route and that files exist under `static/assets/`.
 
 ## License
