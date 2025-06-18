@@ -17,6 +17,7 @@
 - [x] Netlify served raw Jinja templates due to missing build step; replaced config with Frozen-Flask to generate static HTML.
 - [x] Redirect did not forward the requested path to the Flask function; added `:splat` to the Netlify redirect.
 - [x] Netlify deploy uploaded 0 files because no publish directory was defined. Set `publish = "templates"` in `netlify.toml` to ensure pages are uploaded.
+- [x] Performance index lacked quick navigation buttons; added circular stage buttons and tests.
 - [ ] Netlify Python runtime may be <3.10 causing syntax errors from union type
       hints. Updated code to use `typing.Optional` for compatibility.
 - [ ] Docker container may not honor `PORT` variable due to exec-form CMD.

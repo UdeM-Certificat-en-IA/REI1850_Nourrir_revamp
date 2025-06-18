@@ -1,6 +1,7 @@
 import os
 import sys
 import pytest
+from flask import url_for
 
 # Ensure the application module is importable when running tests, even if the
 # project root isn't automatically added to PYTHONPATH. This avoids failures
@@ -33,6 +34,14 @@ def test_contact(client):
 def test_performance(client):
     resp = client.get('/performance')
     assert resp.status_code == 200
+
+def test_performance_stage_buttons(client):
+    resp = client.get('/performance')
+    html = resp.data.decode('utf-8')
+    assert 'class="stage-button semis"' in html
+    assert url_for('performance_section', section='01_phase1_semis') in html
+    assert 'class="stage-button croissance"' in html
+    assert url_for('performance_section', section='04_phase4_renouvellement') in html
 
 def test_coulisses(client):
     resp = client.get('/coulisses')
