@@ -30,3 +30,4 @@
 - [x] Old page-specific CSS made maintenance difficult; migrated to Tailwind utility classes and DaisyUI components.
 - [ ] Verify mobile behavior of new tooltips.
 - [x] Sticky header offset caused extra space; switched navbar to `top-0` and removed body padding.
+- [x] Header now hides on scroll and mobile menu fades in/out for smoother navigation.

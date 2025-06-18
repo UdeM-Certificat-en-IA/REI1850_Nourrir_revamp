@@ -18,7 +18,9 @@
    - Ensure `<ul role="menu">` and `<a role="menuitem">` for links.
    - Bind `@keydown.escape.window="open=false"` to close the menu with Esc.
 
- - [ ] **Test Responsive Behavior**: Verify in narrow viewport only the hamburger icon appears and toggles the menu. In wide viewport, ensure menu items display and hamburger is hidden without overflow.
+ - [x] **Test Responsive Behavior**: Verify in narrow viewport only the hamburger icon appears and toggles the menu. In wide viewport, ensure menu items display and hamburger is hidden without overflow.
+
+ - [ ] **Scroll Animation**: Fade header out when scrolling down and back in when scrolling up for smoother transitions.
 
  - [x] **Style Consistency**: Use DaisyUI classes for styling. Optionally apply `btn btn-ghost` on links or default `<a>` styling, and accent colors for hover/active states.
 

@@ -41,3 +41,4 @@
 - Implemented basic internationalization with i18next, French/English locale files, and a navbar language switcher.
 - Reworked layout using Tailwind sections and DaisyUI cards; removed redundant CSS and improved image alt text.
 - Integrated Tippy.js tooltips for glossary terms (dopamine, probiotiques, freemium, NurrIA) with theme-aware initialization and i18n support. Added tooltip translations in locale files.
+- Animated header fades out on scroll and mobile menu now transitions smoothly.

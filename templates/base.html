@@ -281,8 +281,8 @@
     </style>
     {% block extra_head %}{% endblock %} <!-- This block allows individual pages to add their own specific styles -->
 </head>
-<body>
-    <header>
+<body x-data="{showHeader: true}" @scroll.window="showHeader = window.scrollY < 50">
+    <header x-show="showHeader" x-transition.opacity.duration.300ms>
         <img src="{{ url_for('serve_assets', filename='NEW_Images/logo_NO_BACKGROUND.png') }}" alt="Logo NourrIR" class="logo">
         <div class="slogan" data-i18n="header.slogan">On croque la <span class="cursor-help" data-tippy-content="Neurotransmetteur lié au plaisir et à la motivation." data-i18n-tooltip="tooltips.dopamine">dopamine</span>.</div>
     </header>
@@ -324,7 +324,7 @@
             <button class="btn btn-ghost btn-sm" onclick="switchLang('en')">EN</button>
         </div>
         </div>
-        <ul class="menu menu-compact mt-2 w-full md:hidden" x-show="open" x-cloak @click="open=false" role="menu">
+        <ul class="menu menu-compact mt-2 w-full md:hidden" x-show="open" x-transition.opacity.duration.200ms x-cloak @click="open=false" role="menu">
             <li><a href="{{ url_for('home') }}" role="menuitem" class="{% if active_page == 'home' %}active{% endif %}" data-i18n="nav.home">Accueil</a></li>
             <li><a href="{{ url_for('politique') }}" role="menuitem" class="{% if active_page == 'politique' %}active{% endif %}" data-i18n="nav.politique">Politique d’intégration</a></li>
             <li><a href="{{ url_for('performance_index') }}" role="menuitem" class="{% if active_page == 'performance' %}active{% endif %}" data-i18n="nav.performance">Politique de performance</a></li>
