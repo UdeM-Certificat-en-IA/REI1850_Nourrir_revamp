@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Phase 4 – Renouvellement{% endblock %}
 {% block content %}
-<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none">
+<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none fade-section">
 <p><a href="{{ url_for('performance_index') }}" class="back-button" aria-label="Retour à l'index">&#8592;<span class="back-text"> Retour à l'index</span></a></p>
 <details class="section-dropdown">
     <summary>Accéder aux sections</summary>
@@ -18,12 +18,18 @@
     </ul>
 </details>
 <h1>Phase 4 – Renouvellement : Apprendre, évoluer, transformer</h1>
+<img src="{{ url_for('serve_assets', filename='NEW_Images/phase4_renouvellement_nourrir.png') }}"
+     alt="Phase 4 Renouvellement" class="w-full max-w-md mx-auto rounded-lg md:float-left md:mr-6 mb-4 fade-section">
 <ul>
 <li><strong>Activer l’intelligence collective</strong> : Chaque trimestre, une rétro collective permet aux équipes de partager leurs moments de transformation et de tirer des apprentissages communs.</li>
+<img src="{{ url_for('serve_assets', filename='NEW_Images/retrospectives_collectives_nourrir.png') }}"
+     alt="Rétrospectives collectives" class="w-full max-w-md mx-auto rounded-lg md:float-right md:ml-6 my-4 fade-section">
 <li><strong>Adapter les rôles et responsabilités</strong> : L’équipe RH propose des ajustements de rôles en fonction des données du cycle, favorisant un design adaptatif.</li>
 <li><strong>Accompagner les parcours atypiques</strong> : Des mesures comme les pauses régénératives, les plans de soutien ou la diversification des responsabilités sont prévues pour les périodes de remise en question ou de sous-performance.</li>
+<img src="{{ url_for('serve_assets', filename='NEW_Images/parcours_soutien_nourrir.png') }}"
+     alt="Parcours atypiques" class="w-full max-w-md mx-auto rounded-lg md:float-left md:mr-6 my-4 fade-section">
 <li><strong>Clore et relancer le cycle</strong> : Le cycle se referme avec la Célébration de la Transformation, moment d’histoire partagée et d’activation du prochain cycle.</li>
 </ul>
-</ul>
+<div class="clear-both"></div>
 </section>
 {% endblock %}

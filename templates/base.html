@@ -121,6 +121,47 @@
             opacity: 1;
         }
 
+        /* Fade-in sections on scroll */
+        .fade-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity .6s ease-out, transform .6s ease-out;
+        }
+        .fade-section.appear {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Performance stage navigation buttons */
+        .stage-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            margin-bottom: .5rem;
+        }
+        .stage-button {
+            width: 6rem;
+            height: 6rem;
+            border-radius: 9999px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            transition: transform .2s, box-shadow .2s;
+        }
+        .stage-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .stage-button img {
+            width: 2rem;
+            height: 2rem;
+            margin-bottom: .25rem;
+        }
+
         /* ... other custom styles unchanged ... */
     </style>
 
@@ -214,6 +255,21 @@
         </p>
         <p style="margin-top:.5em;">UdeM REI 1850 - Equipe 4</p>
     </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('appear');
+                } else {
+                    entry.target.classList.remove('appear');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-section').forEach(el => observer.observe(el));
+    });
+    </script>
 
     {% block chatbot %}
     <!-- (chatbot markup/scripts unchanged) -->
