@@ -15,3 +15,5 @@
   variable and documented the setting in Netlify configuration.
 - Replaced Python 3.10 union type hints with `typing.Optional` for
   compatibility with Netlify's Python runtime.
+- Updated Netlify redirect to include `:splat` so route paths reach the Flask
+  function correctly.
