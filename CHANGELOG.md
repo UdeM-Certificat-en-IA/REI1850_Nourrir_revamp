@@ -66,3 +66,4 @@
 - Added `.gitignore` to exclude Python artifacts and environment files.
 - Removed committed `__pycache__/` directory from version control.
 
+- Added Playwright integration tests and updated CI to run them in headed mode.

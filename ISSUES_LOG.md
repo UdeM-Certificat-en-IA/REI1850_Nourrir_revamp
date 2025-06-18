@@ -49,3 +49,4 @@
 - [x] Integrated Sections dropdown; removed duplicated dropdown blocks from policy pages.
 - [x] Moved fade-section observer into `static/js/ui.js` with navbar sentinel logic; base template references the new script.
 - [x] Replaced `@scroll.window` listener with custom `sentinel-change` event; navbar opacity toggles via IntersectionObserver.
+- [x] Added Playwright tests for theme toggle, navbar transparency and mobile menu.
