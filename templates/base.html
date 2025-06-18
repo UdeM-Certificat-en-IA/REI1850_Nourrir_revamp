@@ -570,6 +570,15 @@
     }
     </script>
     <!-- Fin NurrIA -->
+    <script>
+        // Ensure <details> dropdowns toggle reliably across browsers
+        document.querySelectorAll('.section-dropdown summary').forEach(summary => {
+            summary.addEventListener('click', (e) => {
+                const details = summary.parentElement;
+                details.open = !details.open;
+            });
+        });
+    </script>
     {% endblock %}
 </body>
 </html>

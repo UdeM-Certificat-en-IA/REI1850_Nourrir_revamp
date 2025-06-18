@@ -15,7 +15,15 @@ It includes:
 """
 # nourrir_flask/app.py
 
-from flask import Flask, render_template, request, jsonify, send_from_directory
+from flask import (
+    Flask,
+    render_template,
+    request,
+    jsonify,
+    send_from_directory,
+    redirect,
+    url_for,
+)
 from typing import Optional
 import os
 import requests
@@ -181,10 +189,11 @@ def home():
     """Serves the main home page (index.html)."""
     return render_template("index.html")
 
-@app.route("/politique")
+@app.route("/politique/")
 def politique():
     """Serves the integration policy page (politique.html)."""
     return render_template("politique.html")
+
 
 @app.route("/contact")
 def contact():

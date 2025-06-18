@@ -19,8 +19,12 @@ def test_home(client):
     assert resp.status_code == 200
 
 def test_politique(client):
-    resp = client.get('/politique')
+    resp = client.get('/politique/')
     assert resp.status_code == 200
+
+def test_politique_redirect(client):
+    resp = client.get('/politique')
+    assert resp.status_code in (301, 302, 308)
 
 def test_contact(client):
     resp = client.get('/contact')
@@ -28,4 +32,20 @@ def test_contact(client):
 
 def test_performance(client):
     resp = client.get('/performance')
+    assert resp.status_code == 200
+
+def test_coulisses(client):
+    resp = client.get('/coulisses')
+    assert resp.status_code == 200
+
+def test_rh_chatbot(client):
+    resp = client.get('/rh-chatbot')
+    assert resp.status_code == 200
+
+def test_test_zone(client):
+    resp = client.get('/test-zone')
+    assert resp.status_code == 200
+
+def test_test_page(client):
+    resp = client.get('/test')
     assert resp.status_code == 200

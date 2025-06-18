@@ -8,6 +8,8 @@ class PatchedFreezer(Freezer):
             path = "/performance/index.html"
         elif path.startswith("/performance/"):
             path = f"{path}.html"
+        elif path == "/politique/":
+            path = "/politique/index.html"
         return super().urlpath_to_filepath(path)
 
 freezer = PatchedFreezer(app, with_static_files=True)

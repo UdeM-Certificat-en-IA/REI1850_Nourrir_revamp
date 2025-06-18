@@ -27,3 +27,6 @@
 - Switched page logo to backgroundless variant.
 - Added dropdown navigation and arrow-style back buttons on performance policy pages.
 - Embedded policy explanation video at the top of the performance index page.
+- Fixed integration policy page by serving it at `/politique/` and redirecting the legacy path.
+- Added direct section links at the bottom of the performance index page and ensured dropdowns toggle via JavaScript.
+- Expanded route tests to cover all pages and updated politique path tests.

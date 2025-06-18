@@ -25,5 +25,5 @@
 - [x] Set Netlify publish directory to `templates` to ensure static files are deployed.
  - [x] Integrate Frozen-Flask build for Netlify static deploy.
  - [x] Add GitHub Actions workflow to test build.
-- [ ] Expand unit tests for API endpoints and performance pages.
+- [x] Expand unit tests for API endpoints and performance pages.
 - [x] Ensure Frozen-Flask outputs `.html` files for performance policy subpages.
