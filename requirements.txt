@@ -1,5 +1,6 @@
-flask>=2.3
+Flask>=3
 requests
 gunicorn
 serverless-wsgi
 pytest>=7.0
+Frozen-Flask>=1

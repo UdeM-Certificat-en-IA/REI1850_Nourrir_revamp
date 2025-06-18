@@ -1,20 +1,6 @@
 [build]
-  command = ""
-  publish = "templates"
-  functions = "netlify/functions"
+  command = "pip install -r requirements.txt && python freeze.py"
+  publish = "build"
 
-  [build.environment]
-    NODE_VERSION = "18"
-
-[functions]
-  directory = "netlify/functions"
-  included_files = ["templates/**/*", "static/**/*", "app.py"]
-
-  [functions.environment]
-    # Base path for the Flask function used for stripping in flask_app.py
-    API_GATEWAY_BASE_PATH = "/.netlify/functions/flask_app"
-
-[[redirects]]
-  from = "/*"
-  to = "/.netlify/functions/flask_app/:splat"
-  status = 200
+[build.environment]
+  PYTHON_VERSION = "3.12"

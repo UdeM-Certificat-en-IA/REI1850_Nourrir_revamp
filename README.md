@@ -158,17 +158,23 @@ Run the test suite with:
 pytest
 ```
 
+### Local static build
+
+Render the site to static HTML and serve it locally:
+
+```bash
+pip install -r requirements.txt
+python freeze.py
+npx serve build
+```
+
 
 ## Deployment on Netlify
 
 1. Install the Netlify CLI and log in with `netlify login`.
 2. Run `netlify deploy --prod` to build and deploy.
-3. Configure the `OLLAMA_*` variables in the Netlify dashboard.
-4. Ensure `API_GATEWAY_BASE_PATH` is set in the Netlify environment. This
-   variable defines the base path used by the serverless function and defaults to
-   `/.netlify/functions/flask_app`.
-5. Set the publish directory to `templates` in the Netlify UI or via
-   `netlify.toml` so the static HTML pages are uploaded.
+3. The build step installs requirements and runs `python freeze.py`.
+4. Netlify automatically uploads the rendered `build/` directory.
 
 ## Troubleshooting
 
