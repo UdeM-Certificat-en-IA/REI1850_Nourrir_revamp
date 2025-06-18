@@ -10,6 +10,7 @@
 - Fixed trailing prompt artifact in `test.py`.
 - Integrated performance policy pages and routes.
 - Fixed Netlify configuration parse error by using `python_version` in `netlify.toml`.
+- Removed fixed header/nav offsets; navbar now uses `sticky top-0` and body padding was dropped in favor of Tailwind spacing.
 - Updated Netlify configuration to remove unsupported `python_version` property.
 - Fixed functions directory path so Netlify deploy detects Python functions.
 - Added base path stripping and included files to ensure Flask routes work on Netlify.

@@ -29,13 +29,11 @@
         }
 
         /* Basic Reset & Body Styles */
-        body { 
-            background: var(--cloud-gray); 
-            font-family: 'Inter', Arial, sans-serif; 
-            color: var(--midnight-navy); 
-            margin:0; 
-            /* NOTE: padding-top is for sticky header + nav. Values are estimates. */
-            padding-top: 200px; /* Desktop: header ~158px + nav ~42px */
+        body {
+            background: var(--cloud-gray);
+            font-family: 'Inter', Arial, sans-serif;
+            color: var(--midnight-navy);
+            margin: 0;
             line-height: 1.6; /* Improved readability */
         }
 
@@ -48,10 +46,6 @@
             position: sticky;
             top: 0;
             z-index: 1000; /* High z-index to stay on top */
-            /* Height calculation for nav top: 
-               1rem padding (16px) + 100px logo + 0.5em slogan margin-top (0.5*1.1*16=8.8px) + 1.1em slogan line-height (1.1*16=17.6px) + 1rem padding (16px) 
-               = 16 + 100 + 8.8 + 17.6 + 16 = 158.4px. Let's use this for nav's top.
-            */
         }
         .logo { 
             width: 100px; 
@@ -69,10 +63,10 @@
 
 
         /* Main Content Area Styles */
-        main { 
-            max-width: 960px; 
-            margin: 1.5rem auto; /* Original margin, body padding-top handles sticky offset */
-            background: white; 
+        main {
+            max-width: 960px;
+            margin: 1.5rem auto;
+            background: white;
             padding: 1.5rem; 
             border-radius: 1rem; 
             box-shadow: 0 4px 25px rgba(0,0,0,0.07); 
@@ -226,18 +220,14 @@
         
         /* Responsive Design Adjustments */
         @media (max-width: 768px) { /* Tablet and smaller */
-            body { 
-                font-size: 15px; /* Base font size for medium screens */ 
-                /* Tablet: header ~135px + nav ~32px = ~167px */
-                padding-top: 167px; 
+            body {
+                font-size: 15px; /* Base font size for medium screens */
             }
             /* Header height does not need to be specified here as it's sticky top:0 */
             .logo { width: 80px; } 
             .slogan { font-size: 1em; }
-            nav { 
-                padding: 0.5rem; 
-                /* Tablet: Header height approx 135px (16+80+7.5+15+16=134.5) */
-                top: 135px; /* Adjusted sticky top for nav */
+            nav {
+                padding: 0.5rem;
                 margin-bottom: 1rem; /* Space below nav */
             }
             nav a { 
@@ -296,7 +286,7 @@
         <img src="{{ url_for('serve_assets', filename='NEW_Images/logo_NO_BACKGROUND.png') }}" alt="Logo NourrIR" class="logo">
         <div class="slogan" data-i18n="header.slogan">On croque la <span class="cursor-help" data-tippy-content="Neurotransmetteur lié au plaisir et à la motivation." data-i18n-tooltip="tooltips.dopamine">dopamine</span>.</div>
     </header>
-    <nav x-data="{open:false}" class="navbar bg-base-100 sticky top-[158px] z-50 shadow-md" @keydown.escape.window="open=false">
+    <nav x-data="{open:false}" class="navbar bg-base-100 sticky top-0 z-50 shadow-md" @keydown.escape.window="open=false">
         <div class="flex-1">
             <a href="{{ url_for('home') }}" class="btn btn-ghost normal-case text-xl">
                 <img src="{{ url_for('serve_assets', filename='NEW_Images/logo_NO_BACKGROUND.png') }}" alt="Logo NourrIR" class="w-10 mr-2" />NourrIR
