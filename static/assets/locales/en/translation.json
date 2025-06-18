@@ -48,5 +48,11 @@
     "workflow": "n8n Workflow of the HR Chatbot",
     "learning": "A Continuous Learning Project",
     "team": "Meet the Team"
+  },
+  "tooltips": {
+    "dopamine": "Neurotransmitter linked to pleasure and motivation.",
+    "probiotiques": "Beneficial microorganisms for gut balance.",
+    "freemium": "Business model with free base access and paid extras.",
+    "nurria": "NourrIR's virtual assistant."
   }
 }

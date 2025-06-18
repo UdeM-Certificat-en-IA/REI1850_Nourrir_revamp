@@ -13,6 +13,9 @@
     <link rel="icon" href="{{ url_for('serve_assets', filename='NEW_Images/logo_NO_BACKGROUND.png') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@3.11.0/dist/full.css" />
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css" />
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         :root {
@@ -92,6 +95,7 @@
             cursor: pointer; /* Indicate interactivity */
             transition: opacity 0.15s, box-shadow 0.15s; /* Faster transition */
         }
+        .cursor-help { cursor: help; }
         button:hover, input[type="submit"]:hover, input[type="button"]:hover,
         button:focus, input[type="submit"]:focus, input[type="button"]:focus {
             opacity: 0.88; /* Adjusted opacity */
@@ -290,7 +294,7 @@
 <body>
     <header>
         <img src="{{ url_for('serve_assets', filename='NEW_Images/logo_NO_BACKGROUND.png') }}" alt="Logo NourrIR" class="logo">
-        <div class="slogan" data-i18n="header.slogan">On croque la dopamine.</div>
+        <div class="slogan" data-i18n="header.slogan">On croque la <span class="cursor-help" data-tippy-content="Neurotransmetteur lié au plaisir et à la motivation." data-i18n-tooltip="tooltips.dopamine">dopamine</span>.</div>
     </header>
     <nav x-data="{open:false}" class="navbar bg-base-100 sticky top-[158px] z-50 shadow-md" @keydown.escape.window="open=false">
         <div class="flex-1">
@@ -413,7 +417,7 @@
         <button id="nuria-close-btn" title="Fermer">✕</button> <!-- Updated ID -->
       </div>
       <div id="nuria-chat-log"> <!-- Updated ID -->
-        <div class="nuria-msg-bot">Bonjour ! Je suis <b>NurrIA</b>, votre guide bienveillante. Comment puis-je vous aider aujourd'hui ?</div> <!-- Updated Name and class -->
+        <div class="nuria-msg-bot">Bonjour ! Je suis <b><span class="cursor-help" data-tippy-content="Assistante IA de NourrIR" data-i18n-tooltip="tooltips.nurria">NurrIA</span></b>, votre guide bienveillante. Comment puis-je vous aider aujourd'hui ?</div> <!-- Updated Name and class -->
       </div>
       <form id="nuria-chat-form" autocomplete="off"> <!-- Updated ID -->
         <input id="nuria-chat-input" type="text" placeholder="Écrivez votre message..." required autocomplete="off" /> <!-- Updated ID and placeholder -->
@@ -609,17 +613,30 @@
             const lang = localStorage.getItem('lang') || 'fr';
             i18next.init({lng: lang, resources}, updateContent);
         });
-
         function updateContent() {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 el.innerHTML = i18next.t(el.dataset.i18n);
             });
+            document.querySelectorAll('[data-i18n-tooltip]').forEach(el => {
+                const content = i18next.t(el.dataset.i18nTooltip);
+                if (el._tippy) {
+                    el._tippy.setContent(content);
+                } else {
+                    el.setAttribute('data-tippy-content', content);
+                }
+            });
         }
-
         function switchLang(lng) {
             i18next.changeLanguage(lng, updateContent);
             localStorage.setItem('lang', lng);
         }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            tippy("[data-tippy-content]", {
+                theme: (localStorage.getItem("theme") === "dark") ? "dark" : "light"
+            });
+        });
     </script>
     <script>
         // Ensure <details> dropdowns toggle reliably across browsers
