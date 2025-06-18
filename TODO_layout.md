@@ -18,9 +18,9 @@
 
   - [x] **Image Responsiveness**: Add `max-w-full h-auto` and meaningful `alt` text for all images. Optionally use DaisyUI masks.
 
- - [ ] **Test Mobile Layout**: Verify on small viewports (e.g., iPhone SE) that content stacks vertically without horizontal scroll.
+ - [x] **Test Mobile Layout**: Verify on small viewports (e.g., iPhone SE) that content stacks vertically without horizontal scroll.
 
- - [ ] **Test Desktop Layout**: Ensure content width is constrained (e.g., wrap in `max-w-4xl mx-auto`) and spacing is balanced.
+ - [x] **Test Desktop Layout**: Ensure content width is constrained (e.g., wrap in `max-w-4xl mx-auto`) and spacing is balanced.
 
   - [x] **Consistency Across Pages**: Apply above styling to all pages (Accueil, Politique, Performance, Contact).
 
