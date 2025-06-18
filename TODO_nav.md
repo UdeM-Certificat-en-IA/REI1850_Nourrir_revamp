@@ -37,3 +37,4 @@
 - [x] **Toggle Button Layout**: Theme switch now appears as a button before the language selector.
 
 - [x] Added "Sections" dropdown menu for performance pages.
+- [x] Replaced scroll listener with IntersectionObserver; navbar background now toggles `bg-opacity-90` when the top sentinel leaves view.
