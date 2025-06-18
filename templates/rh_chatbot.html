@@ -5,7 +5,8 @@
 {% block chatbot %}{% endblock %} {# Remove default bubble chatbot #}
 
 {% block content %}
-<h1>Demandez aux RH</h1>
+<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none">
+<h1 class="text-2xl font-bold">Demandez aux RH</h1>
 <p>Vous avez une question pour notre département des Ressources Humaines ? Utilisez notre assistant virtuel pour obtenir des réponses rapides.</p>
 
 <style>
@@ -293,4 +294,5 @@
         setInterval(checkRhService, 60000);
     });
 </script>
+</section>
 {% endblock %}
