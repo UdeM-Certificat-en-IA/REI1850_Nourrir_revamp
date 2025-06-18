@@ -95,3 +95,46 @@ On-click, each button smoothly transitions to the relevant section or anchors de
 
 ✅ Summary
 You’ve created a sleek, people-centered performance dashboard. These circular buttons, with their minimalist typography, balanced colors, simple icons, and subtle motion, will enrich the user journey — visually guiding employees and managers through the four performance phases in a cohesive, inviting way.
+__
+
+✅ Circular Phase Buttons (HTML + Tailwind CSS)
+html
+Copy
+Edit
+<div class="flex flex-wrap justify-center gap-6 mt-10">
+  <!-- Semis -->
+  <button class="w-24 h-24 rounded-full bg-gray-700 text-teal-400 flex flex-col items-center justify-center shadow-md hover:shadow-xl hover:scale-105 transition transform duration-200">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m7-7H5" />
+    </svg>
+    <span class="text-sm font-medium">Semis</span>
+  </button>
+
+  <!-- Croissance -->
+  <button class="w-24 h-24 rounded-full bg-blue-900 text-cyan-400 flex flex-col items-center justify-center shadow-md hover:shadow-xl hover:scale-105 transition transform duration-200">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+    </svg>
+    <span class="text-sm font-medium">Croissance</span>
+  </button>
+
+  <!-- Récolte -->
+  <button class="w-24 h-24 rounded-full bg-teal-500 text-white flex flex-col items-center justify-center shadow-md hover:shadow-xl hover:scale-105 transition transform duration-200">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c1.657 0 3 1.343 3 3v1a3 3 0 11-6 0v-1c0-1.657 1.343-3 3-3z" />
+    </svg>
+    <span class="text-sm font-medium">Récolte</span>
+  </button>
+
+  <!-- Renouvellement -->
+  <button class="w-24 h-24 rounded-full bg-gray-800 text-green-400 flex flex-col items-center justify-center shadow-md hover:ring-2 hover:ring-green-400 hover:scale-105 transition transform duration-200">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v6h6M20 20v-6h-6M4 20l16-16" />
+    </svg>
+    <span class="text-sm font-medium">Renouvellement</span>
+  </button>
+</div>
+🧠 Notes:
+You can replace the icons (currently generic placeholders) with more symbolic representations: seedling 🌱, growth 📈, harvest 🏆, renewal 🔄.
+
+
