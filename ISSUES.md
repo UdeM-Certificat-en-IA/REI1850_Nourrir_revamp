@@ -21,8 +21,11 @@ The dark/light theme toggle button does not function as expected:
    - Rely on the standalone `ui.js` logic for theme toggling to reduce external dependencies and improve test stability.
 3. **Vendor Alpine.js Locally**  
    - Bundle Alpine.js within the project (e.g., `/static/js/alpine.min.js`) instead of loading from a CDN to ensure availability in offline/test environments.
-4. **Add Inline Fallback Script**  
+4. **Add Inline Fallback Script**
    - Insert a small inline script in the `<head>` to read `localStorage` and apply the `data-theme` attribute before the page renders, preventing FOUC and ensuring correct initial theme.
+
+### Resolution
+The theme now initializes via `ui.js` on `DOMContentLoaded` with an inline fallback script in `base.html`. The toggle button updates `aria-pressed` and persists the selection.
 ## Missing Performance Policy Dropdown
 
 ### Description
