@@ -36,7 +36,7 @@
 - [x] Logo now relocates between header and navbar on scroll and dark-mode toggle is functional.
 - [x] Inconsistent typography across templates; applied Tailwind heading classes and DaisyUI prose sections.
 
-- [ ] `flask_frozen` dependency missing during tests; installation fails due to network restrictions.
+- [x] `flask_frozen` dependency missing during tests; added fallback freezer to run tests offline.
 - [x] Performance images returned 404 due to incorrect paths; filenames corrected and tests added.
 - [ ] Some office scene images referenced in `image_placement_instructions.md` are absent from the repository.
 - [x] Navbar buttons spaced evenly; toggle and language buttons aligned.

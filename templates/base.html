@@ -132,6 +132,36 @@
             transform: none;
         }
 
+        /* Performance stage navigation buttons */
+        .stage-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            margin-bottom: .5rem;
+        }
+        .stage-button {
+            width: 6rem;
+            height: 6rem;
+            border-radius: 9999px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            transition: transform .2s, box-shadow .2s;
+        }
+        .stage-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .stage-button img {
+            width: 2rem;
+            height: 2rem;
+            margin-bottom: .25rem;
+        }
+
         /* ... other custom styles unchanged ... */
     </style>
 
@@ -228,11 +258,12 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const observer = new IntersectionObserver((entries, obs) => {
+        const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('appear');
-                    obs.unobserve(entry.target);
+                } else {
+                    entry.target.classList.remove('appear');
                 }
             });
         }, { threshold: 0.1 });

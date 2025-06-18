@@ -31,6 +31,7 @@
 - [x] **Update Tests**: Adjust any existing tests (snapshots or Selenium) to match the new HTML markup.
 
  - [x] **Insert Performance Images**: Added NEW_Images to the performance policy pages with alternating layout and fade-in transitions.
-- [x] **Fade-In on Scroll**: Implemented IntersectionObserver script to reveal sections smoothly when scrolling.
+- [x] **Fade-In/Out on Scroll**: Updated IntersectionObserver to remove the appearance class when a section leaves the viewport.
 - [x] **Rounded Corners & Asset Tests**: Ensured performance policy images use `rounded-lg` and added tests verifying asset URLs.
+- [x] **Stage Buttons Submenu**: Added circular navigation buttons at the top of the performance index page.
 - [ ] **Add Missing Office Images**: Insert additional office scene visuals once assets become available.
