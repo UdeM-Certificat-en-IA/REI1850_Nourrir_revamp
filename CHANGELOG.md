@@ -19,3 +19,6 @@
   function correctly.
 - Set `publish = "templates"` in Netlify configuration so deploys upload the site's HTML files.
 - Switched Netlify deploy to Frozen-Flask static build with `freeze.py` and new workflow.
+- Fixed failing route tests by adjusting `tests/test_routes.py` to load the
+  local module explicitly.
+- Added new unit tests covering the `/models` API and performance policy pages.

@@ -1,4 +1,11 @@
+import os
+import sys
 import pytest
+
+# Ensure the application module is importable when running tests, even if the
+# project root isn't automatically added to PYTHONPATH. This avoids failures
+# caused by an installed package named ``app`` shadowing our local module.
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 from app import app
 
 @pytest.fixture
