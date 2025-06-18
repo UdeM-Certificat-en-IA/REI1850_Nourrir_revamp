@@ -7,6 +7,7 @@
   `app`; fixed by prepending the project root to `sys.path` in tests.
 - [ ] Performance policy pages need improved responsive styling.
 - [ ] Verify new policy sections render correctly after restructuring.
+- [x] Performance policy subpages frozen without `.html` extension caused raw Markdown display. Patched `freeze.py` to append `.html`.
 - [x] Netlify deploy failed to parse configuration; replaced `python_runtime` with `python_version`.
 - [x] Netlify deploy still failed due to `python_version`; removed the property entirely.
 - [x] Netlify deploy preview served 404s due to functions not detected; added explicit directory setting.
