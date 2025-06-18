@@ -13,6 +13,7 @@
 - [x] Netlify deploy failed to parse configuration; replaced `python_runtime` with `python_version`.
 - [x] Netlify deploy still failed due to `python_version`; removed the property entirely.
 - [x] Netlify deploy preview served 404s due to functions not detected; added explicit directory setting.
+- [ ] Ensure Netlify build has Node.js available for the Tailwind CLI step.
 - [x] Deployed site still returns 404; added base path stripping and included files for templates. Parameterized the base path via `API_GATEWAY_BASE_PATH` to allow configuration. Verified after switching to Frozen-Flask build.
 - [x] Netlify served raw Jinja templates due to missing build step; replaced config with Frozen-Flask to generate static HTML.
 - [x] Redirect did not forward the requested path to the Flask function; added `:splat` to the Netlify redirect.
