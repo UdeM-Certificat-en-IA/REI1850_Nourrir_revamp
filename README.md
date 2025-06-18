@@ -1,4 +1,11 @@
 # NourrIR Flask Project
+  
+**Note**: You are on the REVAMP branch. For the UI/UX revamp plan and detailed roadmap, see `REVAMP_ROADMAP.md`. Implementation tasks are tracked in the following files:
+- `TODO_nav.md` (Navigation)
+- `TODO_theme.md` (Dark/Light Mode Toggle)
+- `TODO_i18n.md` (Internationalization)
+- `TODO_layout.md` (Structured Layout & Responsive Design)
+- `TODO_tooltips.md` (Tippy.js Tooltips)
 
 NourrIR is a minimal Flask-based web application showcasing static pages and an AI-powered chat assistant ("NuRiH Ami") that proxies messages to an Ollama LLM server.
 
