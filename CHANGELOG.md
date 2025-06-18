@@ -1,3 +1,4 @@
+
 ## Changelog
 
 ### Unreleased
@@ -48,3 +49,9 @@
 - Improved spacing for navbar buttons and grouped theme toggle with language switcher.
 - Fixed static build producing extensionless pages; patched freezer to write `index.html` files and added tests checking for markdown.
 - Replaced custom section and footer CSS with DaisyUI classes; unified heading styles across templates and removed unused rules.
+
+## [Unreleased]
+- Converted test.py to unittest and removed stray prompt text.
+- Added `.gitignore` to exclude Python artifacts and environment files.
+- Removed committed `__pycache__/` directory from version control.
+

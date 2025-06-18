@@ -1,3 +1,12 @@
-build/
-venv/
 __pycache__/
+*.py[cod]
+*.egg*
+.env
+venv/
+ENV/
+.env*/
+*.sqlite3
+.idea/
+.vscode/
+.DS_Store
+
