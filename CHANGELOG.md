@@ -54,6 +54,7 @@
 - Navbar now shrinks on scroll and logo slides to the left for a cleaner sticky header.
 - Logo now physically moves from the header into the navbar on scroll, and menu buttons use consistent DaisyUI styles with a working dark-mode toggle.
 - Replaced custom section and footer CSS with DaisyUI classes; unified heading styles across templates and removed unused rules.
+- Theme initialization moved to `ui.js` with inline fallback script; toggle button now updates `aria-pressed` and persists selection.
 - Improved spacing for navbar buttons and grouped theme toggle with language switcher.
 - Fixed dark/light toggle regression and polished menu styles with rounded borders and hover highlights.
 - Spaced out menu buttons further with hover scaling; theme toggle icons display side-by-side above language switcher and brand text hides on scroll.

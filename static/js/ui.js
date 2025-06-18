@@ -35,6 +35,17 @@
   document.addEventListener('DOMContentLoaded', function() {
     initScrollObservers();
     manageNavbarTransparency();
+    const current = getPreferredTheme();
+    applyTheme(current);
+    const btn = document.getElementById('theme-toggle');
+    if (btn) {
+      btn.setAttribute('aria-pressed', current === 'dark');
+      btn.addEventListener('click', () => {
+        const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        applyTheme(next);
+        btn.setAttribute('aria-pressed', next === 'dark');
+      });
+    }
   });
 
   window.ui = { initScrollObservers, manageNavbarTransparency, getPreferredTheme, applyTheme };

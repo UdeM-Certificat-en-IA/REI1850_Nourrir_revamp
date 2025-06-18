@@ -31,6 +31,8 @@
 
 - [x] **Replace Checkbox with Button**: Use `<button id="theme-toggle">` with accessible `aria-pressed` state and inline SVG icons.
 
+ - [x] **Init Theme in JS**: Use `ui.js` to apply the saved theme on page load and handle the toggle click.
+
  - [ ] **Test Styling in Both Modes**: Manually verify UI components switch correctly in light and dark modes.
 
  - [ ] **Edge Cases**: Ensure i18n translation and theme toggle coexist without conflicts.
