@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "politique": "Politique d’intégration",
+    "performance": "Politique de performance",
+    "contact": "Contact RH",
+    "coulisses": "Les Coulisses",
+    "chatbot": "Demandez aux RH"
+  },
+  "header": {
+    "slogan": "On croque la dopamine."
+  },
+  "index": {
+    "welcome": "Bienvenue chez NourrIR",
+    "values": "Nos valeurs",
+    "accessibility": "Accessibilité",
+    "accessibility_desc": "Rendre le bien-être accessible à tous, partout et simplement.",
+    "inclusion": "Inclusion",
+    "inclusion_desc": "Créer un espace sûr et accueillant pour chaque individu.",
+    "creativity": "Créativité",
+    "creativity_desc": "Explorer de nouvelles voies pour s'épanouir et se connecter.",
+    "autonomy": "Autonomie",
+    "autonomy_desc": "Donner les outils pour prendre en main son propre bien-être.",
+    "joy": "Joie",
+    "joy_desc": "Cultiver le plaisir et la positivité dans le quotidien.",
+    "mission_title": "Notre mission",
+    "concept_title": "Notre concept",
+    "video_title": "Découvrez NourrIR en Vidéo",
+    "target_title": "Public cible",
+    "features_title": "Fonctionnalités clés",
+    "science_title": "Fondements scientifiques",
+    "potential_title": "Potentiel"
+  },
+  "contact": {
+    "heading": "Contactez notre équipe RH",
+    "coordinates": "Nos coordonnées :",
+    "form_title": "Formulaire de contact :",
+    "name": "Votre nom :",
+    "email": "Votre email :",
+    "subject": "Sujet :",
+    "message": "Votre message :",
+    "submit": "Envoyer (non fonctionnel)"
+  },
+  "coulisses": {
+    "title": "Les Coulisses de NourrIR",
+    "mission": "Notre Mission dans ce Projet",
+    "tools": "Les Outils d'IA de Notre Créativité",
+    "workflow": "Workflow n8n du Chatbot RH",
+    "learning": "Un Projet d'Apprentissage Continu",
+    "team": "Voici l'Équipe"
+  }
+}

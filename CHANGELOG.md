@@ -35,3 +35,4 @@
 - Added circular stage buttons on the performance index page with links to each phase and new route tests.
 - Added unit tests for Ollama query logic and fallback handling.
 - Fixed duplicate Docker build/run commands in README.
+- Implemented basic internationalization with i18next, French/English locale files, and a navbar language switcher.
