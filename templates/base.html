@@ -12,6 +12,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="{{ url_for('serve_assets', filename='NEW_Images/logo_NO_BACKGROUND.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+      (() => {
+        const theme = localStorage.getItem('theme') ||
+          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
     <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css" />
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>

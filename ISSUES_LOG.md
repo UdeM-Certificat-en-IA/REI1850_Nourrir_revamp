@@ -27,7 +27,7 @@
 - [x] Tests failed when the `build/` directory was missing. Added an autouse fixture to generate the static site before tests.
 - [ ] Verify DaisyUI navbar works consistently across browsers.
 - [x] Ensure new theme toggle functions across browsers and persists across sessions.
-- [ ] Confirm accessible theme button sets `aria-pressed` correctly and swaps icons without causing layout shift.
+- [x] Confirm accessible theme button sets `aria-pressed` correctly and swaps icons without causing layout shift.
 - [x] Navigation menu lacked hover highlight and rounded borders; centered menu and added hover styles.
 - [ ] Expand translations to remaining pages and content.
 - [x] Old page-specific CSS made maintenance difficult; migrated to Tailwind utility classes and DaisyUI components.
@@ -50,3 +50,4 @@
 - [x] Moved fade-section observer into `static/js/ui.js` with navbar sentinel logic; base template references the new script.
 - [x] Replaced `@scroll.window` listener with custom `sentinel-change` event; navbar opacity toggles via IntersectionObserver.
 - [x] Added Playwright tests for theme toggle, navbar transparency and mobile menu.
+- [x] Initialized theme early with inline script and `ui.js` click handler; toggle now sets `aria-pressed` and persists choice.
