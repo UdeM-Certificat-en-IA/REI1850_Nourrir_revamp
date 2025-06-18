@@ -20,7 +20,9 @@
 
  - [x] **Test Responsive Behavior**: Verify in narrow viewport only the hamburger icon appears and toggles the menu. In wide viewport, ensure menu items display and hamburger is hidden without overflow.
 
- - [ ] **Scroll Animation**: Fade header out when scrolling down and back in when scrolling up for smoother transitions.
+ - [x] **Scroll Animation**: Fade header out when scrolling down and back in when scrolling up for smoother transitions.
+
+ - [ ] **Logo Transition**: Shrink and move the logo to the left as the header hides, returning to center when scrolling back to the top.
 
  - [x] **Style Consistency**: Use DaisyUI classes for styling. Optionally apply `btn btn-ghost` on links or default `<a>` styling, and accent colors for hover/active states.
 

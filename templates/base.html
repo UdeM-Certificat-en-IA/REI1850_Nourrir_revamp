@@ -281,15 +281,16 @@
     </style>
     {% block extra_head %}{% endblock %} <!-- This block allows individual pages to add their own specific styles -->
 </head>
-<body x-data="{showHeader: true}" @scroll.window="showHeader = window.scrollY < 50">
-    <header x-show="showHeader" x-transition.opacity.duration.300ms>
-        <img src="{{ url_for('serve_assets', filename='NEW_Images/logo_NO_BACKGROUND.png') }}" alt="Logo NourrIR" class="logo">
+<body x-data="{ atTop: true }" @scroll.window="atTop = window.scrollY < 50">
+    <header x-show="atTop" x-transition.opacity.duration.300ms class="bg-white shadow-md py-4 text-center sticky top-0 z-40">
+        <img src="{{ url_for('serve_assets', filename='NEW_Images/logo_NO_BACKGROUND.png') }}" alt="Logo NourrIR" class="logo mx-auto">
         <div class="slogan" data-i18n="header.slogan">On croque la <span class="cursor-help" data-tippy-content="Neurotransmetteur lié au plaisir et à la motivation." data-i18n-tooltip="tooltips.dopamine">dopamine</span>.</div>
     </header>
-    <nav x-data="{open:false}" class="navbar bg-base-100 sticky top-0 z-50 shadow-md" @keydown.escape.window="open=false">
-        <div class="flex-1">
-            <a href="{{ url_for('home') }}" class="btn btn-ghost normal-case text-xl">
-                <img src="{{ url_for('serve_assets', filename='NEW_Images/logo_NO_BACKGROUND.png') }}" alt="Logo NourrIR" class="w-10 mr-2" />NourrIR
+    <nav x-data="{open:false}" class="navbar bg-base-100 sticky top-0 z-50 shadow-md transition-all duration-300" @keydown.escape.window="open=false" :class="{ 'py-6': atTop, 'py-2': !atTop }">
+        <div class="flex-1 flex items-center transition-all duration-300" :class="{ 'justify-center': atTop, 'justify-start': !atTop }">
+            <a href="{{ url_for('home') }}" class="btn btn-ghost normal-case font-bold flex items-center transition-all duration-300" :class="{ 'text-3xl': atTop, 'text-xl': !atTop }">
+                <img src="{{ url_for('serve_assets', filename='NEW_Images/logo_NO_BACKGROUND.png') }}" alt="Logo NourrIR" class="mr-2 transition-all duration-300" :class="{ 'w-24': atTop, 'w-10': !atTop }" />
+                <span x-show="!atTop" x-transition.opacity.duration.300ms>NourrIR</span>
             </a>
         </div>
         <div class="flex-none">
