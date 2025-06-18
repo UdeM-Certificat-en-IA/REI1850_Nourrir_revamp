@@ -37,6 +37,7 @@
 - [x] Inconsistent typography across templates; applied Tailwind heading classes and DaisyUI prose sections.
 
 - [ ] `flask_frozen` dependency missing during tests; installation fails due to network restrictions.
+- [x] Performance images returned 404 due to incorrect paths; filenames corrected and tests added.
 - [ ] Some office scene images referenced in `image_placement_instructions.md` are absent from the repository.
 - [x] Navbar buttons spaced evenly; toggle and language buttons aligned.
 - [x] Added spacing and hover scaling to menu items; theme toggle now shows icons side by side above language buttons. Removed brand text when navbar shrinks.

@@ -9,6 +9,7 @@
 - Added pytest-based tests for key routes and documented how to run them.
 - Added Netlify deployment files and documentation.
 - Integrated performance policy visuals from `NEW_Images` with fade-in transitions and alternating layout.
+- Fixed incorrect asset paths and gave images rounded corners; added tests ensuring `NEW_Images` load correctly.
 - Fixed trailing prompt artifact in `test.py`.
 - Integrated performance policy pages and routes.
 - Fixed Netlify configuration parse error by using `python_version` in `netlify.toml`.
