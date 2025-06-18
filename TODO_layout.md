@@ -34,4 +34,5 @@
 - [x] **Fade-In/Out on Scroll**: Updated IntersectionObserver to remove the appearance class when a section leaves the viewport.
 - [x] **Rounded Corners & Asset Tests**: Ensured performance policy images use `rounded-lg` and added tests verifying asset URLs.
 - [x] **Stage Buttons Submenu**: Added circular navigation buttons at the top of the performance index page.
+- [x] **Tailwind Build Setup**: Generate `static/styles.css` via `npx tailwindcss` and replace CDN links.
 - [ ] **Add Missing Office Images**: Insert additional office scene visuals once assets become available.

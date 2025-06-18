@@ -3,6 +3,8 @@
 
 ### Unreleased
 - Added performance sections dropdown in navbar and removed inline dropdown blocks from policy pages.
+- Replaced Tailwind and DaisyUI CDN links with a local build using `npx tailwindcss`; Netlify now compiles `static/styles.css`.
+- Fixed Netlify build by installing Tailwind CLI via npm and running `npm ci` before compilation.
 - Created `REVAMP` branch from `work` to continue UI/UX revamp tasks.
 - Added responsive DaisyUI navbar with Tailwind and Alpine.js; active page now highlighted via context.
 - Cleaned up `README.md` by removing shell prompt artifacts and adding missing license closing text.
