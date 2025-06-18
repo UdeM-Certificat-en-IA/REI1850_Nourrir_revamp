@@ -27,7 +27,9 @@
 - [x] **Persist on Reload**: Test that theme preference persists after page refresh and reloading the site.
 - [x] **Fix Regression**: Theme toggle stopped switching modes; bound `true-value` and `false-value` via `x-bind` to restore functionality.
 
- - [ ] **System Prefers Dark (optional)**: Detect `window.matchMedia('(prefers-color-scheme: dark)')` to set default theme on first load if no localStorage value.
+- [x] **System Prefers Dark (optional)**: Detect `window.matchMedia('(prefers-color-scheme: dark)')` to set default theme on first load if no localStorage value.
+
+- [x] **Replace Checkbox with Button**: Use `<button id="theme-toggle">` with accessible `aria-pressed` state and inline SVG icons.
 
  - [ ] **Test Styling in Both Modes**: Manually verify UI components switch correctly in light and dark modes.
 

@@ -2,6 +2,10 @@
 ## Changelog
 
 ### Unreleased
+- Added `static/js/ui.js` for scroll observers, navbar transparency, and theme helpers. Base template now loads this file and no longer includes inline scripts.
+- Added performance sections dropdown in navbar and removed inline dropdown blocks from policy pages.
+- Replaced Tailwind and DaisyUI CDN links with a local build using `npx tailwindcss`; Netlify now compiles `static/styles.css`.
+- Fixed Netlify build by installing Tailwind CLI via npm and running `npm ci` before compilation.
 - Created `REVAMP` branch from `work` to continue UI/UX revamp tasks.
 - Added responsive DaisyUI navbar with Tailwind and Alpine.js; active page now highlighted via context.
 - Cleaned up `README.md` by removing shell prompt artifacts and adding missing license closing text.
@@ -9,6 +13,7 @@
 - Added pytest-based tests for key routes and documented how to run them.
 - Added Netlify deployment files and documentation.
 - Integrated performance policy visuals from `NEW_Images` with fade-in transitions and alternating layout.
+- Switched navbar opacity logic to an IntersectionObserver watching `#top-sentinel` and removed the body scroll handler.
 - Fixed incorrect asset paths and gave images rounded corners; added tests ensuring `NEW_Images` load correctly.
 - Added phase navigation buttons on the performance index and fade-out transitions for scrollable sections.
 - Fixed trailing prompt artifact in `test.py`.
@@ -52,6 +57,7 @@
 - Improved spacing for navbar buttons and grouped theme toggle with language switcher.
 - Fixed dark/light toggle regression and polished menu styles with rounded borders and hover highlights.
 - Spaced out menu buttons further with hover scaling; theme toggle icons display side-by-side above language switcher and brand text hides on scroll.
+- Replaced checkbox theme switch with an accessible button that toggles `aria-pressed` and swaps sun/moon icons without layout shift.
 - Fixed static build producing extensionless pages; patched freezer to write `index.html` files and added tests checking for markdown.
 - Replaced custom section and footer CSS with DaisyUI classes; unified heading styles across templates and removed unused rules.
 
@@ -60,3 +66,4 @@
 - Added `.gitignore` to exclude Python artifacts and environment files.
 - Removed committed `__pycache__/` directory from version control.
 
+- Added Playwright integration tests and updated CI to run them in headed mode.
