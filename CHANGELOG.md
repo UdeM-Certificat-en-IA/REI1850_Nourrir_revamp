@@ -18,6 +18,7 @@
   compatibility with Netlify's Python runtime.
 - Updated Netlify redirect to include `:splat` so route paths reach the Flask
   function correctly.
+- Added Alpine.js theme state and navbar toggle; preferences persist via `localStorage`.
 - Set `publish = "templates"` in Netlify configuration so deploys upload the site's HTML files.
 - Switched Netlify deploy to Frozen-Flask static build with `freeze.py` and new workflow.
 - Fixed failing route tests by adjusting `tests/test_routes.py` to load the
