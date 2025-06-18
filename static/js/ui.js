@@ -14,7 +14,10 @@
     if (!nav || !sentinel) return;
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        nav.classList.toggle('bg-base-100/90', !entry.isIntersecting);
+        nav.classList.toggle('bg-opacity-90', !entry.isIntersecting);
+        window.dispatchEvent(new CustomEvent('sentinel-change', {
+          detail: { atTop: entry.isIntersecting }
+        }));
       });
     });
     observer.observe(sentinel);
