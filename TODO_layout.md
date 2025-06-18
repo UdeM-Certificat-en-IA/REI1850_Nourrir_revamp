@@ -10,7 +10,7 @@
    ```
    and `card` components for each item with icon and text.
 
- - [ ] **Typography Styling**: Apply consistent headings (e.g., `text-2xl font-bold`) and body text (`prose` class if using DaisyUI Typography plugin).
+ - [x] **Typography Styling**: Apply consistent headings (e.g., `text-2xl font-bold`) and body text (`prose` class if using DaisyUI Typography plugin).
 
   - [x] **Spacing Adjustments**: Remove `<br>` tags; use Tailwind margin utilities (`mt-8`, `mb-4`) for vertical spacing.
 
@@ -24,7 +24,7 @@
 
   - [x] **Consistency Across Pages**: Apply above styling to all pages (Accueil, Politique, Performance, Contact).
 
- - [ ] **Footer Styling**: Style footer with DaisyUI classes (e.g., `footer p-4 bg-neutral text-neutral-content text-sm text-center`).
+ - [x] **Footer Styling**: Style footer with DaisyUI classes (e.g., `footer p-4 bg-neutral text-neutral-content text-sm text-center`).
 
   - [x] **Clean Up Old CSS**: Remove or deprecate legacy custom CSS in `static/assets` that is superseded by Tailwind/DaisyUI.
 

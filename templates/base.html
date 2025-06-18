@@ -25,7 +25,6 @@
             --midnight-navy: #34495E;
             --cloud-gray: #F5F5F5;
             --light-text: #f8f9fa; /* For text on dark backgrounds */
-            /* --unused-variable: #FF0000; Example of an unused variable to be removed */
         }
 
         /* Basic Reset & Body Styles */
@@ -62,27 +61,9 @@
         }
 
 
-        /* Main Content Area Styles */
-        main {
-            max-width: 960px;
-            margin: 1.5rem auto;
-            background: white;
-            padding: 1.5rem; 
-            border-radius: 1rem; 
-            box-shadow: 0 4px 25px rgba(0,0,0,0.07); 
-        }
+        /* Main Content Area Styles removed; use Tailwind classes */
 
-        /* Footer Styles */
-        footer { 
-            text-align: center; 
-            color: #aaa; 
-            padding: 1.5rem 1rem; 
-            font-size: 0.9em;
-            margin-top: 2rem; /* Added margin-top for separation */
-        }
-        footer a { /* Style for links in footer, like the hidden test_zone link */
-            color: inherit; /* Inherit color from footer */
-        }
+        /* Footer Styles removed; use DaisyUI classes */
 
         /* General Interactive Element Styles (Buttons) */
         button, input[type="submit"], input[type="button"] { /* Base button styling */
@@ -333,12 +314,12 @@
             <li><a href="{{ url_for('rh_chatbot') }}" role="menuitem" class="btn btn-ghost w-full text-left {% if active_page == 'rh_chatbot' %}active{% endif %}" data-i18n="nav.chatbot">Demandez aux RH</a></li>
         </ul>
     </nav>
-    <main>
+    <main class="prose mx-auto my-6 p-6 bg-base-100 rounded-lg shadow-md max-w-4xl">
         {% block content %}{% endblock %}
     </main>
-    <footer>
-        <p>&copy; 2025 NourrIR — projet fictif à but pédagogique. <a href="{{ url_for('test_zone') }}" style="color: #bbb; text-decoration: none; font-size: 2px;">.</a></p>
-        <p style="margin-top: 0.5em;">UdeM REI 1850 - Equipe 4</p>
+    <footer class="footer p-4 bg-neutral text-neutral-content text-sm text-center mt-8">
+        <p>&copy; 2025 NourrIR — projet fictif à but pédagogique. <a href="{{ url_for('test_zone') }}" class="text-[2px] text-neutral-content no-underline">.</a></p>
+        <p class="mt-2">UdeM REI 1850 - Equipe 4</p>
     </footer>
     {% block chatbot %}
     <!-- NurrIA Chatbot Popup (présent sur chaque page) -->
