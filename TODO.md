@@ -11,11 +11,13 @@
 - [ ] Improve responsive styling for performance policy pages.
 - [x] Validate Netlify deploy after removing python version setting.
 - [x] Confirm Netlify functions deploy correctly with new directory setting.
-- [ ] Verify 404 issue is resolved with base path stripping.
+- [x] Verify 404 issue is resolved with base path stripping.
 - [x] Fix redirect to include `:splat` for path forwarding.
 - [ ] Test Netlify deploy after replacing union types with Optional for Python
       3.9 compatibility.
 - [x] Allow Flask port to be set via `PORT` environment variable.
 - [ ] Verify Gunicorn command expands `$PORT` properly in Dockerfile.
 - [x] Parameterize Netlify base path via `API_GATEWAY_BASE_PATH` environment variable.
-- [ ] Set Netlify publish directory to `templates` to ensure static files are deployed.
+- [x] Set Netlify publish directory to `templates` to ensure static files are deployed.
+- [ ] Integrate Frozen-Flask build for Netlify static deploy.
+- [ ] Add GitHub Actions workflow to test build.

@@ -18,3 +18,4 @@
 - Updated Netlify redirect to include `:splat` so route paths reach the Flask
   function correctly.
 - Set `publish = "templates"` in Netlify configuration so deploys upload the site's HTML files.
+- Switched Netlify deploy to Frozen-Flask static build with `freeze.py` and new workflow.
