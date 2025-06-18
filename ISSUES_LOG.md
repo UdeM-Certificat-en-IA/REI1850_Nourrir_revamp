@@ -24,3 +24,4 @@
 - Added tests for Ollama query and fallback functions to ensure reliability.
 - [x] Duplicate Docker commands in README created confusion; removed extra build/run lines.
 - [ ] Verify DaisyUI navbar works consistently across browsers.
+- [ ] Ensure new theme toggle functions across browsers and persists across sessions.

@@ -34,6 +34,7 @@ NourrIR is a minimal Flask-based web application showcasing static pages and an 
 - Floating AI chat widget ("NuRiH Ami") available on all pages
 - Proxy endpoint (`/nurih-ami`) to forward user messages to an Ollama LLM server
 - Dockerized application with Dockerfile and docker-compose support
+- Light/Dark theme toggle with DaisyUI (preference stored in localStorage)
 
 ## Prerequisites
 
@@ -138,6 +139,7 @@ By default, the web service is exposed on port `8282`.
 - Navigate to the static pages via the top navigation bar, including the new **Performance Policy** section.
 - Click the chat icon (💬) in the bottom right to open the NuRiH Ami assistant.
 - Type your questions or prompts; the message will be forwarded to the Ollama model and the response displayed in the chat widget.
+- Use the sun/moon toggle in the navbar to switch between light and dark themes. Your choice is saved between visits.
 
 ## Project Structure
 
