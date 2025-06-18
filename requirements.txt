@@ -4,3 +4,4 @@ gunicorn
 serverless-wsgi
 pytest>=7.0
 Frozen-Flask>=1
+pytest-playwright>=0.5
