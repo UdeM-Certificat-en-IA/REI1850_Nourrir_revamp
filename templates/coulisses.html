@@ -3,18 +3,18 @@
 {% block title %}Les Coulisses de NourrIR{% endblock %}
 
 {% block content %}
-
-    <h1 data-i18n="coulisses.title">Les Coulisses de NourrIR</h1>
-    <div style="text-align: center; margin-top: 2.5em; margin-bottom: 2.5em;">
-        <img src="{{ url_for('serve_assets', filename='equipe.png') }}" alt="Équipe NourrIR" style="max-width: 600px; width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none">
+    <h1 class="text-2xl font-bold" data-i18n="coulisses.title">Les Coulisses de NourrIR</h1>
+    <div class="text-center my-10">
+        <img src="{{ url_for('serve_assets', filename='equipe.png') }}" alt="Équipe NourrIR" class="max-w-[600px] w-full rounded-lg shadow">
     </div>
 
     <p>Bienvenue dans les coulisses de la création de NourrIR ! Ce projet a été développé avec passion et innovation dans le cadre du cours <strong>REI 1850 – Gestion des ressources humaines et intelligence artificielle</strong> à l'Université de Montréal (Session été 2025).</p>
 
-    <h2 data-i18n="coulisses.mission">Notre Mission dans ce Projet</h2>
+    <h2 class="text-xl font-bold" data-i18n="coulisses.mission">Notre Mission dans ce Projet</h2>
     <p>L'objectif était de concevoir et de prototyper une application web innovante explorant le potentiel de l'intelligence artificielle pour le bien-être. NourrIR est le fruit de cette exploration, visant à offrir une expérience utilisateur engageante et personnalisée.</p>
 
-    <h2 data-i18n="coulisses.tools">Les Outils d'IA de Notre Créativité</h2>
+    <h2 class="text-xl font-bold" data-i18n="coulisses.tools">Les Outils d'IA de Notre Créativité</h2>
     <p>Pour donner vie à NourrIR, nous avons utilisé une gamme diversifiée d'outils d'intelligence artificielle :</p>
     <ul>
         <li><strong>Recherche et Sources :</strong>
@@ -37,7 +37,7 @@
                     &nbsp;|&nbsp;
                     <a href="https://suno.ai" target="_blank" rel="noopener">Page Suno</a>
                     <br>
-                    <audio id="song-player" controls style="display:block; margin-top:0.5em; width:100%; max-width:400px;">
+    <audio id="song-player" controls class="block mt-2 w-full max-w-[400px]">
                         <source src="{{ url_for('serve_assets', filename='song.mp3') }}" type="audio/mpeg">
                         Votre navigateur ne supporte pas l'élément audio.
                     </audio>
@@ -62,28 +62,28 @@
             </ul>
         </li>
     </ul>
-    <h2 data-i18n="coulisses.workflow">Workflow n8n du Chatbot RH</h2>
-    <div style="text-align: center; margin: 2em 0;">
-        <img src="{{ url_for('serve_assets', filename='RAG.png') }}" alt="Capture d'écran du workflow n8n" style="max-width:800px; width:100%; border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
-        <p style="margin-top: 1em;">Cette approche visuelle avec n8n, combinée au RAG, offre plusieurs avantages : elle permet d'orchestrer facilement les appels API, d'intégrer et d'interroger nos données internes pour des réponses cohérentes et pertinentes, et de maintenir ou d'adapter le workflow sans écrire de code.</p>
+    <h2 class="text-xl font-bold" data-i18n="coulisses.workflow">Workflow n8n du Chatbot RH</h2>
+    <div class="text-center my-8">
+        <img src="{{ url_for('serve_assets', filename='RAG.png') }}" alt="Capture d'écran du workflow n8n" class="max-w-[800px] w-full rounded-lg shadow">
+        <p class="mt-4">Cette approche visuelle avec n8n, combinée au RAG, offre plusieurs avantages : elle permet d'orchestrer facilement les appels API, d'intégrer et d'interroger nos données internes pour des réponses cohérentes et pertinentes, et de maintenir ou d'adapter le workflow sans écrire de code.</p>
     </div>
     <p>Pour toute question, <a href="{{ url_for('contact') }}">contactez-nous</a>.</p>
     <p>Consultez le code source sur GitHub : <a href="https://github.com/ArtemisAI/nourrir_flask" target="_blank">https://github.com/ArtemisAI/nourrir_flask</a>.</p>
-    <p style="margin-top:1em; font-style:italic;">Cette application web fonctionne dans un conteneur Docker et est déployée sur Render.com. Elle est fournie à des fins pédagogiques uniquement.</p>
+    <p class="mt-4 italic">Cette application web fonctionne dans un conteneur Docker et est déployée sur Render.com. Elle est fournie à des fins pédagogiques uniquement.</p>
 
-    <h2 data-i18n="coulisses.learning">Un Projet d'Apprentissage Continu</h2>
+    <h2 class="text-xl font-bold" data-i18n="coulisses.learning">Un Projet d'Apprentissage Continu</h2>
     <p>Ce projet représente une étape clé dans notre parcours d'apprentissage des technologies émergentes. Chaque outil et chaque phase de développement nous ont permis d'acquérir de nouvelles compétences et de mieux comprendre les enjeux et les possibilités de l'IA.</p>
 
-    <div style="text-align: center; margin-top: 2.5em; margin-bottom: 2.5em;">
-        <img src="{{ url_for('serve_assets', filename='ChatGPT Image May 18, 2025, 10_15_31 AM.png') }}" alt="Illustration de l'innovation technologique" style="max-width: 350px; width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    <div class="text-center my-10">
+        <img src="{{ url_for('serve_assets', filename='ChatGPT Image May 18, 2025, 10_15_31 AM.png') }}" alt="Illustration de l'innovation technologique" class="max-w-[350px] w-full rounded-lg shadow">
     </div>
 
-    <div class="presentation-container" style="text-align:center; margin:2em 0;">
-        <h2 data-i18n="coulisses.team">Voici l'Équipe</h2>
-        <iframe src="https://docs.google.com/gview?embedded=true&url={{ url_for('serve_assets', filename='Présentation équipe NourrIR.pptx', _external=True) }}" style="width:960px; height:569px;" frameborder="0">Votre navigateur ne supporte pas les iframes.</iframe>
+    <div class="presentation-container text-center my-8">
+        <h2 class="text-xl font-bold" data-i18n="coulisses.team">Voici l'Équipe</h2>
+        <iframe src="https://docs.google.com/gview?embedded=true&url={{ url_for('serve_assets', filename='Présentation équipe NourrIR.pptx', _external=True) }}" class="w-[960px] h-[569px]" frameborder="0">Votre navigateur ne supporte pas les iframes.</iframe>
     </div>
         
 
-    <p style="margin-top: 2em; text-align: center; font-style: italic;">L'équipe du projet NourrIR – UdeM REI 1850 (Session été 2025)</p>
-
+    <p class="mt-8 text-center italic">L'équipe du projet NourrIR – UdeM REI 1850 (Session été 2025)</p>
+</section>
 {% endblock %}
