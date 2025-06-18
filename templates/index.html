@@ -3,253 +3,110 @@
 
 {% block title %}NourrIR – Accueil{% endblock %}
 
-{% block extra_head %}
-<style>
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
-    background: #000; /* Optional: background for when video is loading */
-    margin-top: 1.5em;
-    margin-bottom: 2.5em; /* Increased bottom margin */
-    border-radius: 8px; /* Optional: rounded corners for the container */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Optional: subtle shadow */
-}
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 8px; /* Match container's border-radius if any */
-    border: 0; /* Already in base.html, but good to ensure */
-}
-
-/* Flipping Card Styles */
-.values-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2em; /* Adjust gap */
-    margin-top: 1.5em;
-    margin-bottom: 2.5em; /* Increased bottom margin */
-    padding: 1em 0; /* Add some padding if cards are close to edges */
-}
-.value-card-container {
-    width: 180px; 
-    height: 240px; /* Slightly increased height for content */
-    perspective: 1000px;
-    cursor: default; /* Default cursor, hover effect implies interactivity */
-}
-.value-card {
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1); /* Smoother transition */
-    position: relative;
-}
-.value-card-container:hover .value-card {
-    transform: rotateY(180deg);
-}
-.card-face {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 1em;
-    border-radius: 12px; /* Softer rounded corners */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.12); /* Slightly more pronounced shadow */
-    box-sizing: border-box; /* Ensure padding doesn't break layout */
-}
-.card-front {
-    background-color: #ffffff; /* White front */
-    border: 1px solid #eee;
-}
-.card-back {
-    background-color: var(--dopamine-purple);
-    color: white;
-    transform: rotateY(180deg);
-}
-.card-icon {
-    width: 60px; /* Adjust as needed */
-    height: 60px; /* Adjust as needed */
-    margin-bottom: 0.75em;
-}
-.card-face h3 { /* For front face title */
-    font-family: 'Nunito', sans-serif;
-    font-size: 1.25em;
-    color: var(--midnight-navy);
-    margin-top: 0;
-    margin-bottom: 0; /* Remove bottom margin if icon is primary */
-}
-.card-back h4 { /* For back face title */
-    font-family: 'Nunito', sans-serif;
-    font-size: 1.2em; /* Slightly smaller for back title */
-    color: var(--joy-yellow); /* Use theme yellow for accent */
-    margin-top: 0;
-    margin-bottom: 0.5em;
-}
-.card-back p {
-    font-size: 0.9em;
-    line-height: 1.5;
-    margin-bottom: 0;
-}
-
-/* Responsive adjustments for cards if needed */
-@media (max-width: 600px) {
-    .value-card-container {
-        width: 150px; /* Smaller cards on small screens */
-        height: 200px;
-    }
-    .card-icon {
-        width: 50px;
-        height: 50px;
-    }
-    .card-face h3 { font-size: 1.1em; }
-    .card-back h4 { font-size: 1.05em; }
-    .card-back p { font-size: 0.85em; }
-}
-@media (max-width: 400px) {
-    .values-grid {
-        gap: 1em; /* Reduce gap for very small screens */
-    }
-    .value-card-container {
-        width: calc(50% - 1em); /* Two cards per row */
-        height: 180px;
-    }
-}
-
-</style>
-{% endblock %}
 
 {% block content %}
-    <h1>Bienvenue chez NourrIR</h1>
+<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none">
+    <h1 class="text-2xl font-bold" data-i18n="index.welcome">Bienvenue chez NourrIR</h1>
     <p>
-        NourrIR démocratise le bien-être mental & physique via <b>nutrition, psychologie et créativité</b>.
+        NourrIR démocratise le bien-être mental &amp; physique via <b>nutrition, psychologie et créativité</b>.
     </p>
-    
-    <h2 style="margin-top:2em; text-align:center;">Nos valeurs</h2>
-    <div class="values-grid">
-        <!-- Accessibilité Card -->
-        <div class="value-card-container">
-            <div class="value-card">
-                <div class="card-face card-front">
-                    <img src="{{ url_for('serve_assets', filename='Brain, Nutrition, Innovation Icon.png') }}" alt="Icône Accessibilité" class="card-icon">
-                    <h3>Accessibilité</h3>
-                </div>
-                <div class="card-face card-back">
-                    <h4>Accessibilité</h4>
-                    <p>Rendre le bien-être accessible à tous, partout et simplement.</p>
-                </div>
+
+    <h2 class="text-xl font-bold text-center mt-8 mb-4" data-i18n="index.values">Nos valeurs</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="card bg-base-100 shadow">
+            <figure class="px-4 pt-4">
+                <img src="{{ url_for('serve_assets', filename='Brain, Nutrition, Innovation Icon.png') }}" alt="Icône Accessibilité" class="max-w-full h-auto" />
+            </figure>
+            <div class="card-body items-center text-center">
+                <h3 class="card-title" data-i18n="index.accessibility">Accessibilité</h3>
+                <p data-i18n="index.accessibility_desc">Rendre le bien-être accessible à tous, partout et simplement.</p>
             </div>
         </div>
-        <!-- Inclusion Card -->
-        <div class="value-card-container">
-            <div class="value-card">
-                <div class="card-face card-front">
-                    <img src="{{ url_for('serve_assets', filename="Valeurs et Symbole D'Inclusion.png") }}" alt="Icône Inclusion" class="card-icon">
-                    <h3>Inclusion</h3>
-                </div>
-                <div class="card-face card-back">
-                    <h4>Inclusion</h4>
-                    <p>Créer un espace sûr et accueillant pour chaque individu.</p>
-                </div>
+        <div class="card bg-base-100 shadow">
+            <figure class="px-4 pt-4">
+                <img src="{{ url_for('serve_assets', filename="Valeurs et Symbole D'Inclusion.png") }}" alt="Icône Inclusion" class="max-w-full h-auto" />
+            </figure>
+            <div class="card-body items-center text-center">
+                <h3 class="card-title" data-i18n="index.inclusion">Inclusion</h3>
+                <p data-i18n="index.inclusion_desc">Créer un espace sûr et accueillant pour chaque individu.</p>
             </div>
         </div>
-        <!-- Créativité Card -->
-        <div class="value-card-container">
-            <div class="value-card">
-                <div class="card-face card-front">
-                    <img src="{{ url_for('serve_assets', filename='NourrIR_ Inclusivity and Creativity in Focus.png') }}" alt="Icône Créativité" class="card-icon">
-                    <h3>Créativité</h3>
-                </div>
-                <div class="card-face card-back">
-                    <h4>Créativité</h4>
-                    <p>Explorer de nouvelles voies pour s'épanouir et se connecter.</p>
-                </div>
+        <div class="card bg-base-100 shadow">
+            <figure class="px-4 pt-4">
+                <img src="{{ url_for('serve_assets', filename='NourrIR_ Inclusivity and Creativity in Focus.png') }}" alt="Icône Créativité" class="max-w-full h-auto" />
+            </figure>
+            <div class="card-body items-center text-center">
+                <h3 class="card-title" data-i18n="index.creativity">Créativité</h3>
+                <p data-i18n="index.creativity_desc">Explorer de nouvelles voies pour s'épanouir et se connecter.</p>
             </div>
         </div>
-        <!-- Autonomie Card -->
-        <div class="value-card-container">
-            <div class="value-card">
-                <div class="card-face card-front">
-                    <img src="{{ url_for('serve_assets', filename='Logo de NourrIR avec carotte stylisée.png') }}" alt="Icône Autonomie" class="card-icon">
-                    <h3>Autonomie</h3>
-                </div>
-                <div class="card-face card-back">
-                    <h4>Autonomie</h4>
-                    <p>Donner les outils pour prendre en main son propre bien-être.</p>
-                </div>
+        <div class="card bg-base-100 shadow">
+            <figure class="px-4 pt-4">
+                <img src="{{ url_for('serve_assets', filename='Logo de NourrIR avec carotte stylisée.png') }}" alt="Icône Autonomie" class="max-w-full h-auto" />
+            </figure>
+            <div class="card-body items-center text-center">
+                <h3 class="card-title" data-i18n="index.autonomy">Autonomie</h3>
+                <p data-i18n="index.autonomy_desc">Donner les outils pour prendre en main son propre bien-être.</p>
             </div>
         </div>
-        <!-- Joie Card -->
-        <div class="value-card-container">
-            <div class="value-card">
-                <div class="card-face card-front">
-                    <img src="{{ url_for('serve_assets', filename='Smiling Heart on Beige Background.png') }}" alt="Icône Joie" class="card-icon">
-                    <h3>Joie</h3>
-                </div>
-                <div class="card-face card-back">
-                    <h4>Joie</h4>
-                    <p>Cultiver le plaisir et la positivité dans le quotidien.</p>
-                </div>
+        <div class="card bg-base-100 shadow">
+            <figure class="px-4 pt-4">
+                <img src="{{ url_for('serve_assets', filename='Smiling Heart on Beige Background.png') }}" alt="Icône Joie" class="max-w-full h-auto" />
+            </figure>
+            <div class="card-body items-center text-center">
+                <h3 class="card-title" data-i18n="index.joy">Joie</h3>
+                <p data-i18n="index.joy_desc">Cultiver le plaisir et la positivité dans le quotidien.</p>
             </div>
         </div>
     </div>
 
-    <h2 style="margin-top:2.5em;">Notre mission</h2>
+    <h2 class="text-xl font-bold mt-8 mb-2" data-i18n="index.mission_title">Notre mission</h2>
     <p>
         NourrIR vise à <b>démocratiser le bien-être mental et physique</b> grâce à une plateforme numérique liant <b>nutrition, psychologie et créativité</b>, propulsée par des technologies intelligentes et accessibles.
     </p>
-    <h2 style="margin-top:2.5em;">Notre concept</h2>
+    <h2 class="text-xl font-bold mt-8 mb-2" data-i18n="index.concept_title">Notre concept</h2>
     <p>
         <b>NourrIR</b> est une application mobile et une plateforme web personnalisée qui combine analyse psychologique, recommandations nutritionnelles adaptées et activités créatives pour améliorer le bien-être global. L’intelligence artificielle offre une expérience personnalisée, ludique et non culpabilisante.
     </p>
 
-    <h2 style="margin-top:2.5em;">Découvrez NourrIR en Vidéo</h2>
-    <div class="video-container">
+    <h2 class="text-xl font-bold mt-8 mb-4" data-i18n="index.video_title">Découvrez NourrIR en Vidéo</h2>
+    <div class="aspect-video my-4">
         <iframe
             src="https://www.youtube.com/embed/h3YaETsL5Oo"
             title="Découvrez NourrIR en vidéo"
+            class="w-full h-full"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen>
-        </iframe>
+            allowfullscreen></iframe>
     </div>
 
-    <h2 style="margin-top:2.5em;">Public cible</h2>
+    <h2 class="text-xl font-bold mt-8 mb-2" data-i18n="index.target_title">Public cible</h2>
     <ul>
         <li>Jeunes adultes (16–35 ans) en quête d'équilibre et d'outils accessibles</li>
         <li>Établissements scolaires et postsecondaires</li>
         <li>Entreprises soucieuses du bien-être de leurs employés</li>
         <li>Parents et aidants</li>
     </ul>
-    <h2 style="margin-top:2.5em;">Fonctionnalités clés</h2>
+    <h2 class="text-xl font-bold mt-8 mb-2" data-i18n="index.features_title">Fonctionnalités clés</h2>
     <ul>
         <li>Profil utilisateur adapté (psychologique, nutritionnel, créatif)</li>
         <li>Plans de repas basés sur l'état émotionnel et les besoins du moment</li>
         <li>Activités créatives guidées (dessin, écriture, cuisine intuitive, collage numérique)</li>
         <li>Capsules de vulgarisation scientifique sur la nutrition et la santé mentale</li>
         <li>Journal de bord interactif et coach virtuel empathique</li>
-        <li>Modèle freemium (accès de base gratuit + modules premium)</li>
+        <li>Modèle <span class="cursor-help" data-tippy-content="Modèle gratuit avec options payantes." data-i18n-tooltip="tooltips.freemium">freemium</span> (accès de base gratuit + modules premium)</li>
     </ul>
-    <h2 style="margin-top:2.5em;">Fondements scientifiques</h2>
+    <h2 class="text-xl font-bold mt-8 mb-2" data-i18n="index.science_title">Fondements scientifiques</h2>
     <ul>
         <li>Nutrition personnalisée et santé mentale (Jacka et al., 2023)</li>
         <li>Intelligence artificielle en diététique (CareyYaYa, 2024)</li>
         <li>Créativité et régulation émotionnelle (WellPower, 2023)</li>
-        <li>Impact des probiotiques sur l'humeur (Health.com, 2024)</li>
+        <li>Impact des <span class="cursor-help" data-tippy-content="Micro-organismes bénéfiques pour la flore intestinale." data-i18n-tooltip="tooltips.probiotiques">probiotiques</span> sur l'humeur (Health.com, 2024)</li>
     </ul>
-    <h2 style="margin-top:2.5em;">Potentiel</h2>
+    <h2 class="text-xl font-bold mt-8 mb-2" data-i18n="index.potential_title">Potentiel</h2>
     <p>
         NourrIR répond à un besoin croissant d’outils numériques hybrides unissant <b>bien-être, connaissance de soi, plaisir et autonomie</b>. Notre approche multidisciplinaire et engageante nous positionne comme référence en santé globale pour les jeunes et les milieux éducatifs.
     </p>
+</section>
 {% endblock %}

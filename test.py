@@ -37,4 +37,5 @@ class TestRHWebhook(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+
+    test_rh_n8n()

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Acteurs et responsabilités{% endblock %}
+{% block content %}
+<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none">
+<p><a href="{{ url_for('performance_index') }}" class="back-button" aria-label="Retour à l'index">&#8592;<span class="back-text"> Retour à l'index</span></a></p>
+<details class="section-dropdown">
+    <summary>Accéder aux sections</summary>
+    <ul>
+        <li><a href="{{ url_for('performance_section', section='01_phase1_semis') }}">Phase&nbsp;1 – Semis</a></li>
+        <li><a href="{{ url_for('performance_section', section='02_phase2_croissance') }}">Phase&nbsp;2 – Croissance</a></li>
+        <li><a href="{{ url_for('performance_section', section='03_phase3_recolte') }}">Phase&nbsp;3 – Récolte</a></li>
+        <li><a href="{{ url_for('performance_section', section='04_phase4_renouvellement') }}">Phase&nbsp;4 – Renouvellement</a></li>
+        <li><a href="{{ url_for('performance_section', section='05_roles_responsabilites') }}">Acteurs clés et responsabilités</a></li>
+        <li><a href="{{ url_for('performance_section', section='06_conclusion') }}">Conclusion</a></li>
+        <li><a href="{{ url_for('performance_section', section='07_glossaire') }}">Glossaire</a></li>
+        <li><a href="{{ url_for('performance_section', section='08_bibliographie') }}">Bibliographie</a></li>
+        <li><a href="{{ url_for('performance_section', section='09_resume') }}">Résumé de correction</a></li>
+    </ul>
+</details>
+<h1>Acteurs clés et responsabilités dans le cycle</h1>
+<p><strong>Légende RACI</strong></p>
+<ul>
+<li><strong>R (Responsable)</strong> : Réalise l’activité.</li>
+<li><strong>A (Approbateur)</strong> : Valide le livrable ou prend la décision finale.</li>
+<li><strong>C (Consulté)</strong> : Fournit un avis ou une expertise, est sollicité.</li>
+<li><strong>I (Informé)</strong> : Est tenu informé du déroulement ou du résultat.</li>
+</ul>
+<table>
+<tr><th>Activité / Phase</th><th>Employé·e</th><th>Gestionnaire</th><th>Équipe RH</th><th>Outils technologiques</th></tr>
+<tr><td>Co-définir les objectifs</td><td>R</td><td>A</td><td>C</td><td>Soutien technique</td></tr>
+<tr><td>Alignement des objectifs</td><td>C</td><td>R / A</td><td>C</td><td>-</td></tr>
+<tr><td>Suivi des objectifs</td><td>R</td><td>R / A</td><td>I</td><td>Tableau de bord</td></tr>
+<tr><td>Rétroaction continue</td><td>R</td><td>R</td><td>C</td><td>Facilitateur</td></tr>
+<tr><td>Autoévaluations, 360°</td><td>R</td><td>C</td><td>C</td><td>Synthèse assistée</td></tr>
+<tr><td>Évaluation annuelle</td><td>R</td><td>A</td><td>C</td><td>Synthèse narrative</td></tr>
+<tr><td>Plan de croissance</td><td>R</td><td>A</td><td>C</td><td>Suggestion guidée</td></tr>
+<tr><td>Renouvellement du rôle</td><td>R</td><td>A</td><td>C</td><td>Appui analytique</td></tr>
+<tr><td>Soutien personnalisé</td><td>R</td><td>R / A</td><td>A</td><td>-</td></tr>
+<tr><td>Analyse organisationnelle</td><td>I</td><td>I</td><td>A / R</td><td>Appui aux indicateurs</td></tr>
+</table>
+</table>
+</section>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Phase 4 – Renouvellement{% endblock %}
+{% block content %}
+<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none">
+<p><a href="{{ url_for('performance_index') }}" class="back-button" aria-label="Retour à l'index">&#8592;<span class="back-text"> Retour à l'index</span></a></p>
+<details class="section-dropdown">
+    <summary>Accéder aux sections</summary>
+    <ul>
+        <li><a href="{{ url_for('performance_section', section='01_phase1_semis') }}">Phase&nbsp;1 – Semis</a></li>
+        <li><a href="{{ url_for('performance_section', section='02_phase2_croissance') }}">Phase&nbsp;2 – Croissance</a></li>
+        <li><a href="{{ url_for('performance_section', section='03_phase3_recolte') }}">Phase&nbsp;3 – Récolte</a></li>
+        <li><a href="{{ url_for('performance_section', section='04_phase4_renouvellement') }}">Phase&nbsp;4 – Renouvellement</a></li>
+        <li><a href="{{ url_for('performance_section', section='05_roles_responsabilites') }}">Acteurs clés et responsabilités</a></li>
+        <li><a href="{{ url_for('performance_section', section='06_conclusion') }}">Conclusion</a></li>
+        <li><a href="{{ url_for('performance_section', section='07_glossaire') }}">Glossaire</a></li>
+        <li><a href="{{ url_for('performance_section', section='08_bibliographie') }}">Bibliographie</a></li>
+        <li><a href="{{ url_for('performance_section', section='09_resume') }}">Résumé de correction</a></li>
+    </ul>
+</details>
+<h1>Phase 4 – Renouvellement : Apprendre, évoluer, transformer</h1>
+<ul>
+<li><strong>Activer l’intelligence collective</strong> : Chaque trimestre, une rétro collective permet aux équipes de partager leurs moments de transformation et de tirer des apprentissages communs.</li>
+<li><strong>Adapter les rôles et responsabilités</strong> : L’équipe RH propose des ajustements de rôles en fonction des données du cycle, favorisant un design adaptatif.</li>
+<li><strong>Accompagner les parcours atypiques</strong> : Des mesures comme les pauses régénératives, les plans de soutien ou la diversification des responsabilités sont prévues pour les périodes de remise en question ou de sous-performance.</li>
+<li><strong>Clore et relancer le cycle</strong> : Le cycle se referme avec la Célébration de la Transformation, moment d’histoire partagée et d’activation du prochain cycle.</li>
+</ul>
+</ul>
+</section>
+{% endblock %}

@@ -20,4 +20,4 @@ COPY . .
 EXPOSE 8080
 
 # Use Gunicorn for production (adjust workers as needed)
-CMD ["gunicorn", "-b", "0.0.0.0:8080", "app:app"]
+CMD ["gunicorn", "-b", "0.0.0.0:${PORT:-8080}", "app:app"]

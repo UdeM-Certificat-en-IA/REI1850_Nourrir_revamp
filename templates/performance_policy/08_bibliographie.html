@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Bibliographie{% endblock %}
+{% block content %}
+<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none">
+<p><a href="{{ url_for('performance_index') }}" class="back-button" aria-label="Retour à l'index">&#8592;<span class="back-text"> Retour à l'index</span></a></p>
+<details class="section-dropdown">
+    <summary>Accéder aux sections</summary>
+    <ul>
+        <li><a href="{{ url_for('performance_section', section='01_phase1_semis') }}">Phase&nbsp;1 – Semis</a></li>
+        <li><a href="{{ url_for('performance_section', section='02_phase2_croissance') }}">Phase&nbsp;2 – Croissance</a></li>
+        <li><a href="{{ url_for('performance_section', section='03_phase3_recolte') }}">Phase&nbsp;3 – Récolte</a></li>
+        <li><a href="{{ url_for('performance_section', section='04_phase4_renouvellement') }}">Phase&nbsp;4 – Renouvellement</a></li>
+        <li><a href="{{ url_for('performance_section', section='05_roles_responsabilites') }}">Acteurs clés et responsabilités</a></li>
+        <li><a href="{{ url_for('performance_section', section='06_conclusion') }}">Conclusion</a></li>
+        <li><a href="{{ url_for('performance_section', section='07_glossaire') }}">Glossaire</a></li>
+        <li><a href="{{ url_for('performance_section', section='08_bibliographie') }}">Bibliographie</a></li>
+        <li><a href="{{ url_for('performance_section', section='09_resume') }}">Résumé de correction</a></li>
+    </ul>
+</details>
+<h1>Bibliographie</h1>
+<ul>
+<li>► Outils IA utilisé : ChatGPT</li>
+<li>Deloitte. (2017). <em>Rewriting the rules for the digital age – 2017 Global Human Capital Trends</em>. <a href="https://www2.deloitte.com/global/en/pages/about-deloitte/articles/human-capital-trends.html">lien</a></li>
+<li>Jacka, F. N., et al. (2023). <em>Personalized Nutrition for Mental Health</em>. Frontiers in Nutrition. <a href="https://doi.org/10.3389/fnut.2023.1234549">doi</a></li>
+<li>CareyYaYa. (2024). <em>How AI Is Revolutionizing Diet Plans</em>. <a href="https://www.careyaya.org/resources/blog/the-rise-of-personalized-nutrition-how-ai-is-revolutionizing-diet-plans-in-2024">lien</a></li>
+<li>WellPower. (2023). <em>The Many Benefits of Creativity for Our Mental Health</em>. <a href="https://www.wellpower.org/blog/the-many-benefits-of-creativity-for-our-mental-health">lien</a></li>
+<li>Health.com. (2024). <em>Can Probiotics Boost Mood?</em> <a href="https://www.health.com/can-probiotics-boost-mood-11718737">lien</a></li>
+</ul>
+</ul>
+</section>
+{% endblock %}

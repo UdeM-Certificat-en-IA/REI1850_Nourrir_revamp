@@ -15,7 +15,16 @@ It includes:
 """
 # nourrir_flask/app.py
 
-from flask import Flask, render_template, request, jsonify, send_from_directory
+from flask import (
+    Flask,
+    render_template,
+    request,
+    jsonify,
+    send_from_directory,
+    redirect,
+    url_for,
+)
+from typing import Optional
 import os
 import requests
 import logging
@@ -56,7 +65,7 @@ SYSTEM_PROMPT = (
     "Sois amicale, inclusive, brève et adaptée à tous publics."
 )
 
-def query_ollama(messages: list, model: str = OLLAMA_MODEL, chat_url: str = OLLAMA_CHAT_URL, timeout: int = 60) -> str | None:
+def query_ollama(messages: list, model: str = OLLAMA_MODEL, chat_url: str = OLLAMA_CHAT_URL, timeout: int = 60) -> Optional[str]:
     """
     Sends messages to the Ollama chat API and returns the assistant's content.
 
@@ -120,7 +129,7 @@ def get_response_with_fallback(messages: list,
                                chat_url: str = OLLAMA_CHAT_URL,
                                models_url: str = OLLAMA_MODELS_URL,
                                initial_model: str = OLLAMA_MODEL,
-                               timeout: int = 60) -> str | None:
+                               timeout: int = 60) -> Optional[str]:
     """
     Attempt to get a response using the initial model, then fallback through available models if needed.
     """
@@ -178,29 +187,44 @@ app = Flask(__name__, static_folder='static', template_folder='templates')
 @app.route("/")
 def home():
     """Serves the main home page (index.html)."""
-    return render_template("index.html")
+    return render_template("index.html", active_page="home")
 
-@app.route("/politique")
+@app.route("/politique/")
 def politique():
     """Serves the integration policy page (politique.html)."""
-    return render_template("politique.html")
+    return render_template("politique.html", active_page="politique")
+
 
 @app.route("/contact")
 def contact():
     """Serves the HR contact page (contact.html)."""
-    return render_template("contact.html")
+    return render_template("contact.html", active_page="contact")
 
 @app.route("/coulisses")
 def coulisses():
     """Serves the 'Les Coulisses' page (coulisses.html)."""
-    return render_template("coulisses.html")
+    return render_template("coulisses.html", active_page="coulisses")
+
+# --- Performance Policy Routes ---
+
+@app.route("/performance")
+def performance_index():
+    """Serves the performance policy index page."""
+    return render_template("performance_policy/index.html", active_page="performance")
+
+
+@app.route("/performance/<section>")
+def performance_section(section: str):
+    """Serves an individual performance policy section."""
+    template_name = f"performance_policy/{section}.html"
+    return render_template(template_name, active_page="performance")
 
 # --- Chatbot UI Routes ---
 
 @app.route("/rh-chatbot")
 def rh_chatbot():
     """Serves the dedicated HR chatbot page (rh_chatbot.html)."""
-    return render_template("rh_chatbot.html")
+    return render_template("rh_chatbot.html", active_page="rh_chatbot")
 
 @app.route("/test-zone")
 def test_zone():
@@ -323,4 +347,4 @@ def favicon():
 if __name__ == "__main__":
     # Note: Flask's default debug mode is generally not recommended for production.
     # Use a production-ready WSGI server (e.g., Gunicorn, Waitress) in production.
-    app.run(debug=True, host="0.0.0.0", port=8080)
+    app.run(debug=True, host="0.0.0.0", port=int(os.getenv("PORT", 8080)))

@@ -1,4 +1,11 @@
 # NourrIR Flask Project
+  
+**Note**: You are on the REVAMP branch. This branch was created from `work` to continue the revamp effort. For the UI/UX revamp plan and detailed roadmap, see `REVAMP_ROADMAP.md`. Implementation tasks are tracked in the following files:
+- `TODO_nav.md` (Navigation)
+- `TODO_theme.md` (Dark/Light Mode Toggle)
+- `TODO_i18n.md` (Internationalization)
+- `TODO_layout.md` (Structured Layout & Responsive Design)
+- `TODO_tooltips.md` (Tippy.js Tooltips)
 
 NourrIR is a minimal Flask-based web application showcasing static pages and an AI-powered chat assistant ("NuRiH Ami") that proxies messages to an Ollama LLM server.
 
@@ -22,10 +29,12 @@ NourrIR is a minimal Flask-based web application showcasing static pages and an 
 - Static pages:
   - Home (`/`)
   - Integration Policy (`/politique`)
+  - Performance Policy (`/performance`)
   - HR Contact (`/contact`)
 - Floating AI chat widget ("NuRiH Ami") available on all pages
 - Proxy endpoint (`/nurih-ami`) to forward user messages to an Ollama LLM server
 - Dockerized application with Dockerfile and docker-compose support
+- Light/Dark theme toggle with DaisyUI (preference stored in localStorage)
 
 ## Prerequisites
 
@@ -77,6 +86,7 @@ Configure the Ollama API endpoints via environment variables:
   http://192.168.2.10:11434/api/models
   ```
 - `OLLAMA_MODEL`: The primary model identifier to use (e.g. `mistral:latest`). Default: `mistral:latest`.
+- `PORT`: Port for the Flask server. Default: `8080`.
 
 Example:
 
@@ -84,6 +94,7 @@ Example:
 export OLLAMA_CHAT_URL=https://ollama.artemis-ai.ca/v1/chat/completions
 export OLLAMA_MODELS_URL=https://ollama.artemis-ai.ca/v1/models
 export OLLAMA_MODEL=mistral:latest
+export PORT=8080
 ```
 
 ## Running the App
@@ -96,7 +107,8 @@ export FLASK_ENV=development
 export OLLAMA_CHAT_URL=https://ollama.artemis-ai.ca/v1/chat/completions
 export OLLAMA_MODELS_URL=https://ollama.artemis-ai.ca/v1/models
 export OLLAMA_MODEL=mistral:latest
-flask run --host=0.0.0.0 --port=8080
+export PORT=8080
+flask run --host=0.0.0.0 --port=$PORT
 ```
 
 Open your browser at [http://localhost:8080](http://localhost:8080).
@@ -105,11 +117,10 @@ Open your browser at [http://localhost:8080](http://localhost:8080).
 
 docker build -t nourrir-flask .
 docker run -d -p 8282:8080 \
-docker build -t nourrir-flask .
-docker run -d -p 8282:8080 \
   -e OLLAMA_CHAT_URL=https://ollama.artemis-ai.ca/v1/chat/completions \
   -e OLLAMA_MODELS_URL=https://ollama.artemis-ai.ca/v1/models \
   -e OLLAMA_MODEL=mistral:latest \
+  -e PORT=8080 \
   --name nourrir-flask nourrir-flask
 ```
 
@@ -125,9 +136,10 @@ By default, the web service is exposed on port `8282`.
 
 ## Usage
 
-- Navigate to the static pages via the top navigation bar.
+- Navigate to the static pages via the top navigation bar, including the new **Performance Policy** section.
 - Click the chat icon (💬) in the bottom right to open the NuRiH Ami assistant.
 - Type your questions or prompts; the message will be forwarded to the Ollama model and the response displayed in the chat widget.
+- Use the sun/moon toggle in the navbar to switch between light and dark themes. Your choice is saved between visits.
 
 ## Project Structure
 
@@ -145,13 +157,43 @@ By default, the web service is exposed on port `8282`.
     ├── politique.html
     └── contact.html
 ```
+## Running Tests
+
+Run the test suite with:
+
+```bash
+pytest
+```
+
+The tests expect a Frozen-Flask build under `build/`. A pytest fixture
+will automatically run `freezer.freeze()` if `build/index.html` is missing,
+so the first test run may take a moment while the site is generated.
+
+### Local static build
+
+Render the site to static HTML and serve it locally:
+
+```bash
+pip install -r requirements.txt
+python freeze.py
+npx serve build
+```
+
+
+## Deployment on Netlify
+
+1. Install the Netlify CLI and log in with `netlify login`.
+2. Run `netlify deploy --prod` to build and deploy.
+3. The build step installs requirements and runs `python freeze.py`.
+4. Netlify automatically uploads the rendered `build/` directory.
 
 ## Troubleshooting
 
 - **Cannot connect to Ollama**: Verify `OLLAMA_CHAT_URL` (or legacy `OLLAMA_URL`) and that the Ollama server is reachable from your network.
-- **Port conflicts**: Ensure ports `8080` (Flask) or `8282` (Docker) are available.
+- **Port conflicts**: Ensure ports `8080` (Flask) or `8282` (Docker) are available. Set `PORT` to change the Flask port.
 - **Asset loading issues**: Check the `/assets/<filename>` route and that files exist under `static/assets/`.
 
 ## License
 
 This project is provided for educational and demonstration purposes.
+Released under the MIT License.
