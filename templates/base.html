@@ -168,6 +168,7 @@
 </head>
 
 <body x-data="{ atTop: true }" @scroll.window="atTop = window.scrollY < 50">
+    <div id="top-sentinel"></div>
     <!-- ============ HEADER ============ -->
     <header x-show="atTop" x-transition.opacity.duration.300ms
             class="bg-white shadow-md py-4 text-center sticky top-0 z-40"
@@ -273,20 +274,8 @@
         <p style="margin-top:.5em;">UdeM REI 1850 - Equipe 4</p>
     </footer>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('appear');
-                } else {
-                    entry.target.classList.remove('appear');
-                }
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-section').forEach(el => observer.observe(el));
-    });
-    </script>
+
+    <script src="{{ url_for('static', filename='js/ui.js') }}" defer></script>
 
     {% block chatbot %}
     <!-- (chatbot markup/scripts unchanged) -->

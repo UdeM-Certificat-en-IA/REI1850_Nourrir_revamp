@@ -46,3 +46,4 @@
 - [x] Inconsistent typography across templates; applied Tailwind heading classes and DaisyUI prose sections.
 
 - [x] Integrated Sections dropdown; removed duplicated dropdown blocks from policy pages.
+- [x] Moved fade-section observer into `static/js/ui.js` with navbar sentinel logic; base template references the new script.
