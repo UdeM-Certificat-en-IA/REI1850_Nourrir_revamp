@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "home": "Home",
+    "politique": "Onboarding Policy",
+    "performance": "Performance Policy",
+    "contact": "HR Contact",
+    "coulisses": "Behind the Scenes",
+    "chatbot": "Ask HR"
+  },
+  "header": {
+    "slogan": "We crunch dopamine."
+  },
+  "index": {
+    "welcome": "Welcome to NourrIR",
+    "values": "Our Values",
+    "accessibility": "Accessibility",
+    "accessibility_desc": "Make well-being accessible to everyone, everywhere and simply.",
+    "inclusion": "Inclusion",
+    "inclusion_desc": "Create a safe and welcoming space for each individual.",
+    "creativity": "Creativity",
+    "creativity_desc": "Explore new ways to thrive and connect.",
+    "autonomy": "Autonomy",
+    "autonomy_desc": "Provide tools to take charge of your own well-being.",
+    "joy": "Joy",
+    "joy_desc": "Cultivate pleasure and positivity in daily life.",
+    "mission_title": "Our Mission",
+    "concept_title": "Our Concept",
+    "video_title": "Discover NourrIR in Video",
+    "target_title": "Target Audience",
+    "features_title": "Key Features",
+    "science_title": "Scientific Foundations",
+    "potential_title": "Potential"
+  },
+  "contact": {
+    "heading": "Contact our HR team",
+    "coordinates": "Our details:",
+    "form_title": "Contact form:",
+    "name": "Your name:",
+    "email": "Your email:",
+    "subject": "Subject:",
+    "message": "Your message:",
+    "submit": "Send (not functional)"
+  },
+  "coulisses": {
+    "title": "Behind the Scenes of NourrIR",
+    "mission": "Our Mission in this Project",
+    "tools": "The AI Tools of Our Creativity",
+    "workflow": "n8n Workflow of the HR Chatbot",
+    "learning": "A Continuous Learning Project",
+    "team": "Meet the Team"
+  }
+}

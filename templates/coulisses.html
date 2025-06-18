@@ -4,17 +4,17 @@
 
 {% block content %}
 
-    <h1>Les Coulisses de NourrIR</h1>
+    <h1 data-i18n="coulisses.title">Les Coulisses de NourrIR</h1>
     <div style="text-align: center; margin-top: 2.5em; margin-bottom: 2.5em;">
         <img src="{{ url_for('serve_assets', filename='equipe.png') }}" alt="Équipe NourrIR" style="max-width: 600px; width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
     </div>
 
     <p>Bienvenue dans les coulisses de la création de NourrIR ! Ce projet a été développé avec passion et innovation dans le cadre du cours <strong>REI 1850 – Gestion des ressources humaines et intelligence artificielle</strong> à l'Université de Montréal (Session été 2025).</p>
 
-    <h2>Notre Mission dans ce Projet</h2>
+    <h2 data-i18n="coulisses.mission">Notre Mission dans ce Projet</h2>
     <p>L'objectif était de concevoir et de prototyper une application web innovante explorant le potentiel de l'intelligence artificielle pour le bien-être. NourrIR est le fruit de cette exploration, visant à offrir une expérience utilisateur engageante et personnalisée.</p>
 
-    <h2>Les Outils d'IA de Notre Créativité</h2>
+    <h2 data-i18n="coulisses.tools">Les Outils d'IA de Notre Créativité</h2>
     <p>Pour donner vie à NourrIR, nous avons utilisé une gamme diversifiée d'outils d'intelligence artificielle :</p>
     <ul>
         <li><strong>Recherche et Sources :</strong>
@@ -62,7 +62,7 @@
             </ul>
         </li>
     </ul>
-    <h2>Workflow n8n du Chatbot RH</h2>
+    <h2 data-i18n="coulisses.workflow">Workflow n8n du Chatbot RH</h2>
     <div style="text-align: center; margin: 2em 0;">
         <img src="{{ url_for('serve_assets', filename='RAG.png') }}" alt="Capture d'écran du workflow n8n" style="max-width:800px; width:100%; border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
         <p style="margin-top: 1em;">Cette approche visuelle avec n8n, combinée au RAG, offre plusieurs avantages : elle permet d'orchestrer facilement les appels API, d'intégrer et d'interroger nos données internes pour des réponses cohérentes et pertinentes, et de maintenir ou d'adapter le workflow sans écrire de code.</p>
@@ -71,7 +71,7 @@
     <p>Consultez le code source sur GitHub : <a href="https://github.com/ArtemisAI/nourrir_flask" target="_blank">https://github.com/ArtemisAI/nourrir_flask</a>.</p>
     <p style="margin-top:1em; font-style:italic;">Cette application web fonctionne dans un conteneur Docker et est déployée sur Render.com. Elle est fournie à des fins pédagogiques uniquement.</p>
 
-    <h2>Un Projet d'Apprentissage Continu</h2>
+    <h2 data-i18n="coulisses.learning">Un Projet d'Apprentissage Continu</h2>
     <p>Ce projet représente une étape clé dans notre parcours d'apprentissage des technologies émergentes. Chaque outil et chaque phase de développement nous ont permis d'acquérir de nouvelles compétences et de mieux comprendre les enjeux et les possibilités de l'IA.</p>
 
     <div style="text-align: center; margin-top: 2.5em; margin-bottom: 2.5em;">
@@ -79,7 +79,7 @@
     </div>
 
     <div class="presentation-container" style="text-align:center; margin:2em 0;">
-        <h2>Voici l'Équipe</h2>
+        <h2 data-i18n="coulisses.team">Voici l'Équipe</h2>
         <iframe src="https://docs.google.com/gview?embedded=true&url={{ url_for('serve_assets', filename='Présentation équipe NourrIR.pptx', _external=True) }}" style="width:960px; height:569px;" frameborder="0">Votre navigateur ne supporte pas les iframes.</iframe>
     </div>
         
