@@ -33,4 +33,7 @@
 - [x] Header now hides on scroll and mobile menu fades in/out for smoother navigation.
 - [x] Navbar shrinks and logo moves left when scrolling down, restoring when scrolling up.
 - [x] Logo now relocates between header and navbar on scroll and dark-mode toggle is functional.
+- [x] Navbar buttons spaced evenly; toggle and language buttons aligned.
+- [x] Frozen-Flask wrote pages without `.html` extensions causing markdown-like display; patched freezer and added build tests.
 - [x] Inconsistent typography across templates; applied Tailwind heading classes and DaisyUI prose sections.
+

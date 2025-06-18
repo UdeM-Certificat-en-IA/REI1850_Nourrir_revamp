@@ -28,4 +28,4 @@
 
   - [x] **Clean Up Old CSS**: Remove or deprecate legacy custom CSS in `static/assets` that is superseded by Tailwind/DaisyUI.
 
- - [ ] **Update Tests**: Adjust any existing tests (snapshots or Selenium) to match the new HTML markup.
+ - [x] **Update Tests**: Adjust any existing tests (snapshots or Selenium) to match the new HTML markup.

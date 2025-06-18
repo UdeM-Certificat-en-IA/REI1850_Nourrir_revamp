@@ -44,4 +44,7 @@
 - Animated header fades out on scroll and mobile menu now transitions smoothly.
 - Navbar now shrinks on scroll and logo slides to the left for a cleaner sticky header.
 - Logo now physically moves from the header into the navbar on scroll, and menu buttons use consistent DaisyUI styles with a working dark-mode toggle.
+- Improved spacing for navbar buttons and grouped theme toggle with language switcher.
+- Fixed static build producing extensionless pages; patched freezer to write `index.html` files and added tests checking for markdown.
 - Replaced custom section and footer CSS with DaisyUI classes; unified heading styles across templates and removed unused rules.
+
