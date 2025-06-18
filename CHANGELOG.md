@@ -43,3 +43,4 @@
 - Integrated Tippy.js tooltips for glossary terms (dopamine, probiotiques, freemium, NurrIA) with theme-aware initialization and i18n support. Added tooltip translations in locale files.
 - Animated header fades out on scroll and mobile menu now transitions smoothly.
 - Navbar now shrinks on scroll and logo slides to the left for a cleaner sticky header.
+- Logo now physically moves from the header into the navbar on scroll, and menu buttons use consistent DaisyUI styles with a working dark-mode toggle.
