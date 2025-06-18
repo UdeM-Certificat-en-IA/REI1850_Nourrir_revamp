@@ -18,11 +18,11 @@
 
  - [x] **Verify DaisyUI Theme Activation**: Confirm that setting `data-theme="dark"` switches to dark mode (check `bg-base-100`, `bg-base-200`, `text-base-content`).
 
- - [ ] **Icon Feedback**: Optionally show toggle icons:
-   ```html
-   <span x-show="theme==='light'">☀️</span>
-   <span x-show="theme==='dark'">🌙</span>
-   ```
+ - [x] **Icon Feedback**: Optionally show toggle icons:
+  ```html
+  <span x-show="theme==='light'">☀️</span>
+  <span x-show="theme==='dark'">🌙</span>
+  ```
 
 - [x] **Persist on Reload**: Test that theme preference persists after page refresh and reloading the site.
 - [x] **Fix Regression**: Theme toggle stopped switching modes; bound `true-value` and `false-value` via `x-bind` to restore functionality.

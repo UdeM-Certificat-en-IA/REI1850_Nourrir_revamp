@@ -36,6 +36,7 @@
 - [x] Logo now relocates between header and navbar on scroll and dark-mode toggle is functional.
 - [x] Inconsistent typography across templates; applied Tailwind heading classes and DaisyUI prose sections.
 - [x] Navbar buttons spaced evenly; toggle and language buttons aligned.
+- [x] Added spacing and hover scaling to menu items; theme toggle now shows icons side by side above language buttons. Removed brand text when navbar shrinks.
 - [x] Frozen-Flask wrote pages without `.html` extensions causing markdown-like display; patched freezer and added build tests.
 - [x] Inconsistent typography across templates; applied Tailwind heading classes and DaisyUI prose sections.
 

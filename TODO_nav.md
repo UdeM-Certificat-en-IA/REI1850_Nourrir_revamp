@@ -33,4 +33,5 @@
 
 - [x] **Netlify Routing Check**: Confirm nav `href` values match existing routes (`/`, `/politique`, `/performance`, `/contact`) with no URL changes.
 - [x] **Menu Polish**: Added rounded borders, centered layout, and hover highlights on all navigation buttons.
+- [x] **Menu Spacing**: Added gaps and hover scaling for buttons; stacked theme toggle above language switcher.
 
