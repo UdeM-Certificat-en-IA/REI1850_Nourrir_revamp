@@ -28,4 +28,8 @@
 
   - [x] **Clean Up Old CSS**: Remove or deprecate legacy custom CSS in `static/assets` that is superseded by Tailwind/DaisyUI.
 
- - [x] **Update Tests**: Adjust any existing tests (snapshots or Selenium) to match the new HTML markup.
+- [x] **Update Tests**: Adjust any existing tests (snapshots or Selenium) to match the new HTML markup.
+
+ - [x] **Insert Performance Images**: Added NEW_Images to the performance policy pages with alternating layout and fade-in transitions.
+ - [x] **Fade-In on Scroll**: Implemented IntersectionObserver script to reveal sections smoothly when scrolling.
+ - [ ] **Add Missing Office Images**: Insert additional office scene visuals once assets become available.
