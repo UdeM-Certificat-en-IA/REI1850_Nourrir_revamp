@@ -1,6 +1,7 @@
 ## Changelog
 
 ### Unreleased
+- Created `REVAMP` branch from `work` to continue UI/UX revamp tasks.
 - Added responsive DaisyUI navbar with Tailwind and Alpine.js; active page now highlighted via context.
 - Cleaned up `README.md` by removing shell prompt artifacts and adding missing license closing text.
 - Added pytest fixture that freezes the site if `build/index.html` is missing; documented this under "Running Tests".
