@@ -187,44 +187,44 @@ app = Flask(__name__, static_folder='static', template_folder='templates')
 @app.route("/")
 def home():
     """Serves the main home page (index.html)."""
-    return render_template("index.html")
+    return render_template("index.html", active_page="home")
 
 @app.route("/politique/")
 def politique():
     """Serves the integration policy page (politique.html)."""
-    return render_template("politique.html")
+    return render_template("politique.html", active_page="politique")
 
 
 @app.route("/contact")
 def contact():
     """Serves the HR contact page (contact.html)."""
-    return render_template("contact.html")
+    return render_template("contact.html", active_page="contact")
 
 @app.route("/coulisses")
 def coulisses():
     """Serves the 'Les Coulisses' page (coulisses.html)."""
-    return render_template("coulisses.html")
+    return render_template("coulisses.html", active_page="coulisses")
 
 # --- Performance Policy Routes ---
 
 @app.route("/performance")
 def performance_index():
     """Serves the performance policy index page."""
-    return render_template("performance_policy/index.html")
+    return render_template("performance_policy/index.html", active_page="performance")
 
 
 @app.route("/performance/<section>")
 def performance_section(section: str):
     """Serves an individual performance policy section."""
     template_name = f"performance_policy/{section}.html"
-    return render_template(template_name)
+    return render_template(template_name, active_page="performance")
 
 # --- Chatbot UI Routes ---
 
 @app.route("/rh-chatbot")
 def rh_chatbot():
     """Serves the dedicated HR chatbot page (rh_chatbot.html)."""
-    return render_template("rh_chatbot.html")
+    return render_template("rh_chatbot.html", active_page="rh_chatbot")
 
 @app.route("/test-zone")
 def test_zone():
