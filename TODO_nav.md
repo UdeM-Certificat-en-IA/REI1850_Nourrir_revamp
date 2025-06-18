@@ -38,3 +38,5 @@
 
 - [x] Added "Sections" dropdown menu for performance pages.
 - [x] Replaced scroll listener with IntersectionObserver; navbar background now toggles `bg-opacity-90` when the top sentinel leaves view.
+- [x] Added fallback `bg-white` to nav for consistent background when DaisyUI styles are missing.
+- [x] Navbar uses DaisyUI `bg-primary` with CDN stylesheet to keep purple background.
