@@ -31,3 +31,4 @@
 - Added direct section links at the bottom of the performance index page and ensured dropdowns toggle via JavaScript.
 - Expanded route tests to cover all pages and updated politique path tests.
 - Added circular stage buttons on the performance index page with links to each phase and new route tests.
+- Added unit tests for Ollama query logic and fallback handling.

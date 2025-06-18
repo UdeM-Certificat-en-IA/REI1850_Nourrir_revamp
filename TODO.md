@@ -29,3 +29,4 @@
 - [x] Ensure Frozen-Flask outputs `.html` files for performance policy subpages.
 - [x] Add circular stage buttons linking to each phase.
 - [ ] Replace placeholder icons in stage buttons with branded graphics.
+- [x] Add unit tests for Ollama query and fallback functions.
