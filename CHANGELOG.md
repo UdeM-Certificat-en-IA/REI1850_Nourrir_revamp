@@ -23,3 +23,5 @@
   local module explicitly.
 - Added new unit tests covering the `/models` API and performance policy pages.
 - Replaced legacy performance policy with new policy structure and HTML sections.
+- Ensured Frozen-Flask outputs `.html` files for performance policy subpages.
+- Switched page logo to backgroundless variant.
