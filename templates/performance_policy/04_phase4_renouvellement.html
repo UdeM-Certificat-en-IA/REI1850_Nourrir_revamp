@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Phase 4 – Renouvellement{% endblock %}
 {% block content %}
+<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none">
 <p><a href="{{ url_for('performance_index') }}" class="back-button" aria-label="Retour à l'index">&#8592;<span class="back-text"> Retour à l'index</span></a></p>
 <details class="section-dropdown">
     <summary>Accéder aux sections</summary>
@@ -23,4 +24,6 @@
 <li><strong>Accompagner les parcours atypiques</strong> : Des mesures comme les pauses régénératives, les plans de soutien ou la diversification des responsabilités sont prévues pour les périodes de remise en question ou de sous-performance.</li>
 <li><strong>Clore et relancer le cycle</strong> : Le cycle se referme avec la Célébration de la Transformation, moment d’histoire partagée et d’activation du prochain cycle.</li>
 </ul>
+</ul>
+</section>
 {% endblock %}

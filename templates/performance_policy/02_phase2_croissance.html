@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Phase 2 – Croissance{% endblock %}
 {% block content %}
+<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none">
 <p><a href="{{ url_for('performance_index') }}" class="back-button" aria-label="Retour à l'index">&#8592;<span class="back-text"> Retour à l'index</span></a></p>
 <details class="section-dropdown">
     <summary>Accéder aux sections</summary>
@@ -23,4 +24,6 @@
 <li><strong>Soutenir les gestionnaires comme coachs</strong> : Les gestionnaires sont formés à différents styles de coaching pour accompagner leurs équipes de manière adaptée.</li>
 <li><strong>Suivre les indicateurs de croissance</strong> : Un tableau de bord de mi-parcours compile les indicateurs clés (confiance, progression, apprentissage, etc.) pour ajuster au besoin.</li>
 </ul>
+</ul>
+</section>
 {% endblock %}

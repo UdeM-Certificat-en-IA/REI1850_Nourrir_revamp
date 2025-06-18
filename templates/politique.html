@@ -4,27 +4,27 @@
 {% block title %}Politique d’intégration – NourrIR{% endblock %}
 
 {% block content %}
+<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none">
 
 <!-- YouTube video embed -->
-<div class="video-container" style="margin-bottom: 1.5em; text-align: center;">
+<div class="aspect-video my-6">
   <iframe
-    width="560" height="315"
     src="https://www.youtube.com/embed/8c5-p9Ag6Qg"
     title="Vidéo de la politique d'intégration"
+    class="w-full h-full"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen>
-  </iframe>
+    allowfullscreen></iframe>
 </div>
 
-<div id="password-verification" style="text-align:center; margin-bottom:2em;">
-  <label for="password-input" style="font-size:1.1em;">Entrez le mot de passe pour télécharger :</label>
-  <input id="password-input" type="password" style="margin:0 0.5em; padding:0.2em 0.4em; font-size:1em;" />
-  <button id="password-submit" style="padding:0.3em 0.6em; font-size:1em;">Valider</button>
-  <div id="password-error" style="color:red; font-size:0.9em; display:none; margin-top:0.5em;">Mot de passe incorrect.</div>
+<div id="password-verification" class="text-center my-4">
+  <label for="password-input" class="text-lg">Entrez le mot de passe pour télécharger :</label>
+  <input id="password-input" type="password" class="mx-2 px-2 py-1 text-base border rounded" />
+  <button id="password-submit" class="btn btn-primary">Valider</button>
+  <div id="password-error" class="text-red-600 text-sm mt-2 hidden">Mot de passe incorrect.</div>
 </div>
-<div id="download-section" style="text-align:center; margin-bottom:2em; display:none;">
-  <a id="download-link" href="{{ url_for('static', filename='assets/politique.pdf') }}" download style="font-size:1.1em;">
+<div id="download-section" class="text-center my-4 hidden">
+  <a id="download-link" href="{{ url_for('static', filename='assets/politique.pdf') }}" download class="text-lg">
     📄 Télécharger la politique d’intégration (PDF)
   </a>
 </div>
@@ -330,5 +330,6 @@ document.addEventListener('DOMContentLoaded', () => {
         <h2>Présentation interactive (Canva)</h2>
         <iframe src="https://www.canva.com/design/DAGn7T8JUpQ/view?embed" style="width:100%; height:600px; border:0;" allowfullscreen="allowfullscreen" loading="lazy"></iframe>
     </div>
+</section>
 
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Acteurs et responsabilités{% endblock %}
 {% block content %}
+<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none">
 <p><a href="{{ url_for('performance_index') }}" class="back-button" aria-label="Retour à l'index">&#8592;<span class="back-text"> Retour à l'index</span></a></p>
 <details class="section-dropdown">
     <summary>Accéder aux sections</summary>
@@ -37,4 +38,6 @@
 <tr><td>Soutien personnalisé</td><td>R</td><td>R / A</td><td>A</td><td>-</td></tr>
 <tr><td>Analyse organisationnelle</td><td>I</td><td>I</td><td>A / R</td><td>Appui aux indicateurs</td></tr>
 </table>
+</table>
+</section>
 {% endblock %}

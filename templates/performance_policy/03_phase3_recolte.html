@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Phase 3 – Récolte{% endblock %}
 {% block content %}
+<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none">
 <p><a href="{{ url_for('performance_index') }}" class="back-button" aria-label="Retour à l'index">&#8592;<span class="back-text"> Retour à l'index</span></a></p>
 <details class="section-dropdown">
     <summary>Accéder aux sections</summary>
@@ -22,4 +23,6 @@
 <li><strong>Construire un Plan de Croissance Personnalisé</strong> : Cette rencontre mène à l’élaboration d’un plan incluant objectifs de développement et participation à des projets transversaux.</li>
 <li><strong>Mettre en valeur la reconnaissance</strong> : La reconnaissance prend différentes formes (badges, rituels d’équipe, moments symboliques choisis par les collectifs).</li>
 </ul>
+</ul>
+</section>
 {% endblock %}
