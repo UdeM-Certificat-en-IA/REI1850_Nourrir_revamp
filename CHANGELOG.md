@@ -2,6 +2,7 @@
 ## Changelog
 
 ### Unreleased
+- Added performance sections dropdown in navbar and removed inline dropdown blocks from policy pages.
 - Created `REVAMP` branch from `work` to continue UI/UX revamp tasks.
 - Added responsive DaisyUI navbar with Tailwind and Alpine.js; active page now highlighted via context.
 - Cleaned up `README.md` by removing shell prompt artifacts and adding missing license closing text.
