@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Glossaire{% endblock %}
+{% block content %}
+<p><a href="{{ url_for('performance_index') }}">Retour à l'index</a></p>
+<h1>Glossaire des termes et acronymes</h1>
+<table>
+<tr><th>Terme / acronyme</th><th>Définition</th></tr>
+<tr><td>eNPS</td><td>Indicateur de satisfaction et de recommandation des employés. (de l’anglais Employee Net Promoter Score)</td></tr>
+<tr><td>TTP</td><td>Délai d’atteinte de la pleine contribution d’un nouvel employé. (de l’anglais Time-To-Productivity)</td></tr>
+<tr><td>Portail d’accueil interactif</td><td>Plateforme numérique personnalisée permettant au nouvel employé de découvrir l’organisation avant son arrivée et pendant son intégration.</td></tr>
+<tr><td>Pair d’intégration</td><td>Collègue assigné pour accompagner de façon informelle le nouvel employé durant ses premières semaines.</td></tr>
+</table>
+{% endblock %}
