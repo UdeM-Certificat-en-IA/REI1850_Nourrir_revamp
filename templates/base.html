@@ -166,22 +166,22 @@
         </div>
 
         <!-- menu & tools -->
-        <div class="flex-none flex items-center gap-2">
+        <div class="flex-none flex items-center gap-2 justify-center">
             <button class="btn btn-ghost md:hidden" aria-label="Toggle navigation" @click="open=!open">☰</button>
 
             <!-- desktop menu -->
-            <ul class="menu menu-horizontal gap-2 p-0 hidden md:flex" role="menu">
-                <li class="mx-1"><a href="{{ url_for('home') }}" class="btn btn-ghost {% if active_page=='home' %}active{% endif %}" role="menuitem" data-i18n="nav.home">Accueil</a></li>
-                <li class="mx-1"><a href="{{ url_for('politique') }}" class="btn btn-ghost {% if active_page=='politique' %}active{% endif %}" role="menuitem" data-i18n="nav.politique">Politique d’intégration</a></li>
-                <li class="mx-1"><a href="{{ url_for('performance_index') }}" class="btn btn-ghost {% if active_page=='performance' %}active{% endif %}" role="menuitem" data-i18n="nav.performance">Politique de performance</a></li>
-                <li class="mx-1"><a href="{{ url_for('contact') }}" class="btn btn-ghost {% if active_page=='contact' %}active{% endif %}" role="menuitem" data-i18n="nav.contact">Contact RH</a></li>
-                <li class="mx-1"><a href="{{ url_for('coulisses') }}" class="btn btn-ghost {% if active_page=='coulisses' %}active{% endif %}" role="menuitem" data-i18n="nav.coulisses">Les Coulisses</a></li>
-                <li class="mx-1"><a href="{{ url_for('rh_chatbot') }}" class="btn btn-ghost {% if active_page=='rh_chatbot' %}active{% endif %}" role="menuitem" data-i18n="nav.chatbot">Demandez aux RH</a></li>
+            <ul class="menu menu-horizontal gap-2 p-0 hidden md:flex mx-auto border border-base-300 rounded-box" role="menu">
+                <li class="mx-1"><a href="{{ url_for('home') }}" class="btn btn-ghost hover:bg-base-200 rounded-lg {% if active_page=='home' %}active{% endif %}" role="menuitem" data-i18n="nav.home">Accueil</a></li>
+                <li class="mx-1"><a href="{{ url_for('politique') }}" class="btn btn-ghost hover:bg-base-200 rounded-lg {% if active_page=='politique' %}active{% endif %}" role="menuitem" data-i18n="nav.politique">Politique d’intégration</a></li>
+                <li class="mx-1"><a href="{{ url_for('performance_index') }}" class="btn btn-ghost hover:bg-base-200 rounded-lg {% if active_page=='performance' %}active{% endif %}" role="menuitem" data-i18n="nav.performance">Politique de performance</a></li>
+                <li class="mx-1"><a href="{{ url_for('contact') }}" class="btn btn-ghost hover:bg-base-200 rounded-lg {% if active_page=='contact' %}active{% endif %}" role="menuitem" data-i18n="nav.contact">Contact RH</a></li>
+                <li class="mx-1"><a href="{{ url_for('coulisses') }}" class="btn btn-ghost hover:bg-base-200 rounded-lg {% if active_page=='coulisses' %}active{% endif %}" role="menuitem" data-i18n="nav.coulisses">Les Coulisses</a></li>
+                <li class="mx-1"><a href="{{ url_for('rh_chatbot') }}" class="btn btn-ghost hover:bg-base-200 rounded-lg {% if active_page=='rh_chatbot' %}active{% endif %}" role="menuitem" data-i18n="nav.chatbot">Demandez aux RH</a></li>
             </ul>
 
             <!-- theme toggle -->
             <label class="swap swap-rotate ml-2 cursor-pointer">
-                <input type="checkbox" class="hidden" x-model="theme" true-value="dark" false-value="light">
+                <input type="checkbox" class="hidden" x-model="theme" :true-value="'dark'" :false-value="'light'" @change="theme = $el.checked ? 'dark' : 'light'">
                 <!-- sun -->
                 <svg class="swap-on fill-current w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
                 <!-- moon -->
@@ -196,15 +196,15 @@
         </div>
 
         <!-- mobile dropdown -->
-        <ul class="menu menu-compact space-y-1 mt-2 w-full md:hidden"
+        <ul class="menu menu-compact space-y-1 mt-2 w-full md:hidden border border-base-300 rounded-box bg-base-100"
             x-show="open" x-transition.opacity.duration.200ms x-cloak
             @click="open=false" role="menu">
-            <li class="mx-1"><a href="{{ url_for('home') }}" class="btn btn-ghost w-full text-left {% if active_page=='home' %}active{% endif %}" data-i18n="nav.home">Accueil</a></li>
-            <li class="mx-1"><a href="{{ url_for('politique') }}" class="btn btn-ghost w-full text-left {% if active_page=='politique' %}active{% endif %}" data-i18n="nav.politique">Politique d’intégration</a></li>
-            <li class="mx-1"><a href="{{ url_for('performance_index') }}" class="btn btn-ghost w-full text-left {% if active_page=='performance' %}active{% endif %}" data-i18n="nav.performance">Politique de performance</a></li>
-            <li class="mx-1"><a href="{{ url_for('contact') }}" class="btn btn-ghost w-full text-left {% if active_page=='contact' %}active{% endif %}" data-i18n="nav.contact">Contact RH</a></li>
-            <li class="mx-1"><a href="{{ url_for('coulisses') }}" class="btn btn-ghost w-full text-left {% if active_page=='coulisses' %}active{% endif %}" data-i18n="nav.coulisses">Les Coulisses</a></li>
-            <li class="mx-1"><a href="{{ url_for('rh_chatbot') }}" class="btn btn-ghost w-full text-left {% if active_page=='rh_chatbot' %}active{% endif %}" data-i18n="nav.chatbot">Demandez aux RH</a></li>
+            <li class="mx-1"><a href="{{ url_for('home') }}" class="btn btn-ghost w-full text-left hover:bg-base-200 rounded-lg {% if active_page=='home' %}active{% endif %}" data-i18n="nav.home">Accueil</a></li>
+            <li class="mx-1"><a href="{{ url_for('politique') }}" class="btn btn-ghost w-full text-left hover:bg-base-200 rounded-lg {% if active_page=='politique' %}active{% endif %}" data-i18n="nav.politique">Politique d’intégration</a></li>
+            <li class="mx-1"><a href="{{ url_for('performance_index') }}" class="btn btn-ghost w-full text-left hover:bg-base-200 rounded-lg {% if active_page=='performance' %}active{% endif %}" data-i18n="nav.performance">Politique de performance</a></li>
+            <li class="mx-1"><a href="{{ url_for('contact') }}" class="btn btn-ghost w-full text-left hover:bg-base-200 rounded-lg {% if active_page=='contact' %}active{% endif %}" data-i18n="nav.contact">Contact RH</a></li>
+            <li class="mx-1"><a href="{{ url_for('coulisses') }}" class="btn btn-ghost w-full text-left hover:bg-base-200 rounded-lg {% if active_page=='coulisses' %}active{% endif %}" data-i18n="nav.coulisses">Les Coulisses</a></li>
+            <li class="mx-1"><a href="{{ url_for('rh_chatbot') }}" class="btn btn-ghost w-full text-left hover:bg-base-200 rounded-lg {% if active_page=='rh_chatbot' %}active{% endif %}" data-i18n="nav.chatbot">Demandez aux RH</a></li>
         </ul>
     </nav>
 

@@ -25,7 +25,8 @@
 - [x] Duplicate Docker commands in README created confusion; removed extra build/run lines.
 - [x] Tests failed when the `build/` directory was missing. Added an autouse fixture to generate the static site before tests.
 - [ ] Verify DaisyUI navbar works consistently across browsers.
-- [ ] Ensure new theme toggle functions across browsers and persists across sessions.
+ - [x] Ensure new theme toggle functions across browsers and persists across sessions.
+ - [x] Navigation menu lacked hover highlight and rounded borders; centered menu and added hover styles.
 - [ ] Expand translations to remaining pages and content.
 - [x] Old page-specific CSS made maintenance difficult; migrated to Tailwind utility classes and DaisyUI components.
 - [ ] Verify mobile behavior of new tooltips.

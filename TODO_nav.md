@@ -31,5 +31,6 @@
 
  - [x] **Logo Integration**: If a logo exists, place it on the left with `<img>` inside a `btn btn-ghost`, sized with Tailwind classes (e.g., `w-10 mr-2`) and proper `alt` text.
 
- - [x] **Netlify Routing Check**: Confirm nav `href` values match existing routes (`/`, `/politique`, `/performance`, `/contact`) with no URL changes.
+- [x] **Netlify Routing Check**: Confirm nav `href` values match existing routes (`/`, `/politique`, `/performance`, `/contact`) with no URL changes.
+- [x] **Menu Polish**: Added rounded borders, centered layout, and hover highlights on all navigation buttons.
 
