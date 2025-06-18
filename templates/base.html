@@ -117,6 +117,68 @@
             opacity: 0.88; /* Adjusted opacity */
             box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
+
+        /* Back to index arrow button */
+        .back-button {
+            display: inline-block;
+            font-size: 1.2em;
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            color: var(--midnight-navy);
+            text-decoration: none;
+            transition: background-color 0.2s, color 0.2s;
+            position: relative;
+        }
+        .back-button:hover {
+            background-color: var(--dopamine-purple);
+            color: var(--light-text);
+        }
+        .back-button .back-text {
+            visibility: hidden;
+            opacity: 0;
+            margin-left: 0.3em;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+        .back-button:hover .back-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Dropdown menu for performance sections */
+        .section-dropdown {
+            margin-bottom: 1.2em;
+        }
+        .section-dropdown summary {
+            background: var(--dopamine-purple);
+            color: var(--light-text);
+            padding: 0.5em 0.8em;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .section-dropdown[open] summary {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .section-dropdown ul {
+            list-style: none;
+            margin: 0;
+            padding: 0.5em;
+            border: 1px solid var(--dopamine-purple);
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+        }
+        .section-dropdown li {
+            margin: 0.4em 0;
+        }
+        .section-dropdown a {
+            color: var(--dopamine-purple);
+            text-decoration: none;
+        }
+        .section-dropdown a:hover {
+            text-decoration: underline;
+        }
         
         /* Video Container (Consolidated for potential reuse) */
         .video-container {
@@ -508,6 +570,15 @@
     }
     </script>
     <!-- Fin NurrIA -->
+    <script>
+        // Ensure <details> dropdowns toggle reliably across browsers
+        document.querySelectorAll('.section-dropdown summary').forEach(summary => {
+            summary.addEventListener('click', (e) => {
+                const details = summary.parentElement;
+                details.open = !details.open;
+            });
+        });
+    </script>
     {% endblock %}
 </body>
 </html>
