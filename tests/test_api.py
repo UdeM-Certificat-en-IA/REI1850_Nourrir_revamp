@@ -28,10 +28,10 @@ def test_models_endpoint(client):
 
 
 def test_performance_section(client):
-    resp = client.get("/performance/01_purpose_scope")
+    resp = client.get("/performance/01_phase1_semis")
     assert resp.status_code == 200
-    # Page is in French; ensure a key heading exists
-    assert b"Objet et port\xc3\xa9e" in resp.data
+    # Ensure the new section heading is present
+    assert b"Phase 1" in resp.data
 
 
 def test_performance_invalid_section(client):

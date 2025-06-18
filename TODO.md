@@ -7,6 +7,7 @@
 - [x] Verify Netlify deployment with serverless-wsgi wrapper.
 - [x] Expand automated tests beyond network smoke test.
 - [x] Integrate performance policy pages into the Flask app.
+- [x] Replace old performance policy with NEW version and update sections.
 - [ ] Convert network smoke test to optional script and exclude from pytest.
 - [ ] Improve responsive styling for performance policy pages.
 - [x] Validate Netlify deploy after removing python version setting.

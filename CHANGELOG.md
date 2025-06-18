@@ -22,3 +22,4 @@
 - Fixed failing route tests by adjusting `tests/test_routes.py` to load the
   local module explicitly.
 - Added new unit tests covering the `/models` API and performance policy pages.
+- Replaced legacy performance policy with new policy structure and HTML sections.
