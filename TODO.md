@@ -10,6 +10,9 @@
 - [x] Replace old performance policy with NEW version and update sections.
 - [ ] Convert network smoke test to optional script and exclude from pytest.
 - [ ] Improve responsive styling for performance policy pages.
+- [x] Add dropdown navigation menu to performance policy pages.
+- [x] Replace back-to-index links with arrow buttons.
+- [x] Embed policy explanation video on the performance index page.
 - [x] Validate Netlify deploy after removing python version setting.
 - [x] Confirm Netlify functions deploy correctly with new directory setting.
 - [x] Verify 404 issue is resolved with base path stripping.

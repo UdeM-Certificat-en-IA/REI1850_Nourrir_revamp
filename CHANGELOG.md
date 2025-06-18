@@ -25,3 +25,5 @@
 - Replaced legacy performance policy with new policy structure and HTML sections.
 - Ensured Frozen-Flask outputs `.html` files for performance policy subpages.
 - Switched page logo to backgroundless variant.
+- Added dropdown navigation and arrow-style back buttons on performance policy pages.
+- Embedded policy explanation video at the top of the performance index page.

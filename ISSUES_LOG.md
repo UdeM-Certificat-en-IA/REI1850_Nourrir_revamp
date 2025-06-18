@@ -6,6 +6,7 @@
 - [x] Route tests initially failed with `ModuleNotFoundError: No module named`
   `app`; fixed by prepending the project root to `sys.path` in tests.
 - [ ] Performance policy pages need improved responsive styling.
+- [ ] Assess accessibility of new dropdown and arrow navigation.
 - [ ] Verify new policy sections render correctly after restructuring.
 - [x] Performance policy subpages frozen without `.html` extension caused raw Markdown display. Patched `freeze.py` to append `.html`.
 - [x] Netlify deploy failed to parse configuration; replaced `python_runtime` with `python_version`.
