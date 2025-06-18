@@ -51,3 +51,4 @@
 - [x] Replaced `@scroll.window` listener with custom `sentinel-change` event; navbar opacity toggles via IntersectionObserver.
 - [x] Added Playwright tests for theme toggle, navbar transparency and mobile menu.
 - [x] Initialized theme early with inline script and `ui.js` click handler; toggle now sets `aria-pressed` and persists choice.
+- [x] DaisyUI classes missing from compiled CSS; created `input.css` and updated Tailwind config to use the plugin's default export.
