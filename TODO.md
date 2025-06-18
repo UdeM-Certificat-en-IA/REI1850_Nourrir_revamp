@@ -2,7 +2,7 @@
 
 This branch implements the UI/UX revamp and was created from `work`. See `REVAMP_ROADMAP.md` for full details. Implementation tasks are tracked in file-specific checklists:
 
-- [ ] TODO_nav.md - Adaptive Navigation & Responsive Menu Tasks
+ - [x] TODO_nav.md - Adaptive Navigation & Responsive Menu Tasks
 - [x] TODO_theme.md - Dark/Light Mode Toggle Tasks
 - [ ] TODO_i18n.md - Internationalization (Multilingual) Tasks
 - [ ] TODO_layout.md - Structured Sections & Responsive Design Tasks

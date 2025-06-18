@@ -25,7 +25,8 @@
 - [x] Duplicate Docker commands in README created confusion; removed extra build/run lines.
 - [x] Tests failed when the `build/` directory was missing. Added an autouse fixture to generate the static site before tests.
 - [ ] Verify DaisyUI navbar works consistently across browsers.
-- [ ] Ensure new theme toggle functions across browsers and persists across sessions.
+ - [x] Ensure new theme toggle functions across browsers and persists across sessions.
+ - [x] Navigation menu lacked hover highlight and rounded borders; centered menu and added hover styles.
 - [ ] Expand translations to remaining pages and content.
 - [x] Old page-specific CSS made maintenance difficult; migrated to Tailwind utility classes and DaisyUI components.
 - [ ] Verify mobile behavior of new tooltips.
@@ -35,6 +36,7 @@
 - [x] Logo now relocates between header and navbar on scroll and dark-mode toggle is functional.
 - [x] Inconsistent typography across templates; applied Tailwind heading classes and DaisyUI prose sections.
 - [x] Navbar buttons spaced evenly; toggle and language buttons aligned.
+- [x] Added spacing and hover scaling to menu items; theme toggle now shows icons side by side above language buttons. Removed brand text when navbar shrinks.
 - [x] Frozen-Flask wrote pages without `.html` extensions causing markdown-like display; patched freezer and added build tests.
 - [x] Inconsistent typography across templates; applied Tailwind heading classes and DaisyUI prose sections.
 
