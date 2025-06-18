@@ -24,7 +24,8 @@
 
  - [x] **Logo Transition**: Shrink and move the logo to the left as the header hides, returning to center when scrolling back to the top.
 
- - [ ] **Dark Mode Toggle**: Ensure the theme switch is easily clickable and aligned to the right of the navbar.
+ - [x] **Dark Mode Toggle**: Ensure the theme switch is easily clickable and aligned to the right of the navbar.
+
 
  - [x] **Style Consistency**: Use DaisyUI classes for styling. Optionally apply `btn btn-ghost` on links or default `<a>` styling, and accent colors for hover/active states.
 

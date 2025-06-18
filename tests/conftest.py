@@ -8,6 +8,8 @@ from freeze import freezer
 
 @pytest.fixture(scope="session", autouse=True)
 def ensure_build():
-    """Generate the static build if it doesn't exist."""
-    if not os.path.exists("build/index.html"):
-        freezer.freeze()
+    """Generate a fresh static build for tests."""
+    if os.path.exists("build"):
+        import shutil
+        shutil.rmtree("build")
+    freezer.freeze()
