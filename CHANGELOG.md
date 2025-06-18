@@ -56,6 +56,7 @@
 - Improved spacing for navbar buttons and grouped theme toggle with language switcher.
 - Fixed dark/light toggle regression and polished menu styles with rounded borders and hover highlights.
 - Spaced out menu buttons further with hover scaling; theme toggle icons display side-by-side above language switcher and brand text hides on scroll.
+- Replaced checkbox theme switch with an accessible button that toggles `aria-pressed` and swaps sun/moon icons without layout shift.
 - Fixed static build producing extensionless pages; patched freezer to write `index.html` files and added tests checking for markdown.
 - Replaced custom section and footer CSS with DaisyUI classes; unified heading styles across templates and removed unused rules.
 
