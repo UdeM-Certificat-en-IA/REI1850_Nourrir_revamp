@@ -35,3 +35,4 @@
 - [x] **Menu Polish**: Added rounded borders, centered layout, and hover highlights on all navigation buttons.
 - [x] **Menu Spacing**: Added gaps and hover scaling for buttons; stacked theme toggle above language switcher.
 
+- [x] Added "Sections" dropdown menu for performance pages.

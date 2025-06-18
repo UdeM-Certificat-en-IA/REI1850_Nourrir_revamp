@@ -209,12 +209,12 @@
 
             <!-- desktop menu -->
             <ul class="menu menu-horizontal gap-3 p-1 hidden md:flex mx-auto border border-base-300 rounded-box bg-base-100 mx-4" role="menu">
-                <li class="mx-1"><a href="{{ url_for('home') }}" class="btn btn-ghost hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='home' %}active{% endif %}" role="menuitem" data-i18n="nav.home">Accueil</a></li>
-                <li class="mx-1"><a href="{{ url_for('politique') }}" class="btn btn-ghost hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='politique' %}active{% endif %}" role="menuitem" data-i18n="nav.politique">Politique d’intégration</a></li>
-                <li class="mx-1"><a href="{{ url_for('performance_index') }}" class="btn btn-ghost hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='performance' %}active{% endif %}" role="menuitem" data-i18n="nav.performance">Politique de performance</a></li>
-                <li class="mx-1"><a href="{{ url_for('contact') }}" class="btn btn-ghost hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='contact' %}active{% endif %}" role="menuitem" data-i18n="nav.contact">Contact RH</a></li>
-                <li class="mx-1"><a href="{{ url_for('coulisses') }}" class="btn btn-ghost hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='coulisses' %}active{% endif %}" role="menuitem" data-i18n="nav.coulisses">Les Coulisses</a></li>
-                <li class="mx-1"><a href="{{ url_for('rh_chatbot') }}" class="btn btn-ghost hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='rh_chatbot' %}active{% endif %}" role="menuitem" data-i18n="nav.chatbot">Demandez aux RH</a></li>
+                <li class="mx-1" @click="open=false"><a href="{{ url_for('home') }}" class="btn btn-ghost hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='home' %}active{% endif %}" role="menuitem" data-i18n="nav.home">Accueil</a></li>
+                <li class="mx-1" @click="open=false"><a href="{{ url_for('politique') }}" class="btn btn-ghost hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='politique' %}active{% endif %}" role="menuitem" data-i18n="nav.politique">Politique d’intégration</a></li>
+                <li class="mx-1" @click="open=false"><a href="{{ url_for('performance_index') }}" class="btn btn-ghost hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='performance' %}active{% endif %}" role="menuitem" data-i18n="nav.performance">Politique de performance</a></li>
+                <li class="mx-1" @click="open=false"><a href="{{ url_for('contact') }}" class="btn btn-ghost hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='contact' %}active{% endif %}" role="menuitem" data-i18n="nav.contact">Contact RH</a></li>
+                <li class="mx-1" @click="open=false"><a href="{{ url_for('coulisses') }}" class="btn btn-ghost hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='coulisses' %}active{% endif %}" role="menuitem" data-i18n="nav.coulisses">Les Coulisses</a></li>
+                <li class="mx-1" @click="open=false"><a href="{{ url_for('rh_chatbot') }}" class="btn btn-ghost hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='rh_chatbot' %}active{% endif %}" role="menuitem" data-i18n="nav.chatbot">Demandez aux RH</a></li>
             </ul>
 
             <div class="flex flex-col items-center ml-2 space-y-1">
@@ -233,13 +233,31 @@
         <!-- mobile dropdown -->
         <ul class="menu menu-compact space-y-1 mt-2 w-full md:hidden border border-base-300 rounded-box bg-base-100"
             x-show="open" x-transition.opacity.duration.200ms x-cloak
-            @click="open=false" role="menu">
-            <li class="mx-1"><a href="{{ url_for('home') }}" class="btn btn-ghost w-full text-left hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='home' %}active{% endif %}" data-i18n="nav.home">Accueil</a></li>
-            <li class="mx-1"><a href="{{ url_for('politique') }}" class="btn btn-ghost w-full text-left hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='politique' %}active{% endif %}" data-i18n="nav.politique">Politique d’intégration</a></li>
-            <li class="mx-1"><a href="{{ url_for('performance_index') }}" class="btn btn-ghost w-full text-left hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='performance' %}active{% endif %}" data-i18n="nav.performance">Politique de performance</a></li>
-            <li class="mx-1"><a href="{{ url_for('contact') }}" class="btn btn-ghost w-full text-left hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='contact' %}active{% endif %}" data-i18n="nav.contact">Contact RH</a></li>
-            <li class="mx-1"><a href="{{ url_for('coulisses') }}" class="btn btn-ghost w-full text-left hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='coulisses' %}active{% endif %}" data-i18n="nav.coulisses">Les Coulisses</a></li>
-            <li class="mx-1"><a href="{{ url_for('rh_chatbot') }}" class="btn btn-ghost w-full text-left hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='rh_chatbot' %}active{% endif %}" data-i18n="nav.chatbot">Demandez aux RH</a></li>
+            role="menu">
+            <li class="mx-1" @click="open=false"><a href="{{ url_for('home') }}" class="btn btn-ghost w-full text-left hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='home' %}active{% endif %}" data-i18n="nav.home">Accueil</a></li>
+            <li class="mx-1" @click="open=false"><a href="{{ url_for('politique') }}" class="btn btn-ghost w-full text-left hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='politique' %}active{% endif %}" data-i18n="nav.politique">Politique d’intégration</a></li>
+            <li class="mx-1" @click="open=false"><a href="{{ url_for('performance_index') }}" class="btn btn-ghost w-full text-left hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='performance' %}active{% endif %}" data-i18n="nav.performance">Politique de performance</a></li>
+            {% if active_page == 'performance' %}
+            <li class="mx-1">
+                <div class="dropdown w-full">
+                    <label tabindex="0" class="btn btn-ghost w-full text-left rounded-lg hover:bg-base-200 transition ease-in duration-150" @click.stop>Sections ▾</label>
+                    <ul x-show="open" tabindex="0" class="dropdown-content z-50 menu p-2 shadow bg-base-100 rounded-box w-52 transition ease-in duration-150">
+                        <li><a href="{{ url_for('performance_section', section='01_phase1_semis') }}" @click="open=false">Phase&nbsp;1 – Semis</a></li>
+                        <li><a href="{{ url_for('performance_section', section='02_phase2_croissance') }}" @click="open=false">Phase&nbsp;2 – Croissance</a></li>
+                        <li><a href="{{ url_for('performance_section', section='03_phase3_recolte') }}" @click="open=false">Phase&nbsp;3 – Récolte</a></li>
+                        <li><a href="{{ url_for('performance_section', section='04_phase4_renouvellement') }}" @click="open=false">Phase&nbsp;4 – Renouvellement</a></li>
+                        <li><a href="{{ url_for('performance_section', section='05_roles_responsabilites') }}" @click="open=false">Acteurs clés et responsabilités</a></li>
+                        <li><a href="{{ url_for('performance_section', section='06_conclusion') }}" @click="open=false">Conclusion</a></li>
+                        <li><a href="{{ url_for('performance_section', section='07_glossaire') }}" @click="open=false">Glossaire</a></li>
+                        <li><a href="{{ url_for('performance_section', section='08_bibliographie') }}" @click="open=false">Bibliographie</a></li>
+                        <li><a href="{{ url_for('performance_section', section='09_resume') }}" @click="open=false">Résumé de correction</a></li>
+                    </ul>
+                </div>
+            </li>
+            {% endif %}
+            <li class="mx-1" @click="open=false"><a href="{{ url_for('contact') }}" class="btn btn-ghost w-full text-left hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='contact' %}active{% endif %}" data-i18n="nav.contact">Contact RH</a></li>
+            <li class="mx-1" @click="open=false"><a href="{{ url_for('coulisses') }}" class="btn btn-ghost w-full text-left hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='coulisses' %}active{% endif %}" data-i18n="nav.coulisses">Les Coulisses</a></li>
+            <li class="mx-1" @click="open=false"><a href="{{ url_for('rh_chatbot') }}" class="btn btn-ghost w-full text-left hover:bg-base-200 rounded-lg transition-transform duration-150 hover:scale-105 {% if active_page=='rh_chatbot' %}active{% endif %}" data-i18n="nav.chatbot">Demandez aux RH</a></li>
         </ul>
     </nav>
 

@@ -44,3 +44,4 @@
 - [x] Frozen-Flask wrote pages without `.html` extensions causing markdown-like display; patched freezer and added build tests.
 - [x] Inconsistent typography across templates; applied Tailwind heading classes and DaisyUI prose sections.
 
+- [x] Integrated Sections dropdown; removed duplicated dropdown blocks from policy pages.
