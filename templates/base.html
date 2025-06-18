@@ -160,27 +160,6 @@
             text-decoration: underline;
         }
         
-        /* Video Container (Consolidated for potential reuse) */
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            background: #000; /* Optional: background for when video is loading */
-            margin: 1.5em auto 2em auto; /* Centered with auto margins */
-            border-radius: 8px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0; /* Ensure no default iframe border */
-            border-radius: 8px; /* Match container's border-radius */
-        }
 
         /* Circular stage buttons on performance index */
         .stage-buttons {
@@ -271,10 +250,6 @@
             footer { 
                 padding: 1rem 0.5rem; 
                 font-size: 0.85em; 
-            }
-            .video-container { /* Ensure video container adapts */
-                margin-left: 0;
-                margin-right: 0;
             }
         }
 

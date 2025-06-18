@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Bibliographie{% endblock %}
 {% block content %}
+<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none">
 <p><a href="{{ url_for('performance_index') }}" class="back-button" aria-label="Retour à l'index">&#8592;<span class="back-text"> Retour à l'index</span></a></p>
 <details class="section-dropdown">
     <summary>Accéder aux sections</summary>
@@ -25,4 +26,6 @@
 <li>WellPower. (2023). <em>The Many Benefits of Creativity for Our Mental Health</em>. <a href="https://www.wellpower.org/blog/the-many-benefits-of-creativity-for-our-mental-health">lien</a></li>
 <li>Health.com. (2024). <em>Can Probiotics Boost Mood?</em> <a href="https://www.health.com/can-probiotics-boost-mood-11718737">lien</a></li>
 </ul>
+</ul>
+</section>
 {% endblock %}

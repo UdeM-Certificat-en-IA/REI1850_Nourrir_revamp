@@ -36,3 +36,4 @@
 - Added unit tests for Ollama query logic and fallback handling.
 - Fixed duplicate Docker build/run commands in README.
 - Implemented basic internationalization with i18next, French/English locale files, and a navbar language switcher.
+- Reworked layout using Tailwind sections and DaisyUI cards; removed redundant CSS and improved image alt text.

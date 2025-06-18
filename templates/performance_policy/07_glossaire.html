@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Glossaire{% endblock %}
 {% block content %}
+<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none">
 <p><a href="{{ url_for('performance_index') }}" class="back-button" aria-label="Retour à l'index">&#8592;<span class="back-text"> Retour à l'index</span></a></p>
 <details class="section-dropdown">
     <summary>Accéder aux sections</summary>
@@ -24,4 +25,6 @@
 <tr><td>Portail d’accueil interactif</td><td>Plateforme numérique personnalisée permettant au nouvel employé de découvrir l’organisation avant son arrivée et pendant son intégration.</td></tr>
 <tr><td>Pair d’intégration</td><td>Collègue assigné pour accompagner de façon informelle le nouvel employé durant ses premières semaines.</td></tr>
 </table>
+</table>
+</section>
 {% endblock %}

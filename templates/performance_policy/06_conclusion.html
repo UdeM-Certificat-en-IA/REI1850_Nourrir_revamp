@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Conclusion{% endblock %}
 {% block content %}
+<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none">
 <p><a href="{{ url_for('performance_index') }}" class="back-button" aria-label="Retour à l'index">&#8592;<span class="back-text"> Retour à l'index</span></a></p>
 <details class="section-dropdown">
     <summary>Accéder aux sections</summary>
@@ -18,4 +19,5 @@
 </details>
 <h1>Conclusion</h1>
 <p>Chez NourrIR, la gestion de la performance est un cycle vivant et engageant, qui met en dialogue les aspirations individuelles, les besoins de l’organisation et les possibilités offertes par la technologie. Elle favorise un climat de responsabilité partagée, de reconnaissance sincère et de développement continu. Ici, l’évaluation n’est jamais une fin : elle est un engrais pour la prochaine saison.</p>
+</section>
 {% endblock %}

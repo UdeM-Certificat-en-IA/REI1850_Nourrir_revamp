@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Résumé de correction{% endblock %}
 {% block content %}
+<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none">
 <p><a href="{{ url_for('performance_index') }}" class="back-button" aria-label="Retour à l'index">&#8592;<span class="back-text"> Retour à l'index</span></a></p>
 <details class="section-dropdown">
     <summary>Accéder aux sections</summary>
@@ -31,4 +32,5 @@
 <li><strong>Cartographie des rôles selon une matrice RACI claire</strong> pour une compréhension opérationnelle.</li>
 </ul>
 <p>Ce travail combine des pratiques contemporaines de gestion des talents, une approche centrée sur l’expérience employé, et une réflexion critique sur l’utilisation de l’IA dans les processus RH. Il vise à démontrer la capacité à concevoir un processus structuré, cohérent, éthique et aligné sur les valeurs organisationnelles, tout en répondant aux standards académiques de rigueur et de pertinence.</p>
+</section>
 {% endblock %}

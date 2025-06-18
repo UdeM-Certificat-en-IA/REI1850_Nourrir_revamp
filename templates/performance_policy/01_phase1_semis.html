@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Phase 1 – Semis{% endblock %}
 {% block content %}
+<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none">
 <p><a href="{{ url_for('performance_index') }}" class="back-button" aria-label="Retour à l'index">&#8592;<span class="back-text"> Retour à l'index</span></a></p>
 <details class="section-dropdown">
     <summary>Accéder aux sections</summary>
@@ -23,4 +24,6 @@
 <li><strong>Co-définir les objectifs</strong> : La co-définition se fait en atelier tripartite entre l’employé·e, le gestionnaire, et, si pertinent, un·e collègue pair·e.</li>
 <li><strong>Visualiser et suivre les objectifs</strong> : Les objectifs sont ensuite visualisés dans un tableau de bord personnel permettant un suivi continu.</li>
 </ul>
+</ul>
+</section>
 {% endblock %}

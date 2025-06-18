@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}Processus de performance – NourrIR{% endblock %}
 {% block content %}
-<h1>Processus de gestion de la performance chez NourrIR</h1>
+<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none">
+<h1 class="text-2xl font-bold">Processus de gestion de la performance chez NourrIR</h1>
 <p>Cultiver l’épanouissement par le sens et la science</p>
-<div class="video-container">
-    <iframe src="https://www.youtube.com/embed/P9b1b3ms4Vk" title="Explication de la politique de performance" allowfullscreen></iframe>
+<div class="aspect-video my-6">
+    <iframe src="https://www.youtube.com/embed/P9b1b3ms4Vk" title="Explication de la politique de performance" class="w-full h-full" allowfullscreen></iframe>
 </div>
 
 <details class="section-dropdown">
@@ -94,5 +95,7 @@
     <li><a href="{{ url_for('performance_section', section='09_resume') }}">Résumé de correction</a></li>
 </ul>
 <hr />
+
+</section>
 
 {% endblock %}
