@@ -27,3 +27,4 @@
 - [ ] Ensure new theme toggle functions across browsers and persists across sessions.
 - [ ] Expand translations to remaining pages and content.
 - [x] Old page-specific CSS made maintenance difficult; migrated to Tailwind utility classes and DaisyUI components.
+- [ ] Verify mobile behavior of new tooltips.

@@ -48,5 +48,11 @@
     "workflow": "Workflow n8n du Chatbot RH",
     "learning": "Un Projet d'Apprentissage Continu",
     "team": "Voici l'Équipe"
+  },
+  "tooltips": {
+    "dopamine": "Neurotransmetteur lié au plaisir et à la motivation.",
+    "probiotiques": "Micro-organismes bénéfiques pour la flore intestinale.",
+    "freemium": "Modèle gratuit avec options payantes.",
+    "nurria": "Assistante IA de NourrIR."
   }
 }
