@@ -8,6 +8,9 @@
     <!-- Google Fonts for style -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="icon" href="{{ url_for('serve_assets', filename='NEW_Images/logo_NO_BACKGROUND.png') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@3.11.0/dist/full.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         :root {
             --dopamine-purple: #7C4DFF;
@@ -58,32 +61,6 @@
             font-size: 1.1em;
         }
 
-        /* Navigation Styles */
-        nav { 
-            background: var(--dopamine-purple); 
-            padding: 0.75rem 0.5rem; 
-            text-align: center; 
-            position: sticky;
-            /* NOTE: top value is estimated header height. Fragile if header content changes height. */
-            top: 158px; 
-            z-index: 999; 
-            margin-bottom: 1.5rem; /* Ensures space below nav before main content starts */
-        }
-        nav a { 
-            color: var(--light-text); 
-            margin: 0.3rem 0.75rem; /* Allows wrapping on smaller screens before media query */
-            text-decoration: none; 
-            font-weight: 600; 
-            font-size: 1.05em; 
-            padding: 0.4em 0.6em; /* Slightly increased padding for better touch targets */
-            border-radius: 4px;
-            transition: background-color 0.2s, color 0.2s; /* Faster transition */
-        }
-        nav a:hover, nav a:focus { /* Combined for brevity */
-            text-decoration: underline; 
-            color: var(--joy-yellow);
-            background-color: rgba(255,255,255,0.15); /* Slightly more visible hover */
-        }
 
         /* Main Content Area Styles */
         main { 
@@ -337,13 +314,31 @@
         <img src="{{ url_for('serve_assets', filename='NEW_Images/logo_NO_BACKGROUND.png') }}" alt="Logo NourrIR" class="logo">
         <div class="slogan">On croque la dopamine.</div>
     </header>
-    <nav>
-        <a href="{{ url_for('home') }}">Accueil</a> |
-        <a href="{{ url_for('politique') }}">Politique d’intégration</a> |
-        <a href="{{ url_for('performance_index') }}">Politique de performance</a> |
-        <a href="{{ url_for('contact') }}">Contact RH</a> |
-        <a href="{{ url_for('coulisses') }}">Les Coulisses</a> |
-        <a href="{{ url_for('rh_chatbot') }}">Demandez aux RH</a>
+    <nav x-data="{open:false}" class="navbar bg-base-100 sticky top-[158px] z-50 shadow-md" @keydown.escape.window="open=false">
+        <div class="flex-1">
+            <a href="{{ url_for('home') }}" class="btn btn-ghost normal-case text-xl">
+                <img src="{{ url_for('serve_assets', filename='NEW_Images/logo_NO_BACKGROUND.png') }}" alt="Logo NourrIR" class="w-10 mr-2" />NourrIR
+            </a>
+        </div>
+        <div class="flex-none">
+            <button class="btn btn-ghost md:hidden" aria-label="Toggle navigation" @click="open = !open">☰</button>
+            <ul class="menu menu-horizontal p-0 hidden md:flex" role="menu">
+                <li><a href="{{ url_for('home') }}" role="menuitem" class="{% if active_page == 'home' %}active{% endif %}">Accueil</a></li>
+                <li><a href="{{ url_for('politique') }}" role="menuitem" class="{% if active_page == 'politique' %}active{% endif %}">Politique d’intégration</a></li>
+                <li><a href="{{ url_for('performance_index') }}" role="menuitem" class="{% if active_page == 'performance' %}active{% endif %}">Politique de performance</a></li>
+                <li><a href="{{ url_for('contact') }}" role="menuitem" class="{% if active_page == 'contact' %}active{% endif %}">Contact RH</a></li>
+                <li><a href="{{ url_for('coulisses') }}" role="menuitem" class="{% if active_page == 'coulisses' %}active{% endif %}">Les Coulisses</a></li>
+                <li><a href="{{ url_for('rh_chatbot') }}" role="menuitem" class="{% if active_page == 'rh_chatbot' %}active{% endif %}">Demandez aux RH</a></li>
+            </ul>
+        </div>
+        <ul class="menu menu-compact mt-2 w-full md:hidden" x-show="open" x-cloak @click="open=false" role="menu">
+            <li><a href="{{ url_for('home') }}" role="menuitem" class="{% if active_page == 'home' %}active{% endif %}">Accueil</a></li>
+            <li><a href="{{ url_for('politique') }}" role="menuitem" class="{% if active_page == 'politique' %}active{% endif %}">Politique d’intégration</a></li>
+            <li><a href="{{ url_for('performance_index') }}" role="menuitem" class="{% if active_page == 'performance' %}active{% endif %}">Politique de performance</a></li>
+            <li><a href="{{ url_for('contact') }}" role="menuitem" class="{% if active_page == 'contact' %}active{% endif %}">Contact RH</a></li>
+            <li><a href="{{ url_for('coulisses') }}" role="menuitem" class="{% if active_page == 'coulisses' %}active{% endif %}">Les Coulisses</a></li>
+            <li><a href="{{ url_for('rh_chatbot') }}" role="menuitem" class="{% if active_page == 'rh_chatbot' %}active{% endif %}">Demandez aux RH</a></li>
+        </ul>
     </nav>
     <main>
         {% block content %}{% endblock %}

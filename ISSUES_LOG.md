@@ -23,3 +23,4 @@
 - [ ] Docker container may not honor `PORT` variable due to exec-form CMD.
 - Added tests for Ollama query and fallback functions to ensure reliability.
 - [x] Duplicate Docker commands in README created confusion; removed extra build/run lines.
+- [ ] Verify DaisyUI navbar works consistently across browsers.
