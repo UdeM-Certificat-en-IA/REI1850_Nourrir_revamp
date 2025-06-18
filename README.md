@@ -116,8 +116,6 @@ Open your browser at [http://localhost:8080](http://localhost:8080).
 
 docker build -t nourrir-flask .
 docker run -d -p 8282:8080 \
-docker build -t nourrir-flask .
-docker run -d -p 8282:8080 \
   -e OLLAMA_CHAT_URL=https://ollama.artemis-ai.ca/v1/chat/completions \
   -e OLLAMA_MODELS_URL=https://ollama.artemis-ai.ca/v1/models \
   -e OLLAMA_MODEL=mistral:latest \

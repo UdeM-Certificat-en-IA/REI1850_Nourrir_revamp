@@ -9,3 +9,4 @@ This branch implements the UI/UX revamp. See `REVAMP_ROADMAP.md` for full detail
 - [ ] TODO_tooltips.md - Tippy.js Tooltip Tasks
 
 Follow the tasks in the respective files to track progress. Once completed, mark the tasks in the corresponding file.
+- [x] Remove duplicate Docker commands in `README.md`.
