@@ -27,3 +27,5 @@
  - [x] Add GitHub Actions workflow to test build.
 - [x] Expand unit tests for API endpoints and performance pages.
 - [x] Ensure Frozen-Flask outputs `.html` files for performance policy subpages.
+- [x] Add circular stage buttons linking to each phase.
+- [ ] Replace placeholder icons in stage buttons with branded graphics.
