@@ -26,6 +26,7 @@
 
  - [x] **Dark Mode Toggle**: Ensure the theme switch is easily clickable and aligned to the right of the navbar.
 
+
  - [x] **Style Consistency**: Use DaisyUI classes for styling. Optionally apply `btn btn-ghost` on links or default `<a>` styling, and accent colors for hover/active states.
 
  - [x] **Logo Integration**: If a logo exists, place it on the left with `<img>` inside a `btn btn-ghost`, sized with Tailwind classes (e.g., `w-10 mr-2`) and proper `alt` text.

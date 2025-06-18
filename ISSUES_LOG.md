@@ -35,3 +35,4 @@
 - [x] Logo now relocates between header and navbar on scroll and dark-mode toggle is functional.
 - [x] Navbar buttons spaced evenly; toggle and language buttons aligned.
 - [x] Frozen-Flask wrote pages without `.html` extensions causing markdown-like display; patched freezer and added build tests.
+
