@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Phase 3 – Récolte{% endblock %}
 {% block content %}
-<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none">
+<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none fade-section">
 <p><a href="{{ url_for('performance_index') }}" class="back-button" aria-label="Retour à l'index">&#8592;<span class="back-text"> Retour à l'index</span></a></p>
 <details class="section-dropdown">
     <summary>Accéder aux sections</summary>
@@ -18,11 +18,17 @@
     </ul>
 </details>
 <h1>Phase 3 – Récolte : Reconnaître, célébrer, projeter</h1>
+<img src="{{ url_for('serve_assets', filename='NEW_Images/phase3_recolte_nourrir.png') }}"
+     alt="Phase 3 Récolte" class="w-full max-w-md mx-auto rounded-lg md:float-right md:ml-6 mb-4 fade-section">
 <ul>
 <li><strong>Préparer l’évaluation annuelle</strong> : L’évaluation annuelle est conçue comme une conversation stratégique sur les objectifs, les contributions et les perspectives.</li>
 <li><strong>Construire un Plan de Croissance Personnalisé</strong> : Cette rencontre mène à l’élaboration d’un plan incluant objectifs de développement et participation à des projets transversaux.</li>
+<img src="{{ url_for('serve_assets', filename='NEW_Images/plan_croissance_personnalise_nourrir.png') }}"
+     alt="Plan de croissance" class="w-full max-w-md mx-auto rounded-lg md:float-left md:mr-6 my-4 fade-section">
 <li><strong>Mettre en valeur la reconnaissance</strong> : La reconnaissance prend différentes formes (badges, rituels d’équipe, moments symboliques choisis par les collectifs).</li>
+<img src="{{ url_for('serve_assets', filename='NEW_Images/reconnaissance_celebration_nourrir.png') }}"
+     alt="Reconnaissance" class="w-full max-w-md mx-auto rounded-lg md:float-right md:ml-6 my-4 fade-section">
 </ul>
-</ul>
+<div class="clear-both"></div>
 </section>
 {% endblock %}

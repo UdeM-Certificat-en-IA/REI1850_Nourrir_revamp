@@ -1,46 +1,37 @@
 {% extends 'base.html' %}
 {% block title %}Processus de performance – NourrIR{% endblock %}
 {% block content %}
-<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none">
+<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none fade-section">
 <h1 class="text-2xl font-bold">Processus de gestion de la performance chez NourrIR</h1>
 <p>Cultiver l’épanouissement par le sens et la science</p>
+<img src="{{ url_for('serve_assets', filename='NEW_Images/meeting_office_nourrir.png') }}"
+     alt="Réunion NourrIR" class="w-full max-w-md mx-auto rounded-lg md:float-right md:ml-6 mb-4 fade-section">
+<img src="{{ url_for('serve_assets', filename='NEW_Images/thumbnail_gestion_performance_nourrir.png') }}"
+     alt="Aperçu vidéo" class="w-full max-w-md mx-auto rounded-lg md:float-left md:mr-6 mb-4 fade-section">
 <div class="aspect-video my-6">
     <iframe src="https://www.youtube.com/embed/P9b1b3ms4Vk" title="Explication de la politique de performance" class="w-full h-full" allowfullscreen></iframe>
 </div>
-
-<details class="section-dropdown">
-    <summary>Accéder aux sections</summary>
-    <ul>
-        <li><a href="{{ url_for('performance_section', section='01_phase1_semis') }}">Phase&nbsp;1 – Semis</a></li>
-        <li><a href="{{ url_for('performance_section', section='02_phase2_croissance') }}">Phase&nbsp;2 – Croissance</a></li>
-        <li><a href="{{ url_for('performance_section', section='03_phase3_recolte') }}">Phase&nbsp;3 – Récolte</a></li>
-        <li><a href="{{ url_for('performance_section', section='04_phase4_renouvellement') }}">Phase&nbsp;4 – Renouvellement</a></li>
-        <li><a href="{{ url_for('performance_section', section='05_roles_responsabilites') }}">Acteurs clés et responsabilités</a></li>
-        <li><a href="{{ url_for('performance_section', section='06_conclusion') }}">Conclusion</a></li>
-        <li><a href="{{ url_for('performance_section', section='07_glossaire') }}">Glossaire</a></li>
-        <li><a href="{{ url_for('performance_section', section='08_bibliographie') }}">Bibliographie</a></li>
-        <li><a href="{{ url_for('performance_section', section='09_resume') }}">Résumé de correction</a></li>
-    </ul>
-</details>
+<div class="clear-both"></div>
 
 <div class="stage-buttons">
     <a href="{{ url_for('performance_section', section='01_phase1_semis') }}" class="stage-button semis" aria-label="Phase 1 – Semis">
-        <span class="icon">🌱</span>
+        <img src="{{ url_for('serve_assets', filename='NEW_Images/buttons/stage1_semis_icon.png') }}" alt="Semis">
         <span class="label">Semis</span>
     </a>
     <a href="{{ url_for('performance_section', section='02_phase2_croissance') }}" class="stage-button croissance" aria-label="Phase 2 – Croissance">
-        <span class="icon">📈</span>
+        <img src="{{ url_for('serve_assets', filename='NEW_Images/buttons/stage2_croissance_icon.png') }}" alt="Croissance">
         <span class="label">Croissance</span>
     </a>
     <a href="{{ url_for('performance_section', section='03_phase3_recolte') }}" class="stage-button recolte" aria-label="Phase 3 – Récolte">
-        <span class="icon">🏆</span>
+        <img src="{{ url_for('serve_assets', filename='NEW_Images/buttons/stage3_recolte_icon.png') }}" alt="Récolte">
         <span class="label">Récolte</span>
     </a>
     <a href="{{ url_for('performance_section', section='04_phase4_renouvellement') }}" class="stage-button renouvellement" aria-label="Phase 4 – Renouvellement">
-        <span class="icon">🔄</span>
+        <img src="{{ url_for('serve_assets', filename='NEW_Images/buttons/stage4_renouvellement_icon.png') }}" alt="Renouvellement">
         <span class="label">Renouvellement</span>
     </a>
 </div>
+
 
 <h2>Objectif</h2>
 <p>Le présent document vise à encadrer le processus de gestion de la performance au sein de NourrIR. Il a pour but d’offrir un cadre structurant, cohérent et vivant qui soutient l’alignement stratégique, la croissance individuelle et collective, ainsi que la reconnaissance des contributions de chacun·e. Inspiré par la mission de NourrIR, ce processus met de l’avant une vision de la performance comme levier de développement durable, de dialogue continu et d’engagement.</p>
@@ -58,6 +49,8 @@
 <p>Le processus se déploie selon quatre phases clés : semis, croissance, récolte, et renouvellement. Ce cycle reflète la vision de NourrIR selon laquelle la performance est un phénomène vivant, évolutif et interconnecté.</p>
 
 <h2>Rôle et intégration responsable de l’intelligence artificielle</h2>
+<img src="{{ url_for('serve_assets', filename='NEW_Images/ia_ethique_nourrir.png') }}"
+     alt="IA et éthique" class="w-full max-w-md mx-auto rounded-lg md:float-left md:mr-6 mb-4 fade-section">
 <p>NourrIR utilise Insight, un moteur IA génératif hébergé en interne, conçu pour assister les parties prenantes dans les phases de synthèse et d’analyse du processus de performance. Son rôle est strictement d’accompagnement, sous supervision humaine.</p>
 <h3>Fonctions principales</h3>
 <ul>
@@ -82,19 +75,7 @@
 <tr><td>Récolte</td><td>Évaluer, reconnaître, planifier la suite</td><td>Évaluation annuelle, plan de croissance</td><td>Gestionnaire, employé·e</td><td>Synthèse, plan personnalisé</td></tr>
 <tr><td>Renouvellement</td><td>Transformer les rôles et relancer le cycle</td><td>Rétro collective, ajustements de rôle</td><td>RH, équipe, employé·e</td><td>Rétro collective, tableaux RH</td></tr>
 </table>
-<h2>Accéder directement aux sections</h2>
-<ul>
-    <li><a href="{{ url_for('performance_section', section='01_phase1_semis') }}">Phase&nbsp;1 – Semis</a></li>
-    <li><a href="{{ url_for('performance_section', section='02_phase2_croissance') }}">Phase&nbsp;2 – Croissance</a></li>
-    <li><a href="{{ url_for('performance_section', section='03_phase3_recolte') }}">Phase&nbsp;3 – Récolte</a></li>
-    <li><a href="{{ url_for('performance_section', section='04_phase4_renouvellement') }}">Phase&nbsp;4 – Renouvellement</a></li>
-    <li><a href="{{ url_for('performance_section', section='05_roles_responsabilites') }}">Acteurs clés et responsabilités</a></li>
-    <li><a href="{{ url_for('performance_section', section='06_conclusion') }}">Conclusion</a></li>
-    <li><a href="{{ url_for('performance_section', section='07_glossaire') }}">Glossaire</a></li>
-    <li><a href="{{ url_for('performance_section', section='08_bibliographie') }}">Bibliographie</a></li>
-    <li><a href="{{ url_for('performance_section', section='09_resume') }}">Résumé de correction</a></li>
-</ul>
-<hr />
+
 
 </section>
 

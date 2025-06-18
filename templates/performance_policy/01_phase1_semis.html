@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Phase 1 – Semis{% endblock %}
 {% block content %}
-<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none">
+<section class="p-6 my-8 rounded-lg shadow-md bg-base-200 prose max-w-none fade-section">
 <p><a href="{{ url_for('performance_index') }}" class="back-button" aria-label="Retour à l'index">&#8592;<span class="back-text"> Retour à l'index</span></a></p>
 <details class="section-dropdown">
     <summary>Accéder aux sections</summary>
@@ -18,12 +18,16 @@
     </ul>
 </details>
 <h1>Phase 1 – Semis : Définir, ancrer, aligner</h1>
+<img src="{{ url_for('serve_assets', filename='NEW_Images/phase1_semis_nourrir.png') }}"
+     alt="Phase 1 Semis" class="w-full max-w-md mx-auto rounded-lg md:float-right md:ml-6 mb-4 fade-section">
 <ul>
 <li><strong>Ancrer les objectifs dans la mission</strong> : Les objectifs doivent contribuer à la mission de NourrIR, soit de cultiver le bien-être à l’intersection de la technologie, de la créativité et de la santé mentale.</li>
 <li><strong>Choisir le cadre approprié</strong> : Les objectifs peuvent être formulés selon deux cadres : OKR (orienté vers l’innovation) ou SMART (adapté aux projets opérationnels).</li>
 <li><strong>Co-définir les objectifs</strong> : La co-définition se fait en atelier tripartite entre l’employé·e, le gestionnaire, et, si pertinent, un·e collègue pair·e.</li>
 <li><strong>Visualiser et suivre les objectifs</strong> : Les objectifs sont ensuite visualisés dans un tableau de bord personnel permettant un suivi continu.</li>
+<img src="{{ url_for('serve_assets', filename='NEW_Images/tableau_bord_suivi_nourrir.png') }}"
+     alt="Tableau de bord" class="w-full max-w-md mx-auto rounded-lg md:float-left md:mr-6 my-4 fade-section">
 </ul>
-</ul>
+<div class="clear-both"></div>
 </section>
 {% endblock %}

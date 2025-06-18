@@ -8,6 +8,9 @@
 - Added pytest fixture that freezes the site if `build/index.html` is missing; documented this under "Running Tests".
 - Added pytest-based tests for key routes and documented how to run them.
 - Added Netlify deployment files and documentation.
+- Integrated performance policy visuals from `NEW_Images` with fade-in transitions and alternating layout.
+- Fixed incorrect asset paths and gave images rounded corners; added tests ensuring `NEW_Images` load correctly.
+- Added phase navigation buttons on the performance index and fade-out transitions for scrollable sections.
 - Fixed trailing prompt artifact in `test.py`.
 - Integrated performance policy pages and routes.
 - Fixed Netlify configuration parse error by using `python_version` in `netlify.toml`.
