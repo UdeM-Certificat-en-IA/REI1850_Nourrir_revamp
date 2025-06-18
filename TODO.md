@@ -10,3 +10,4 @@ This branch implements the UI/UX revamp. See `REVAMP_ROADMAP.md` for full detail
 
 Follow the tasks in the respective files to track progress. Once completed, mark the tasks in the corresponding file.
 - [x] Remove duplicate Docker commands in `README.md`.
+- [x] Add fixture to run `freezer.freeze()` automatically when tests need the build.

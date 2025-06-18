@@ -3,6 +3,7 @@
 ### Unreleased
 - Added responsive DaisyUI navbar with Tailwind and Alpine.js; active page now highlighted via context.
 - Cleaned up `README.md` by removing shell prompt artifacts and adding missing license closing text.
+- Added pytest fixture that freezes the site if `build/index.html` is missing; documented this under "Running Tests".
 - Added pytest-based tests for key routes and documented how to run them.
 - Added Netlify deployment files and documentation.
 - Fixed trailing prompt artifact in `test.py`.

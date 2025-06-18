@@ -165,6 +165,10 @@ Run the test suite with:
 pytest
 ```
 
+The tests expect a Frozen-Flask build under `build/`. A pytest fixture
+will automatically run `freezer.freeze()` if `build/index.html` is missing,
+so the first test run may take a moment while the site is generated.
+
 ### Local static build
 
 Render the site to static HTML and serve it locally:
