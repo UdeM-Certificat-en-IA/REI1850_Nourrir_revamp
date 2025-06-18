@@ -1,6 +1,6 @@
 # NourrIR Flask Project
   
-**Note**: You are on the REVAMP branch. For the UI/UX revamp plan and detailed roadmap, see `REVAMP_ROADMAP.md`. Implementation tasks are tracked in the following files:
+**Note**: You are on the REVAMP branch. This branch was created from `work` to continue the revamp effort. For the UI/UX revamp plan and detailed roadmap, see `REVAMP_ROADMAP.md`. Implementation tasks are tracked in the following files:
 - `TODO_nav.md` (Navigation)
 - `TODO_theme.md` (Dark/Light Mode Toggle)
 - `TODO_i18n.md` (Internationalization)
