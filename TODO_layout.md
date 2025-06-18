@@ -18,9 +18,9 @@
 
   - [x] **Image Responsiveness**: Add `max-w-full h-auto` and meaningful `alt` text for all images. Optionally use DaisyUI masks.
 
- - [ ] **Test Mobile Layout**: Verify on small viewports (e.g., iPhone SE) that content stacks vertically without horizontal scroll.
+ - [x] **Test Mobile Layout**: Verify on small viewports (e.g., iPhone SE) that content stacks vertically without horizontal scroll.
 
- - [ ] **Test Desktop Layout**: Ensure content width is constrained (e.g., wrap in `max-w-4xl mx-auto`) and spacing is balanced.
+ - [x] **Test Desktop Layout**: Ensure content width is constrained (e.g., wrap in `max-w-4xl mx-auto`) and spacing is balanced.
 
   - [x] **Consistency Across Pages**: Apply above styling to all pages (Accueil, Politique, Performance, Contact).
 
@@ -28,4 +28,4 @@
 
   - [x] **Clean Up Old CSS**: Remove or deprecate legacy custom CSS in `static/assets` that is superseded by Tailwind/DaisyUI.
 
- - [ ] **Update Tests**: Adjust any existing tests (snapshots or Selenium) to match the new HTML markup.
+ - [x] **Update Tests**: Adjust any existing tests (snapshots or Selenium) to match the new HTML markup.

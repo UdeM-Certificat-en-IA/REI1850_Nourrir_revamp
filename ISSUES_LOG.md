@@ -29,3 +29,9 @@
 - [ ] Expand translations to remaining pages and content.
 - [x] Old page-specific CSS made maintenance difficult; migrated to Tailwind utility classes and DaisyUI components.
 - [ ] Verify mobile behavior of new tooltips.
+- [x] Sticky header offset caused extra space; switched navbar to `top-0` and removed body padding.
+- [x] Header now hides on scroll and mobile menu fades in/out for smoother navigation.
+- [x] Navbar shrinks and logo moves left when scrolling down, restoring when scrolling up.
+- [x] Logo now relocates between header and navbar on scroll and dark-mode toggle is functional.
+- [x] Navbar buttons spaced evenly; toggle and language buttons aligned.
+- [x] Frozen-Flask wrote pages without `.html` extensions causing markdown-like display; patched freezer and added build tests.
