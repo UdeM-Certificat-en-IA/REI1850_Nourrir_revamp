@@ -2,6 +2,9 @@
 ## Changelog
 
 ### Unreleased
+- Updated navbar background to `bg-primary` and added DaisyUI CDN fallback
+  ensuring the menu is purple. Netlify build now uses `-i tailwind.css` for
+  Tailwind compilation.
 - Fixed transparent navbar by adding `bg-white` fallback for missing DaisyUI styles.
 - Added `static/js/ui.js` for scroll observers, navbar transparency, and theme helpers. Base template now loads this file and no longer includes inline scripts.
 - Added performance sections dropdown in navbar and removed inline dropdown blocks from policy pages.
