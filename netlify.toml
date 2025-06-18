@@ -1,5 +1,5 @@
 [build]
-  command = "pip install -r requirements.txt && npx tailwindcss -o static/styles.css && python freeze.py"
+  command = "pip install -r requirements.txt && npm ci && npx tailwindcss -o static/styles.css && python freeze.py"
   publish = "build"
 
 [build.environment]

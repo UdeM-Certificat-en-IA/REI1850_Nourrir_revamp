@@ -175,6 +175,7 @@ Render the site to static HTML and serve it locally:
 
 ```bash
 pip install -r requirements.txt
+npm ci
 npx tailwindcss -o static/styles.css
 python freeze.py
 npx serve build
@@ -185,7 +186,7 @@ npx serve build
 
 1. Install the Netlify CLI and log in with `netlify login`.
 2. Run `netlify deploy --prod` to build and deploy.
-3. The build step installs requirements, compiles Tailwind CSS with `npx tailwindcss -o static/styles.css`, and runs `python freeze.py`.
+3. The build step installs requirements, installs Node dependencies with `npm ci`, compiles Tailwind CSS with `npx tailwindcss -o static/styles.css`, and runs `python freeze.py`.
 4. Netlify automatically uploads the rendered `build/` directory.
 
 ## Troubleshooting

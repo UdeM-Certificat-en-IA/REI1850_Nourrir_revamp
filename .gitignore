@@ -10,3 +10,7 @@ ENV/
 .vscode/
 .DS_Store
 
+
+# Node and build artifacts
+node_modules/
+build/
