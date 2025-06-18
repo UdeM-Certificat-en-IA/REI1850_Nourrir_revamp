@@ -2,6 +2,7 @@
 ## Changelog
 
 ### Unreleased
+- Fixed transparent navbar by adding `bg-white` fallback for missing DaisyUI styles.
 - Added `static/js/ui.js` for scroll observers, navbar transparency, and theme helpers. Base template now loads this file and no longer includes inline scripts.
 - Added performance sections dropdown in navbar and removed inline dropdown blocks from policy pages.
 - Replaced Tailwind and DaisyUI CDN links with a local build using `npx tailwindcss`; Netlify now compiles `static/styles.css`.
