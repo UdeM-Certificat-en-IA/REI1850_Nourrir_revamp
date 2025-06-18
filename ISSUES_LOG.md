@@ -21,3 +21,4 @@
 - [ ] Netlify Python runtime may be <3.10 causing syntax errors from union type
       hints. Updated code to use `typing.Optional` for compatibility.
 - [ ] Docker container may not honor `PORT` variable due to exec-form CMD.
+- Added tests for Ollama query and fallback functions to ensure reliability.
