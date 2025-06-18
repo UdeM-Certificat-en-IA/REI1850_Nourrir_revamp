@@ -167,6 +167,8 @@ pytest
 4. Ensure `API_GATEWAY_BASE_PATH` is set in the Netlify environment. This
    variable defines the base path used by the serverless function and defaults to
    `/.netlify/functions/flask_app`.
+5. Set the publish directory to `templates` in the Netlify UI or via
+   `netlify.toml` so the static HTML pages are uploaded.
 
 ## Troubleshooting
 
