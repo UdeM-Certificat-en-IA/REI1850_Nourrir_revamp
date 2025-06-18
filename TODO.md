@@ -19,5 +19,6 @@
 - [ ] Verify Gunicorn command expands `$PORT` properly in Dockerfile.
 - [x] Parameterize Netlify base path via `API_GATEWAY_BASE_PATH` environment variable.
 - [x] Set Netlify publish directory to `templates` to ensure static files are deployed.
-- [ ] Integrate Frozen-Flask build for Netlify static deploy.
-- [ ] Add GitHub Actions workflow to test build.
+ - [x] Integrate Frozen-Flask build for Netlify static deploy.
+ - [x] Add GitHub Actions workflow to test build.
+- [ ] Expand unit tests for API endpoints and performance pages.
