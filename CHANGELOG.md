@@ -16,6 +16,8 @@
 - Added Netlify deployment files and documentation.
 - Integrated performance policy visuals from `NEW_Images` with fade-in transitions and alternating layout.
 - Switched navbar opacity logic to an IntersectionObserver watching `#top-sentinel` and removed the body scroll handler.
+- Ensured the IntersectionObserver fires by giving `#top-sentinel` a 1px height,
+  preventing the navbar from staying fully transparent.
 - Fixed incorrect asset paths and gave images rounded corners; added tests ensuring `NEW_Images` load correctly.
 - Added phase navigation buttons on the performance index and fade-out transitions for scrollable sections.
 - Fixed trailing prompt artifact in `test.py`.
