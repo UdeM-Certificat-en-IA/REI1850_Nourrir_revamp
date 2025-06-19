@@ -8,5 +8,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('daisyui').default],
+  plugins: [require('daisyui')],
 };

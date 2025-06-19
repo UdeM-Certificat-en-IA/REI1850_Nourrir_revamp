@@ -8,6 +8,8 @@
 - Bundled Alpine.js locally under `static/js` and updated templates to load it instead of the CDN script.
 - Replaced Tailwind and DaisyUI CDN links with a local build using `npx tailwindcss`; Netlify now compiles `static/styles.css`.
 - Fixed Netlify build by installing Tailwind CLI via npm and running `npm ci` before compilation.
+- Simplified DaisyUI plugin usage and updated Tailwind build commands to use the
+  new `input.css` entry with `--minify`.
 - Created `REVAMP` branch from `work` to continue UI/UX revamp tasks.
 - Added responsive DaisyUI navbar with Tailwind and Alpine.js; active page now highlighted via context.
 - Cleaned up `README.md` by removing shell prompt artifacts and adding missing license closing text.
