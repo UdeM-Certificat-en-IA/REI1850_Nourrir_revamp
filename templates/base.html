@@ -175,7 +175,16 @@
 </head>
 
 <body x-data="{ atTop: true }" @sentinel-change.window="atTop = $event.detail.atTop">
-    <div id="top-sentinel"></div>
+    {#
+      Give the top-sentinel a minimal height so that it actually occupies
+      space in the viewport.  Without this the IntersectionObserver used in
+      ``static/js/ui.js`` never sees the element *intersecting* because a zero
+     -area element has an ``intersectionRatio`` of *0*, which the browser may
+      report as *not* intersecting – leading to the navbar always thinking it
+      is scrolled away from the top.  A single pixel is sufficient and does
+      not introduce any perceivable layout shift.
+    #}
+    <div id="top-sentinel" style="height:1px;"></div>
     <!-- ============ HEADER ============ -->
     <header x-show="atTop" x-transition.opacity.duration.300ms
             class="bg-white shadow-md py-4 text-center sticky top-0 z-40"
