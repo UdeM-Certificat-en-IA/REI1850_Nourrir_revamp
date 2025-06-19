@@ -49,6 +49,9 @@
 - [x] Integrated Sections dropdown; removed duplicated dropdown blocks from policy pages.
 - [x] Moved fade-section observer into `static/js/ui.js` with navbar sentinel logic; base template references the new script.
 - [x] Replaced `@scroll.window` listener with custom `sentinel-change` event; navbar opacity toggles via IntersectionObserver.
+- [x] Navbar remained fully transparent because the IntersectionObserver never
+  detected the top sentinel. Added a 1px `#top-sentinel` element so the
+  observer fires correctly and the navbar gains opacity after scrolling.
 - [x] Added Playwright tests for theme toggle, navbar transparency and mobile menu.
 - [x] Initialized theme early with inline script and `ui.js` click handler; toggle now sets `aria-pressed` and persists choice.
 - [x] DaisyUI classes missing from compiled CSS; created `input.css` and updated Tailwind config to use the plugin's default export.

@@ -173,6 +173,14 @@ class Flask:
         self.template_folder = template_folder
         self._rules: List[_Rule] = []
         self.url_map = _URLMap(self._rules)
+        # Application config dictionary (subset used by freezer)
+        self.config: Dict[str, Any] = {}
+        # Root path used by flask_frozen to build URLs
+        self.root_path = os.getcwd()
+        # Minimal compatibility with Flask's url_default_functions attribute used
+        # by flask_frozen to register callbacks. Dictionary mapping blueprint
+        # names to lists of callables.
+        self.url_default_functions: Dict[str | None, List[Callable[..., None]]] = {}
 
     # ------------------------------------------------------------------
     # Routing helpers
