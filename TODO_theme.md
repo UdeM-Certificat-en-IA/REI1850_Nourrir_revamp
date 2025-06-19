@@ -33,7 +33,8 @@
 
  - [x] **Init Theme in JS**: Use `ui.js` to apply the saved theme on page load and handle the toggle click.
 
- - [ ] **Test Styling in Both Modes**: Manually verify UI components switch correctly in light and dark modes.
+ - [x] **Test Styling in Both Modes**: Manually verify UI components switch correctly in light and dark modes.
+ - [x] **Regression Test**: Ensure an element with `bg-base-100` changes colors when `data-theme` toggles.
 
  - [ ] **Edge Cases**: Ensure i18n translation and theme toggle coexist without conflicts.
 
