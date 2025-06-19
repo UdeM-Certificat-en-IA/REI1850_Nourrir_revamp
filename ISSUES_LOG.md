@@ -52,6 +52,8 @@
 - [x] Navbar remained fully transparent because the IntersectionObserver never
   detected the top sentinel. Added a 1px `#top-sentinel` element so the
   observer fires correctly and the navbar gains opacity after scrolling.
+- [x] Navbar still appeared white on initial load. Set an inline style with
+  brand purple (`#4C2E85`) so it displays solid color even before scrolling.
 - [x] Added Playwright tests for theme toggle, navbar transparency and mobile menu.
 - [x] Initialized theme early with inline script and `ui.js` click handler; toggle now sets `aria-pressed` and persists choice.
 - [x] DaisyUI classes missing from compiled CSS; created `input.css` and updated Tailwind config to use the plugin's default export.

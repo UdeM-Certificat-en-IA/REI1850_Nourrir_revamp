@@ -18,6 +18,8 @@
 - Switched navbar opacity logic to an IntersectionObserver watching `#top-sentinel` and removed the body scroll handler.
 - Ensured the IntersectionObserver fires by giving `#top-sentinel` a 1px height,
   preventing the navbar from staying fully transparent.
+- Navbar now uses the branding purple `#4C2E85` by default with a Tailwind
+  inline style so opacity transitions still work.
 - Fixed incorrect asset paths and gave images rounded corners; added tests ensuring `NEW_Images` load correctly.
 - Added phase navigation buttons on the performance index and fade-out transitions for scrollable sections.
 - Fixed trailing prompt artifact in `test.py`.

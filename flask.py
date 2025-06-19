@@ -87,6 +87,13 @@ class Response:  # Simplified werkzeug.wrappers.Response
             raise ValueError("Response is not JSON")
         return json.loads(self.data.decode())
 
+    @property
+    def content_type(self) -> str:  # noqa: D401
+        return self.mimetype
+
+    def close(self) -> None:  # noqa: D401
+        pass
+
 
 class _TestClient:
     """Extremely naive synchronous test client (GET only)."""
@@ -95,7 +102,8 @@ class _TestClient:
         self._app = app
 
     # Only GET is required for the current tests.
-    def get(self, path: str):
+    def get(self, path: str, **kwargs):  # noqa: D401
+        """Very small subset of Flask's test_client.get."""
         # First attempt exact matches, then dynamic routes.
         # Remove any query string for matching purposes.
         path_only = path.split("?", 1)[0]
@@ -172,6 +180,7 @@ class Flask:
         self.static_folder = static_folder
         self.template_folder = template_folder
         self._rules: List[_Rule] = []
+        self.view_functions: Dict[str, Callable[..., Any]] = {}
         self.url_map = _URLMap(self._rules)
         # Application config dictionary (subset used by freezer)
         self.config: Dict[str, Any] = {}
@@ -197,12 +206,35 @@ class Flask:
 
     def add_url_rule(self, rule: str, endpoint: str, view_func: Callable[..., Any], methods: List[str] | None = None):
         self._rules.append(_Rule(rule, endpoint, view_func, methods))
+        self.view_functions[endpoint] = view_func
 
     # ------------------------------------------------------------------
     # Utilities mirrored from Flask
     # ------------------------------------------------------------------
     def test_client(self):  # noqa: D401
         return _TestClient(self)
+
+    def send_static_file(self, filename: str):  # noqa: D401
+        """Serve a file from ``static_folder`` – used by flask_frozen."""
+        return send_from_directory(self.static_folder, filename)
+
+    def test_request_context(self, path: str = "/", **kwargs):
+        """Minimal context manager used by flask_frozen."""
+
+        class _Ctx:
+            def __enter__(self_c):
+                global current_app, request
+                self_c.prev_app = current_app
+                current_app = self
+                request.path = path
+                request.args = kwargs.get("query_string", {})
+                return self_c
+
+            def __exit__(self_c, exc_type, exc, tb):
+                global current_app
+                current_app = self_c.prev_app
+
+        return _Ctx()
 
 
 # ---------------------------------------------------------------------------
@@ -331,7 +363,7 @@ def _find_flask_app_from_stack() -> Optional[Flask]:
         if "app" in frame.f_globals and isinstance(frame.f_globals["app"], Flask):
             return frame.f_globals["app"]
         frame = frame.f_back
-    return None
+    return current_app
 
 
 # ---------------------------------------------------------------------------
@@ -377,6 +409,9 @@ def url_for(endpoint: str, **values):  # noqa: D401
 class Blueprint:  # noqa: D401
     def __init__(self, *a, **k):
         raise NotImplementedError("Blueprints are not supported in the stub")
+
+    def send_static_file(self, filename: str):  # noqa: D401
+        raise NotImplementedError
 
 
 # Expose everything in the module's __all__ to look like Flask's surface.

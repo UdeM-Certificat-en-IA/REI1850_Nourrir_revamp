@@ -38,3 +38,4 @@
 
 - [x] Added "Sections" dropdown menu for performance pages.
 - [x] Replaced scroll listener with IntersectionObserver; navbar background now toggles `bg-opacity-90` when the top sentinel leaves view.
+- [x] Set navbar default background to brand purple (`#4C2E85`) using an inline Tailwind RGB color so it appears solid before scrolling.
